@@ -1,0 +1,71 @@
+﻿@model IEnumerable<KRU.Models.Employee>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Ходимлар</h1>
+
+<p>
+    <div class="page-title-subheading">
+        <a class="mb-2 mr-2 btn-transition btn btn-outline-info" asp-area="Identity" asp-page="/Account/Register">
+            <i class="fas fa-plus"></i>
+            &nbsp; Ходим Қўшиш
+        </a>
+    </div>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Исми
+            </th>
+            <th>
+                Фамилияси
+            </th>
+            <th>
+                Телефон рақами
+            </th>
+            <th>
+               Лавозим
+            </th>
+            <th>
+                Адрес
+            </th>
+            <th>
+                Статуси
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.FName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.LName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Position)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Address.Building)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeState)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EmployeeId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.EmployeeId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.EmployeeId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

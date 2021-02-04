@@ -1,0 +1,50 @@
+﻿@model IEnumerable<KRU.Models.Address>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3>Бу йердан биноларни бошқаришингиз мумкун</h3>
+
+<div class="buttons-container">
+    <a class="btn btn-default" asp-action="Create">
+        <i class="fas fa-plus mr-2"></i>Янги бино
+    </a>
+    <a class="btn btn-default" asp-area="Admin" asp-controller="Objects" asp-action="Index">
+       <i class="far fa-building mr-2"></i>Барча объектлар
+    </a>
+</div>
+<div class="card">
+    <div class="card-body">
+        <table id="example1" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Здание            
+                    </th>
+                    <th>
+                        Город
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+        @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Building)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+                    <td class="table-button-container">
+                        <a data-toggle="tooltip" title="Edit" class="btn btn-outline-success kru-table-button" asp-action="Edit" asp-route-id="@item.AddressId"><i class="far fa-edit"></i></a>
+                        <a data-toggle="tooltip" title="Details" class="btn btn-outline-info kru-table-button" asp-action="Details" asp-route-id="@item.AddressId"><i class="fas fa-info"></i></a>
+                        <a data-toggle="tooltip" title="Delete" class="btn btn-outline-danger kru-table-button" asp-action="Delete" asp-route-id="@item.AddressId"><i class="far fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+        }
+            </tbody>
+        </table>
+    </div>
+</div>

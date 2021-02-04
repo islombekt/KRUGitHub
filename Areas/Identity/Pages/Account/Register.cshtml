@@ -1,0 +1,138 @@
+﻿
+@page
+@using KRU.Data
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+
+
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-route-returnUrl="@Model.ReturnUrl" class="kru-form" id="app" method="post">
+            <h4>Create a new account.</h4>
+            <hr />
+            <div class="kru-form-container">
+                <div class="">
+                    <label>Имя</label>
+                    <input asp-for="Input.FName" class="form-control" />
+                    <span asp-validation-for="Input.FName" class="text-danger"></span>
+                </div>
+                <div class="">
+                    <label>Фамилия</label>
+                    <input asp-for="Input.LName" class="form-control" />
+                    <span asp-validation-for="Input.LName" class="text-danger"></span>
+                </div>
+                <div class="">
+                    <label>Отчество</label>
+                    <input asp-for="Input.SName" class="form-control" />
+                    <span asp-validation-for="Input.SName" class="text-danger"></span>
+                </div>
+                <div class="">
+                    <label>Номер телефона</label>
+                    <input asp-for="Input.PhoneNumber" class="form-control" />
+                    <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="">
+                    <label>Должность</label>
+                    <input asp-for="Input.Position" class="form-control" />
+                    <span asp-validation-for="Input.Position" class="text-danger"></span>
+                </div>
+                @*<div class="form-group">
+                        <label asp-for="Input.AddressId"></label>
+                        <input asp-for="Input.AddressId" class="form-control" />
+                        <span asp-validation-for="Input.AddressId" class="text-danger"></span>
+                    </div>*@
+            </div>
+            <div class="kru-form-container">
+                <div class="">
+                    <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-house "></i></span>
+                    <div class="form-group">
+                        <label>Бинони танланг</label>
+                            @Html.DropDownListFor(m => m.Input.AddressId, Model.Input.BuildingList ?? new List<SelectListItem>(),
+                        "", new { @class = "form-control" })
+                    </div>
+                </div>
+            
+                @if (User.IsInRole(SD.Role_Admin))
+                {
+
+                    <div class="">
+                        <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-house "></i></span>
+                        <div id="role" class="form-group">
+                            <label>Рольни танланг</label>
+                                @Html.DropDownListFor(m => m.Input.Role, Model.Input.RoleList ?? new List<SelectListItem>(),
+                        "", new { @class = "form-control" })
+                        </div>
+
+                    </div>
+                    <div class="">
+                        <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-house "></i></span>
+                        <div id="department" class="form-group">
+                            <label>Департамент йоки гурухни танланг</label>
+                                @Html.DropDownListFor(m => m.Input.DepartmentId, Model.Input.DepartmentList ?? new List<SelectListItem>(),
+                        "", new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="">
+                        <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-house "></i></span>
+                        <div id="manager" class="form-group">
+                            <label>Менеджерни танланг</label>
+                                @Html.DropDownListFor(m => m.Input.ManagerId, Model.Input.ManagerList ?? new List<SelectListItem>(),
+                        "", new { @class = "form-control" })
+                        </div>
+                    </div>
+                }
+
+                <div class="">
+                    <label asp-for="Input.Email"></label>
+                    <input asp-for="Input.Email" class="form-control" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="">
+                    <label asp-for="Input.Password"></label>
+                    <input type="password" asp-for="Input.Password" class="form-control" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="">
+                    <label asp-for="Input.ConfirmPassword"></label>
+                    <input type="password" asp-for="Input.ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+<script src="~/theme/plugins/jquery/jquery.min.js"></script>
+
+<script>
+    jQuery(document).ready(function ($) {
+        $('#app').change(function () {
+            // hide all optional elements
+            $('#manager').hide();
+            $('#department').hide();
+            $("#role").each(function () {
+                if ($('#role option:selected').text() == "Employee") {
+                    $('#manager').slideDown();
+                    $('#department').slideDown();
+                }
+                else if ($('#role option:selected').text() == "Manager") {
+                    $('#department').slideDown();
+                }
+                else
+                    $('#manager').filter(':hidden');
+            });
+        });
+
+    });
+</script>

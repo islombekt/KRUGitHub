@@ -1,0 +1,136 @@
+.kru-logo {
+  line-height: 0.8;
+}
+
+.ung-logo{
+   height: 30px;
+   display: block;
+   margin: 0 auto;
+}
+
+.sidebar{
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.kru-user-menu{
+  min-width: 180px;
+}
+
+.kru-user-menu button{
+  padding: 0;
+}
+
+.kru-user-menu .dropdown-item{
+  padding: 10px 20px; 
+}
+
+.kru-container {
+  padding: 30px 20px;
+}
+
+.buttons-container{
+  margin: 20px 0;
+  display: flex;
+}
+
+.buttons-container a{
+  margin-right: 20px;
+}
+
+.table-button-container{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.table-button-container a{
+  margin-left: 20px;
+}
+
+.kru-table-button{
+  border: 0;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-outline-success:hover{
+  background-color: rgba(0,128,0, 0.6);
+}
+
+.title-container {
+  margin-bottom: 20px;
+}
+
+.page-title-subheading {
+  margin-bottom: 10px;
+}
+
+@-webkit-keyframes rotating /* Safari and Chrome */ {
+  from {
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.rotating {
+  -webkit-animation: rotating 2s linear infinite;
+  -moz-animation: rotating 2s linear infinite;
+  -ms-animation: rotating 2s linear infinite;
+  -o-animation: rotating 2s linear infinite;
+  animation: rotating 2s linear infinite;
+}
+
+.kru-form{
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.kru-form-container{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.kru-form-container > div{
+  width: 48%;
+  margin-bottom: 20px;
+}
+
+.kru-form-container > div:nth-child(odd){
+  margin-right: 10px;
+}
+
+.kru-form-container > button{
+  justify-self: flex-end;
+  margin-left: auto;
+  align-self: flex-end;
+}
+
+.kru-form-container .form-control{
+  width: 90%;
+}

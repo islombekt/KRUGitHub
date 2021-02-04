@@ -1,0 +1,90 @@
+﻿@model IEnumerable<KRU.Models.FileHistory>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FileUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FileStart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FileEnd)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Task_Type.NameType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FileFinished)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @if (item.FileUrl == "" || item.FileUrl == null)
+                {
+                    <a>Файл отсутсвует</a>
+                }
+                else
+                {
+                   
+                        <a asp-area="Manager" asp-controller="FileHistories" asp-action="Download_Config" asp-route-FileId="@item.FileId"> @Html.DisplayFor(modelItem => item.FileUrl)</a>
+                   
+                        @*@Html.DisplayFor(modelItem => item.FileUrl)*@
+                        }
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileStart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileEnd)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Task_Type.NameType)
+            </td>
+            <td>
+                @if (item.FileFinished == true)
+                {
+                    <a>закрыт</a>
+                }
+                @if (item.FileFinished == false)
+                {
+                    <a>Не закрыт</a>
+                }
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.FileId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.FileId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.FileId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

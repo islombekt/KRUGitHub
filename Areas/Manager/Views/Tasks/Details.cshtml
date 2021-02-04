@@ -1,0 +1,72 @@
+﻿@model KRU.Models.Tasks
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Tasks</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SumLost)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SumLost)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SumGain)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SumGain)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Comment)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Comment)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.File)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.File)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Finished)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Finished)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TaskStarted)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TaskStarted)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TaskEnd)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TaskEnd)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Department)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Department.DepartmentId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Task_Type)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Task_Type.TaskTypeID)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.TaskId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
