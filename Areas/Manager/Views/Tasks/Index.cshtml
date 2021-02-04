@@ -1,0 +1,99 @@
+﻿@model IEnumerable<KRU.Models.Tasks>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SumLost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SumGain)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.File)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Finished)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskStarted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskEnd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Task_Type)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SumLost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SumGain)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comment)
+            </td>
+           
+            <td>
+
+                @foreach (var i in item.Task_Files)
+                {
+                    @if (i.FileHistory.FileUrl == "" || i.FileHistory.FileUrl == null)
+                    {
+                        @Html.DisplayFor(modelItem => i.FileHistory.Name)
+                    }
+                    else
+                    {
+                        <a asp-area="Manager" asp-controller="FileHistories" asp-action="Download_Config" asp-route-FileId="@i.FileHistory.FileId">
+                            @Html.DisplayFor(modelItem => i.FileHistory.Name)
+                        </a>}
+                    <br />
+                }
+            </td>
+          
+                <td>
+                    @Html.DisplayFor(modelItem => item.Finished)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TaskStarted)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TaskEnd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department.DepartmentId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Task_Type.TaskTypeID)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.TaskId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.TaskId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.TaskId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

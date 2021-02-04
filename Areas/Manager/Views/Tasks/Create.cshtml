@@ -1,0 +1,147 @@
+﻿@model KRU.Models.Tasks
+@*@using KRU.Models*@
+@{
+    ViewData["Title"] = "Create";
+    ViewData["FileType"] = "";
+}
+
+<h1>Create</h1>
+
+<h4>Tasks</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*<div class="form-group">
+                    <label asp-for="SumLost" class="control-label"></label>
+                    <input asp-for="SumLost" class="form-control" />
+                    <span asp-validation-for="SumLost" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SumGain" class="control-label"></label>
+                    <input asp-for="SumGain" class="form-control" />
+                    <span asp-validation-for="SumGain" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Comment" class="control-label"></label>
+                    <input asp-for="Comment" class="form-control" />
+                    <span asp-validation-for="Comment" class="text-danger"></span>
+                </div>*@
+            @*<div class="form-group">
+                    <label for="exampleSelect" class=""> File</label>
+                    <div class="chosen-select-act">
+
+                        <select asp-for="File" class="chosen-select-width" tabindex="5" asp-items="ViewBag.File"></select>
+                        <span asp-validation-for="Task_Files" class="text-danger"></span>
+                    </div>
+                </div>*@
+
+            @*<div class="form-group">
+                    <label asp-for="File" class="control-label"></label>
+                    <input asp-for="File" class="form-control" />
+                    <span asp-validation-for="File" class="text-danger"></span>
+                </div>*@
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Finished" /> @Html.DisplayNameFor(model => model.Finished)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaskStarted" class="control-label"></label>
+                <input asp-for="TaskStarted" class="form-control" />
+                <span asp-validation-for="TaskStarted" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaskEnd" class="control-label"></label>
+                <input asp-for="TaskEnd" class="form-control" />
+                <span asp-validation-for="TaskEnd" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                    <label asp-for="DepartmentId" class="control-label"></label>
+                    <select asp-for="DepartmentId" class="form-control" asp-items="ViewBag.DepartmentId"></select>
+                </div>*@
+            <div class="form-group">
+                <label asp-for="TaskTypeId" class="control-label"></label>
+                <select asp-for="TaskTypeId" class="form-control" asp-items="ViewBag.TaskTypeId"></select>
+            </div>
+            <label class="switch">
+                Добавить файлы
+                <input type="checkbox" id="clickFile"  />
+                <span class="slider round"></span>
+            </label>
+
+            <div class="form-group" id="fileSelect" style="display:none;">
+                <label></label>
+
+
+                <select id="ListFile" name="ListofFiles" asp-for="File" class="select2" multiple="multiple" data-placeholder="Выберите файлы" style="width:100%;" asp-items="ViewBag.File"></select>
+                <span asp-validation-for="File" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                @*<button id="submit" type="submit" name="submit" value="Submit" asp-area="Manager" asp-action="CreLocChanger" hidden></button>*@
+                <input type="submit" id="btnSave" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+
+
+@section Scripts {
+
+    <script type="text/javascript">
+        //Initialize Select2 Elements
+        $(document).ready(function () {
+            $('.select2').select2()
+            $('#clickFile').click(function () {
+                $('#fileSelect').css('display', 'none');
+            }, function () { $('#fileSelect').css('display', 'inline'); });
+
+            $("#btnSave").click(function () {
+                SaveSelectedFiles();
+            });
+            //function SaveSelectedFiles() {
+            //    var fileList = "";
+            //    var ListOfFiles = []
+            //    $.each($("#ListFile option:selected"),
+            //        function (index, data) {
+            //            //fileList += $(this).val() + " " + $(this).text() + "\n";
+            //            ListOfFiles.push($(this).val());
+            //            console.log(ListOfFiles);
+            //        });
+            //    console.log(ListOfFiles);
+            //    $.ajax({
+            //        async: true,
+            //        type: 'POST',
+            //        dataType: 'json',
+            //        url: '/Manager/Tasks/Create',
+            //        traditional: true,
+            //        contentType: 'application/json; charset=utf-8',
+            //        data: JSON.stringify({ ListOfFiles: ListOfFiles }),
+            //        success: function (data) {
+            //            if (data.success === true) {
+            //                alert(data.message);
+            //            }
+            //            },
+            //        error: function () {
+            //            alert('Error');
+            //        }
+            //    })
+            //}
+
+        });
+
+    
+       
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+

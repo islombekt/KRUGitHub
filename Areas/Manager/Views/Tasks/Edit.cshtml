@@ -1,0 +1,84 @@
+﻿@model KRU.Models.Tasks
+@using (Html.BeginForm())
+{
+    ViewData["Title"] = "Edit";
+    
+}
+
+<h1>Edit</h1>
+
+<h4>Tasks</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TaskId" />
+            <input type="hidden" asp-for="DepartmentId" />
+            <div class="form-group">
+                <label asp-for="SumLost" class="control-label"></label>
+                <input asp-for="SumLost" class="form-control" />
+                <span asp-validation-for="SumLost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SumGain" class="control-label"></label>
+                <input asp-for="SumGain" class="form-control" />
+                <span asp-validation-for="SumGain" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Comment" class="control-label"></label>
+                <input asp-for="Comment" class="form-control" />
+                <span asp-validation-for="Comment" class="text-danger"></span>
+            </div>
+       
+            <div class="form-group" id="fileSelect">
+                <label></label>
+
+
+                <select id="ListFile" name="ListofFiles" asp-for="selectedFiles" class="select2" multiple="multiple" data-placeholder="Выберите файлы" style="width:100%;" asp-items="ViewBag.File"></select>
+                <span asp-validation-for="File" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Finished" /> @Html.DisplayNameFor(model => model.Finished)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaskStarted" class="control-label"></label>
+                <input asp-for="TaskStarted" class="form-control" />
+                <span asp-validation-for="TaskStarted" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaskEnd" class="control-label"></label>
+                <input asp-for="TaskEnd" class="form-control" />
+                <span asp-validation-for="TaskEnd" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="TaskTypeId" class="control-label"></label>
+                <select asp-for="TaskTypeId" class="form-control" asp-items="ViewBag.TaskTypeId"></select>
+                <span asp-validation-for="TaskTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        //Initialize Select2 Elements
+        $(document).ready(function () {
+            $('.select2').select2()
+        });
+
+
+
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
