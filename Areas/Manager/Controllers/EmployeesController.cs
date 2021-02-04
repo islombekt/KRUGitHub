@@ -8,10 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using KRU.Data;
 using KRU.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KRU.Areas.Manager.Controllers
 {
     [Area("Manager")]
+    [Authorize(Roles = SD.Role_Manager)]
     public class EmployeesController : Controller
     {
         private readonly ApplicationDbContext _context;

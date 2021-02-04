@@ -57,10 +57,19 @@
             </td>
            
             <td>
+
                 @foreach (var i in item.Task_Files)
                 {
-                    @Html.DisplayFor(modelItem => i.FileHistory.Name)
-                   <br/>
+                    @if (i.FileHistory.FileUrl == "" || i.FileHistory.FileUrl == null)
+                    {
+                        @Html.DisplayFor(modelItem => i.FileHistory.Name)
+                    }
+                    else
+                    {
+                        <a asp-area="Manager" asp-controller="FileHistories" asp-action="Download_Config" asp-route-FileId="@i.FileHistory.FileId">
+                            @Html.DisplayFor(modelItem => i.FileHistory.Name)
+                        </a>}
+                    <br />
                 }
             </td>
           

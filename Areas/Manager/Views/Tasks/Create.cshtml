@@ -2,7 +2,7 @@
 @*@using KRU.Models*@
 @{
     ViewData["Title"] = "Create";
-    ViewData["FileType"] = ""; 
+    ViewData["FileType"] = "";
 }
 
 <h1>Create</h1>
@@ -65,8 +65,9 @@
                 <label asp-for="TaskTypeId" class="control-label"></label>
                 <select asp-for="TaskTypeId" class="form-control" asp-items="ViewBag.TaskTypeId"></select>
             </div>
-            <label class="switch"> Добавить файлы
-                <input type="checkbox" id="clickFile" value="false" />
+            <label class="switch">
+                Добавить файлы
+                <input type="checkbox" id="clickFile"  />
                 <span class="slider round"></span>
             </label>
 
@@ -74,12 +75,13 @@
                 <label></label>
 
 
-                <select id="ListFile" asp-for="File" class="select2" multiple="multiple" data-placeholder="Выберите файлы" style="width:100%;" asp-items="ViewBag.File"></select>
+                <select id="ListFile" name="ListofFiles" asp-for="File" class="select2" multiple="multiple" data-placeholder="Выберите файлы" style="width:100%;" asp-items="ViewBag.File"></select>
                 <span asp-validation-for="File" class="text-danger"></span>
 
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                @*<button id="submit" type="submit" name="submit" value="Submit" asp-area="Manager" asp-action="CreLocChanger" hidden></button>*@
+                <input type="submit" id="btnSave" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -102,30 +104,42 @@
                 $('#fileSelect').css('display', 'none');
             }, function () { $('#fileSelect').css('display', 'inline'); });
 
-            function SaveSelectedFiles() {
-                var fileList = "";
-                var ListOfFiles = []
-                $.each($("#ListFile option:selected"),
-                    function (index, data) {
-                        //fileList += $(this).val() + " " + $(this).text() + "\n";
-                        ListOfFiles.push($(this).val());
-                    });
-                $.ajax({
-                    async: true,
-                    type: 'POST',
-                    dataType = 'JSON',
-                    contentType: 'application/json; charset=utf-8',
-                    url: '/Manager/Tasks/CreateFiles',
-                    data: JSON.stringify({ ListOfFiles: ListOfFiles, TaskId: 1}),
-                    success: function (data) { },
-                    error: function () {
-                        alert('Error');
-                    }
-                })
-            }
+            $("#btnSave").click(function () {
+                SaveSelectedFiles();
+            });
+            //function SaveSelectedFiles() {
+            //    var fileList = "";
+            //    var ListOfFiles = []
+            //    $.each($("#ListFile option:selected"),
+            //        function (index, data) {
+            //            //fileList += $(this).val() + " " + $(this).text() + "\n";
+            //            ListOfFiles.push($(this).val());
+            //            console.log(ListOfFiles);
+            //        });
+            //    console.log(ListOfFiles);
+            //    $.ajax({
+            //        async: true,
+            //        type: 'POST',
+            //        dataType: 'json',
+            //        url: '/Manager/Tasks/Create',
+            //        traditional: true,
+            //        contentType: 'application/json; charset=utf-8',
+            //        data: JSON.stringify({ ListOfFiles: ListOfFiles }),
+            //        success: function (data) {
+            //            if (data.success === true) {
+            //                alert(data.message);
+            //            }
+            //            },
+            //        error: function () {
+            //            alert('Error');
+            //        }
+            //    })
+            //}
+
         });
 
-
+    
+       
     </script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

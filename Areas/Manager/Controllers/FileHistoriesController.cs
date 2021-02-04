@@ -9,10 +9,12 @@ using KRU.Data;
 using KRU.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KRU.Areas.Manager.Controllers
 {
     [Area("Manager")]
+    [Authorize(Roles = SD.Role_Manager)]
     public class FileHistoriesController : Controller
     {
         private readonly ApplicationDbContext _context;

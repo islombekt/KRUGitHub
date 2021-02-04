@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KRU.Data;
 using KRU.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KRU.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class DepartmentsController : Controller
     {
         private readonly ApplicationDbContext _context;

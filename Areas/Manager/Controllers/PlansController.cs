@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KRU.Data;
 using KRU.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KRU.Areas.Manager.Controllers
 {
     [Area("Manager")]
+    [Authorize(Roles = SD.Role_Manager)]
     public class PlansController : Controller
     {
         private readonly ApplicationDbContext _context;

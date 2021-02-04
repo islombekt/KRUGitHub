@@ -1,7 +1,8 @@
 ﻿@model KRU.Models.Tasks
-
-@{
+@using (Html.BeginForm())
+{
     ViewData["Title"] = "Edit";
+    
 }
 
 <h1>Edit</h1>
@@ -13,6 +14,7 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="TaskId" />
+            <input type="hidden" asp-for="DepartmentId" />
             <div class="form-group">
                 <label asp-for="SumLost" class="control-label"></label>
                 <input asp-for="SumLost" class="form-control" />
@@ -28,9 +30,12 @@
                 <input asp-for="Comment" class="form-control" />
                 <span asp-validation-for="Comment" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="File" class="control-label"></label>
-                <input asp-for="File" class="form-control" />
+       
+            <div class="form-group" id="fileSelect">
+                <label></label>
+
+
+                <select id="ListFile" name="ListofFiles" asp-for="selectedFiles" class="select2" multiple="multiple" data-placeholder="Выберите файлы" style="width:100%;" asp-items="ViewBag.File"></select>
                 <span asp-validation-for="File" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
@@ -48,11 +53,7 @@
                 <input asp-for="TaskEnd" class="form-control" />
                 <span asp-validation-for="TaskEnd" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="DepartmentId" class="control-label"></label>
-                <select asp-for="DepartmentId" class="form-control" asp-items="ViewBag.DepartmentId"></select>
-                <span asp-validation-for="DepartmentId" class="text-danger"></span>
-            </div>
+
             <div class="form-group">
                 <label asp-for="TaskTypeId" class="control-label"></label>
                 <select asp-for="TaskTypeId" class="form-control" asp-items="ViewBag.TaskTypeId"></select>
@@ -70,5 +71,14 @@
 </div>
 
 @section Scripts {
+    <script type="text/javascript">
+        //Initialize Select2 Elements
+        $(document).ready(function () {
+            $('.select2').select2()
+        });
+
+
+
+    </script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

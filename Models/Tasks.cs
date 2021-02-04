@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -14,6 +15,8 @@ namespace KRU.Models
         public string SumLost { get; set; }
         public string SumGain { get; set; }
         public string Comment { get; set; }
+        [NotMapped]
+        public List<int> selectedFiles { get; set; }
         public string File { get; set; }
         public bool Finished { get; set; } // finish the task
         public DateTime TaskStarted { get; set; } //manager
