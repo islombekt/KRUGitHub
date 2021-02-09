@@ -4,107 +4,195 @@
 @model RegisterModel
 @{
     ViewData["Title"] = "Register";
-
-
 }
 
-<h1>@ViewData["Title"]</h1>
+<div class="kru-form">
+    <h1>@ViewData["Title"]</h1>
 
-<div class="row">
-    <div class="col-md-12">
-        <form asp-route-returnUrl="@Model.ReturnUrl" class="kru-form" id="app" method="post">
-            <h4>Create a new account.</h4>
-            <hr />
-            <div class="kru-form-container">
-                <div class="">
-                    <label>Имя</label>
-                    <input asp-for="Input.FName" class="form-control" />
-                    <span asp-validation-for="Input.FName" class="text-danger"></span>
-                </div>
-                <div class="">
-                    <label>Фамилия</label>
-                    <input asp-for="Input.LName" class="form-control" />
-                    <span asp-validation-for="Input.LName" class="text-danger"></span>
-                </div>
-                <div class="">
-                    <label>Отчество</label>
-                    <input asp-for="Input.SName" class="form-control" />
-                    <span asp-validation-for="Input.SName" class="text-danger"></span>
-                </div>
-                <div class="">
-                    <label>Номер телефона</label>
-                    <input asp-for="Input.PhoneNumber" class="form-control" />
-                    <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-                </div>
-                <div class="">
-                    <label>Должность</label>
-                    <input asp-for="Input.Position" class="form-control" />
-                    <span asp-validation-for="Input.Position" class="text-danger"></span>
-                </div>
-                @*<div class="form-group">
-                        <label asp-for="Input.AddressId"></label>
-                        <input asp-for="Input.AddressId" class="form-control" />
-                        <span asp-validation-for="Input.AddressId" class="text-danger"></span>
-                    </div>*@
-            </div>
-            <div class="kru-form-container">
-                <div class="">
-                    <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-house "></i></span>
+    <div class="row">
+        <div class="col-md-12">
+            <form autocomplete="off" novalidate="true" class="kru custom-validation" asp-route-returnUrl="@Model.ReturnUrl" id="app" method="post">
+                <h4>Create a new account.</h4>
+                <div class="kru-form-subtitle"><span class="round-shell">1</span>Личные данные</div>
+                <hr />
+                <div class="kru-form-container">
                     <div class="form-group">
-                        <label>Бинони танланг</label>
-                            @Html.DropDownListFor(m => m.Input.AddressId, Model.Input.BuildingList ?? new List<SelectListItem>(),
-                        "", new { @class = "form-control" })
+                        <label class="control-label">Имя</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                               <span class="input-group-text">
+                                   <i class="fas fa-user-alt"></i>
+                               </span>
+                            </div>
+                            <input type="text" asp-for="Input.FName" class="form-control" />
+                        </div>
+                        <span class="invalid-feedback"></span>
+<!--                        <span asp-validation-for="Input.FName" class="text-danger"></span>-->
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Фамилия</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                               <span class="input-group-text">
+                                   <i class="fas fa-user-alt"></i>
+                               </span>
+                            </div>
+                            <input type="text" asp-for="Input.LName" class="form-control" />
+                        </div>
+                        <span class="invalid-feedback"></span>
+<!--                        <span asp-validation-for="Input.LName" class="text-danger"></span>-->
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Отчество</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                               <span class="input-group-text">
+                                   <i class="fas fa-user-alt"></i>
+                               </span>
+                            </div>
+                            <input type="text" asp-for="Input.SName" class="form-control" />
+                        </div>
+                        <span class="invalid-feedback"></span>
+<!--                        <span asp-validation-for="Input.SName" class="text-danger"></span>-->
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Номер телефона</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                               <span class="input-group-text">
+                                   <i class="fas fa-phone"></i>
+                               </span>
+                            </div>
+                            <input value="+998" type="tel" asp-for="Input.PhoneNumber" id="phone" class="form-control" >
+                        </div>
+                        <span class="invalid-feedback"></span>
+<!--                        <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>-->
                     </div>
                 </div>
-            
-                @if (User.IsInRole(SD.Role_Admin))
-                {
-
-                    <div class="">
-                        <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-house "></i></span>
-                        <div id="role" class="form-group">
-                            <label>Рольни танланг</label>
-                                @Html.DropDownListFor(m => m.Input.Role, Model.Input.RoleList ?? new List<SelectListItem>(),
-                        "", new { @class = "form-control" })
+                <div class="kru-form-subtitle"><span class="round-shell">2</span>Данные о должности</div>
+                <hr />
+                <div class="kru-form-container">
+                    <div class="form-group">
+                        <label class="control-label">Должность</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                               <span class="input-group-text">
+                                   <i class="fas fa-briefcase"></i>
+                               </span>
+                            </div>
+                            <input asp-for="Input.Position" class="form-control" />
                         </div>
-
+                        <span class="invalid-feedback"></span>
+<!--                        <span asp-validation-for="Input.Position" class="text-danger"></span>-->
                     </div>
-                    <div class="">
+                    @*<div class="kru-form-group">
+                            <label asp-for="Input.AddressId"></label>
+                            <input asp-for="Input.AddressId" class="form-control" />
+<!--                            <span asp-validation-for="Input.AddressId" class="invalid-feedback"></span>-->
+                        </div>*@
+
+                    <div class="form-group">
                         <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-house "></i></span>
-                        <div id="department" class="form-group">
-                            <label>Департамент йоки гурухни танланг</label>
-                                @Html.DropDownListFor(m => m.Input.DepartmentId, Model.Input.DepartmentList ?? new List<SelectListItem>(),
-                        "", new { @class = "form-control" })
+                        <div class="kru-form-group">
+                            <label class="control-label">Бинони танланг</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                               <span class="input-group-text">
+                                   <i class="fas fa-building"></i>
+                               </span>
+                                </div>
+                                @Html.DropDownListFor(m => m.Input.AddressId, Model.Input.BuildingList ?? new List<SelectListItem>(),
+                                "", new { @class = "form-control" })
+                                <span class="invalid-feedback"></span>
+                            </div>
                         </div>
                     </div>
-                    <div class="">
-                        <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-house "></i></span>
-                        <div id="manager" class="form-group">
-                            <label>Менеджерни танланг</label>
-                                @Html.DropDownListFor(m => m.Input.ManagerId, Model.Input.ManagerList ?? new List<SelectListItem>(),
-                        "", new { @class = "form-control" })
-                        </div>
-                    </div>
-                }
 
-                <div class="">
-                    <label asp-for="Input.Email"></label>
-                    <input asp-for="Input.Email" class="form-control" />
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    @if (User.IsInRole(SD.Role_Admin))
+                    {
+
+                        <div>
+                            <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-house "></i></span>
+                            <div id="role" class="kru-form-group">
+                                <label>Рольни танланг</label>
+                                    @Html.DropDownListFor(m => m.Input.Role, Model.Input.RoleList ?? new List<SelectListItem>(),
+                            "", new { @class = "form-control" })
+                                <span class="invalid-feedback"></span>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-house "></i></span>
+                            <div id="department" class="kru-form-group">
+                                <label>Департамент йоки гурухни танланг</label>
+                                    @Html.DropDownListFor(m => m.Input.DepartmentId, Model.Input.DepartmentList ?? new List<SelectListItem>(),
+                            "", new { @class = "form-control" })
+                                <span class="invalid-feedback"></span>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-house "></i></span>
+                            <div id="manager" class="kru-form-group">
+                                <label>Менеджерни танланг</label>
+                                    @Html.DropDownListFor(m => m.Input.ManagerId, Model.Input.ManagerList ?? new List<SelectListItem>(),
+                            "", new { @class = "form-control" })
+                                <span class="invalid-feedback"></span>
+                            </div>
+                        </div>
+                    }
                 </div>
-                <div class="">
-                    <label asp-for="Input.Password"></label>
-                    <input type="password" asp-for="Input.Password" class="form-control" />
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                <div class="">
-                    <label asp-for="Input.ConfirmPassword"></label>
-                    <input type="password" asp-for="Input.ConfirmPassword" class="form-control" />
-                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                <div class="kru-form-subtitle"><span class="round-shell">3</span>Аккаунтные данные</div>
+                <hr />
+                <div class="kru-form-container">
+                    <div class="form-group">
+                        <label class="control-label" asp-for="Input.Email"></label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                               <span class="input-group-text">
+                                   <i class="fas fa-envelope"></i>
+                               </span>
+                            </div>
+                            <input asp-for="Input.Email" class="form-control" />
+                        </div>
+                        <span class="invalid-feedback"></span>
+<!--                        <span asp-validation-for="Input.Email" class="text-danger"></span>-->
+                    </div>
+                    <div class="form-group">
+
+                        <div class="d-flex align-items-center control-label my-mb">
+                            <label class="mb-0 mr-2" asp-for="Input.Password"></label>
+                            <a data-bs-animation="true" data-bs-toggle="tooltip" data-bs-placement="right" title="Password must have minimum 10 symbols: at least an uppercase, lowercase letter, a digit, a sign">
+                                <i class="fas fa-info-circle info-icon"></i>
+                            </a>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                               <span class="input-group-text">
+                                   <i class="fas fa-lock"></i>
+                               </span>
+                            </div>
+                            <input type="password" asp-for="Input.Password" class="form-control" />
+                        </div>
+                        <span class="invalid-feedback"></span>
+<!--                        <span asp-validation-for="Input.Password" class="text-danger"></span>-->
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" asp-for="Input.ConfirmPassword"></label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                               <span class="input-group-text">
+                                   <i class="fas fa-lock"></i>
+                               </span>
+                            </div>
+                            <input type="password" asp-for="Input.ConfirmPassword" class="form-control" />
+                        </div>
+                        <span class="invalid-feedback"></span>
+<!--                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>-->
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Register</button>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
 

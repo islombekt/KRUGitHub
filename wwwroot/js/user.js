@@ -29,7 +29,7 @@ function loadDataTable() {
                     if (lockout > today) {
                         return `
                              <div class="text-center">
-                                <a data-toggle="tooltip" title="Разблокировать" onclick=LockUnlock('${data.id}') class="btn btn-outline-danger kru-table-button">
+                                <a data-bs-toggle="tooltip" title="Разблокировать" onclick=LockUnlock('${data.id}') class="btn btn-outline-danger kru-table-button">
                                     <i class="fas fa-lock-open"></i>  
                                 </a>
                              </div>
@@ -38,7 +38,7 @@ function loadDataTable() {
                     else {
                         return `
                             <div class="text-center">
-                                <a data-toggle="tooltip" title="Заблокировать" onclick=LockUnlock('${data.id}') class="btn btn-outline-success btn-transition kru-table-button">
+                                <a data-bs-toggle="tooltip" title="Заблокировать" onclick=LockUnlock('${data.id}') class="btn btn-outline-success btn-transition kru-table-button">
                                     <i class="fas fa-lock"></i> 
                                 </a>
                             </div>

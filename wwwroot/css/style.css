@@ -1,5 +1,29 @@
 .kru-logo {
+  display: flex;
+  font-size: 30px;
+  flex-direction: column;
+  align-items: center;
   line-height: 0.8;
+  margin-bottom: 20px;
+  width: 100%;
+  text-align: center;
+  font-weight: lighter;
+}
+
+.kru-logo img{
+  margin-bottom: 20px;
+}
+
+.login-box{
+  width: 450px;
+}
+
+.login-page .card{
+  background-image: url(/images/UNGBrand.png);
+  padding-left: 35px;
+  background-position: left;
+  background-repeat: repeat-y;
+  background-size: 36px;
 }
 
 .ung-logo{
@@ -36,6 +60,10 @@
 
 .buttons-container a{
   margin-right: 20px;
+}
+
+.table{
+  text-align: center;
 }
 
 .table-button-container{
@@ -117,12 +145,8 @@
 }
 
 .kru-form-container > div{
-  width: 48%;
+  width: 43%;
   margin-bottom: 20px;
-}
-
-.kru-form-container > div:nth-child(odd){
-  margin-right: 10px;
 }
 
 .kru-form-container > button{
@@ -131,6 +155,169 @@
   align-self: flex-end;
 }
 
-.kru-form-container .form-control{
-  width: 90%;
+form.kru button{
+  display: block;
+  margin-left: auto;
+}
+
+form.kru .kru-form-subtitle{
+  margin-top: 50px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.kru-form-subtitle .round-shell {
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  width: 36px;
+  height: 36px;
+  padding: 0 13px;
+  background-color: #007bff;
+  color: #ffffff;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+form.kru hr{
+  margin-top: 0;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #007bff;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+  border: solid #80bdff 1px;
+  outline: 0;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  background-color: #007bff;
+  border-color: #006fe6;
+  color: #fff;
+  padding: 0 10px;
+  margin-top: .31rem;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+  color: rgba(255,255,255,.7);
+  float: right;
+  margin-left: 5px;
+  margin-right: -2px;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover {
+  color: rgba(255,255,255,1);
+}
+
+.flex-container{
+  display: flex;
+}
+
+.flex-container .switch{
+  margin-right: 20px;
+}
+
+.flex-container .kru-form-group{
+  min-width: 300px;
+}
+
+.form-button-container{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.form-button-container .btn{
+  margin-right: 20px;
+}
+
+.form-button-container .btn-outline-primary:hover{
+  background-color: rgba(0, 0, 0, .05);
+  color: #007bff;
+}
+
+.display-none{
+  display: none;
+}
+.flex-container .switch_container{
+  width: 10%;
+}
+
+.form-control{
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.form-control:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+}
+
+.info-icon {
+  color: #17a2b8;
+}
+
+.my-mb {
+  margin-bottom: .5rem;
 }
