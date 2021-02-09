@@ -5,67 +5,68 @@
 }
 
 <h1>Ходимлар</h1>
+<div class="buttons-container">
+    <a class="btn btn-default" asp-area="Identity" asp-page="/Account/Register">
+        <i class="fas fa-plus mr-2"></i>Ходим Қўшиш
+    </a>
+</div>
 
-<p>
-    <div class="page-title-subheading">
-        <a class="mb-2 mr-2 btn-transition btn btn-outline-info" asp-area="Identity" asp-page="/Account/Register">
-            <i class="fas fa-plus"></i>
-            &nbsp; Ходим Қўшиш
-        </a>
+<div class="card">
+    <div class="card-body">
+        <table id="example1" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Исми
+                    </th>
+                    <th>
+                        Фамилияси
+                    </th>
+                    <th>
+                        Телефон рақами
+                    </th>
+                    <th>
+                       Лавозим
+                    </th>
+                    <th>
+                        Адрес
+                    </th>
+                    <th>
+                        Статуси
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+        @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.FName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.LName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.PhoneNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.Position)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.Address.Building)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmployeeState)
+                    </td>
+                    <td class="table-button-container">
+                        <a data-bs-toggle="tooltip" title="Edit" class="btn btn-outline-success kru-table-button" asp-action="Edit" asp-route-id="@item.EmployeeId"><i class="far fa-edit"></i></a>
+                        <a data-bs-toggle="tooltip" title="Details" class="btn btn-outline-info kru-table-button" asp-action="Details" asp-route-id="@item.EmployeeId"><i class="fas fa-info"></i></a>
+                        <a data-bs-toggle="tooltip" title="Delete" class="btn btn-outline-danger kru-table-button" asp-action="Delete" asp-route-id="@item.EmployeeId"><i class="far fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+        }
+            </tbody>
+        </table>
     </div>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Исми
-            </th>
-            <th>
-                Фамилияси
-            </th>
-            <th>
-                Телефон рақами
-            </th>
-            <th>
-               Лавозим
-            </th>
-            <th>
-                Адрес
-            </th>
-            <th>
-                Статуси
-            </th>
-
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.FName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.LName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.PhoneNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Position)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Address.Building)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EmployeeState)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.EmployeeId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EmployeeId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EmployeeId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+</div>

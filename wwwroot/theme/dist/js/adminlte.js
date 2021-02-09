@@ -1784,6 +1784,8 @@
       }
 
       $__default['default'](this._element).trigger($__default['default'].Event(EVENT_SHOWN));
+
+      $("#ung-logo").attr("src", "/images/Logotype-UzbekNefteGaz-.png");
     };
 
     _proto.collapse = function collapse() {
@@ -1802,6 +1804,8 @@
       }
 
       $__default['default'](this._element).trigger($__default['default'].Event(EVENT_COLLAPSED$3));
+
+      $("#ung-logo").attr("src", "/images/only_logo.png");
     };
 
     _proto.toggle = function toggle() {

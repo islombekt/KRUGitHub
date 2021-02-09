@@ -1,241 +1,241 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>@ViewData["Title"] - KRU</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
     <!-- Font Awesome Est -->
     <link rel="stylesheet" href="~/theme/plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="~/theme/dist/css/adminlte.min.css">
-    <link href="~/theme/plugins/datatables-autofill/css/autoFill.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/theme/plugins/datatables-autofill/css/autoFill.bootstrap4.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="~/theme/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 
-    @*<link href="~/register/css/jquery.dataTables.min.css"  rel="stylesheet">*@
-    <link href="~/theme/plugins/select2/css/select2.min.css" rel="stylesheet">
-    <link href="~/theme/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/theme/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="~/theme/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+
     <link href="~/theme/plugins/icheck-bootstrap/icheck-bootstrap.min.css" rel="stylesheet">
-    <link href="~/theme/plugins/select2/css/select2.min.css" rel="stylesheet" />
     <link href="~/theme/plugins/dropzone/min/dropzone.min.css">
-    <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="stylesheet" href="~/css/style.css"/>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-    <header class="wrapper">
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a id="toggle-menu-btn" class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
-            </ul>
-           <ul class="navbar-nav ml-auto">
-               <partial name="_LoginPartial" />
+<header class="wrapper">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a id="toggle-menu-btn" class="nav-link" data-widget="pushmenu" href="#" role="button"><i
+                        class="fas fa-bars"></i></a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <partial name="_LoginPartial"/>
 
-           </ul>
-            @* <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-
-            </div> *@
-        </nav>
-        <aside id="kru-sidebar" class="main-sidebar elevation-4 sidebar-dark-blue">
-            <!-- Brand Logo -->
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <a class="brand-link">
-                    <img opened id="ung-logo" src="~/images/Logotype-UzbekNefteGaz-.png" class="ung-logo" />
-                </a>
-
-                <!-- Sidebar Menu -->
-                <nav id="ung-navbar" class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        @if (User.IsInRole("Admin"))
-                        {
-                            <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-user-friends"></i>
-            <p>
-                Ходим<i class="right fas fa-angle-left"></i>
-            </p>
+        </ul>
+    </nav>
+    <aside id="kru-sidebar" class="main-sidebar elevation-4 sidebar-dark-blue">
+        <!-- Brand Logo -->
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <a class="brand-link">
+                <img id="ung-logo" src="~/images/Logotype-UzbekNefteGaz-.png" class="ung-logo"/>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a class="nav-link"  asp-area="Admin" asp-controller="Users" asp-action="Index">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>
-                    Ходим
-                </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" asp-area="Admin" asp-controller="Users" asp-action="Index">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Уволены</p>
-                </a>
-              </li>
 
-            </ul>
-          </li>
-                            <li class="nav-item has-treeview">
-                                <a asp-area="Admin" asp-controller="Departments" asp-action="Index" class="nav-link">
-                                    @*<img class="nav-icon" src="~/image/4.png" />*@
-                                    <i class="nav-icon fas fa-sitemap"></i>
+            <!-- Sidebar Menu -->
+            <nav id="ung-navbar" class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
+                    @if (User.IsInRole("Admin"))
+                    {
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-user-friends"></i>
+                            <p>
+                                Ходим<i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li id="workers_admin" class="nav-item">
+                                <a class="nav-link" asp-area="Admin" asp-controller="Users" asp-action="Index">
+                                    <i class="far fa-circle nav-icon"></i>
                                     <p>
-                                        Департамент
+                                        Ходим
                                     </p>
                                 </a>
-
                             </li>
-                            <li class="nav-item has-treeview">
-                                <a asp-area="Admin" asp-controller="Addresses" asp-action="Index" class="nav-link">
-                                    @*<img class="nav-icon" src="~/image/4.png" />*@
-                                    <i class="nav-icon fas fa-building"></i>
-                                    <p>
-                                        Адрес
-                                    </p>
+                            <li id="fired" class="nav-item">
+                                <a class="nav-link" asp-area="Admin" asp-controller="Users" asp-action="Index">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Уволены</p>
                                 </a>
-
                             </li>
-                        }
-                        @if (User.IsInRole("Manager"))
-                        {
-                            <li class="nav-item has-treeview">
-                                <a asp-area="Manager" asp-controller="Reports" asp-action="Index" class="nav-link">
-                                    @*<img class="nav-icon" src="~/image/4.png" />*@
-                                    <i class="nav-icon fas fa-clipboard-list"></i>
-                                    <p>
-                                        Кунлик отчёт
-                                    </p>
-                                </a>
 
-                            </li>
-                            <li class="nav-item has-treeview">
-                                <a asp-area="Manager" asp-controller="Plans" asp-action="Index" class="nav-link">
-                                    @*<img class="nav-icon" src="~/image/4.png" />*@
-                                    <i class="nav-icon fas fa-calendar-alt"></i>
-                                    <p>
-                                        План
-                                    </p>
-                                </a>
+                        </ul>
+                    </li>
+                    <li id="department" class="nav-item has-treeview">
+                        <a asp-area="Admin" asp-controller="Departments" asp-action="Index" class="nav-link">
+                            @*<img class="nav-icon" src="~/image/4.png"/>*@
+                            <i class="nav-icon fas fa-sitemap"></i>
+                            <p>
+                                Департамент
+                            </p>
+                        </a>
 
-                            </li>
-                            <li class="nav-item has-treeview">
-                                <a asp-area="Manager" asp-controller="Tasks" asp-action="Index" class="nav-link">
-                                    @*<img class="nav-icon" src="~/image/4.png" />*@
-                                    <i class="nav-icon fas fa-tasks"></i>
-                                    <p>
-                                        Топшириқлар
-                                    </p>
-                                </a>
+                    </li>
+                    <li id="address" class="nav-item has-treeview">
+                        <a asp-area="Admin" asp-controller="Addresses" asp-action="Index" class="nav-link">
+                            @*<img class="nav-icon" src="~/image/4.png"/>*@
+                            <i class="nav-icon fas fa-building"></i>
+                            <p>
+                                Адрес
+                            </p>
+                        </a>
 
-                            </li>
-                            <li class="nav-item has-treeview">
-                                <a asp-area="Manager" asp-controller="Employees" asp-action="Index" class="nav-link">
-                                    @*<img class="nav-icon" src="~/image/4.png" />*@
-                                    <i class="nav-icon fas fa-user-friends"></i>
-                                    <p>
-                                        Ходимлар
-                                    </p>
-                                </a>
+                    </li>
+                    }
+                    @if (User.IsInRole("Manager"))
+                    {
+                    <li id="report" class="nav-item has-treeview">
+                        <a asp-area="Manager" asp-controller="Reports" asp-action="Index" class="nav-link">
+                            @*<img class="nav-icon" src="~/image/4.png"/>*@
+                            <i class="nav-icon fas fa-clipboard-list"></i>
+                            <p>
+                                Кунлик отчёт
+                            </p>
+                        </a>
 
-                            </li>
-                            <li class="nav-item has-treeview">
-                                <a asp-area="Manager" asp-controller="FileHistories" asp-action="Index" class="nav-link">
-                                    @*<img class="nav-icon" src="~/image/4.png" />*@
-                                    <i class="nav-icon fas fa-file-alt"></i>
-                                    <p>
-                                        Документлар
-                                    </p>
-                                </a>
+                    </li>
+                    <li id="plan" class="nav-item has-treeview">
+                        <a asp-area="Manager" asp-controller="Plans" asp-action="Index" class="nav-link">
+                            @*<img class="nav-icon" src="~/image/4.png"/>*@
+                            <i class="nav-icon fas fa-calendar-alt"></i>
+                            <p>
+                                План
+                            </p>
+                        </a>
 
-                            </li>
-                            <li class="nav-item has-treeview">
-                                <a asp-area="Manager" asp-controller="Task_Type" asp-action="Index" class="nav-link">
-                                    @*<img class="nav-icon" src="~/image/4.png" />*@
-                                    <i class="nav-icon fas fa-print"></i>
-                                    <p>
-                                        Типы
-                                    </p>
-                                </a>
+                    </li>
+                    <li id="tasks" class="nav-item has-treeview">
+                        <a asp-area="Manager" asp-controller="Tasks" asp-action="Index" class="nav-link">
+                            @*<img class="nav-icon" src="~/image/4.png"/>*@
+                            <i class="nav-icon fas fa-tasks"></i>
+                            <p>
+                                Топшириқлар
+                            </p>
+                        </a>
 
-                            </li>
-                        }
-                        @if (User.IsInRole("Employee"))
-                        {
-                            <li class="nav-item has-treeview">
-                                <a asp-area="Employee" asp-controller="Reports" asp-action="Index" class="nav-link">
-                                    @*<img class="nav-icon" src="~/image/4.png" />*@
-                                    <i class="nav-icon fas fa-clipboard-list"></i>
-                                    <p>
-                                        Кунлик отчёт
-                                    </p>
-                                </a>
+                    </li>
+                    <li id="workers_manager" class="nav-item has-treeview">
+                        <a asp-area="Manager" asp-controller="Employees" asp-action="Index" class="nav-link">
+                            @*<img class="nav-icon" src="~/image/4.png"/>*@
+                            <i class="nav-icon fas fa-user-friends"></i>
+                            <p>
+                                Ходимлар
+                            </p>
+                        </a>
+                    </li>
+                    <li id="documents" class="nav-item has-treeview">
+                        <a asp-area="Manager" asp-controller="FileHistories" asp-action="Index" class="nav-link">
+                            @*<img class="nav-icon" src="~/image/4.png"/>*@
+                            <i class="nav-icon fas fa-file-alt"></i>
+                            <p>
+                                Документлар
+                            </p>
+                        </a>
 
-                            </li>
-                            <li class="nav-item has-treeview">
-                                <a asp-area="Employee" asp-controller="Plans" asp-action="Index" class="nav-link">
-                                    @*<img class="nav-icon" src="~/image/4.png" />*@
-                                    <i class="nav-icon fas fa-calendar-alt"></i>
-                                    <p>
-                                        План
-                                    </p>
-                                </a>
+                    </li>
+                    <li id="types" class="nav-item has-treeview">
+                        <a asp-area="Manager" asp-controller="Task_Type" asp-action="Index" class="nav-link">
+                            @*<img class="nav-icon" src="~/image/4.png"/>*@
+                            <i class="nav-icon fas fa-print"></i>
+                            <p>
+                                Типы
+                            </p>
+                        </a>
 
-                            </li>
-                        }
-                    </ul>
+                    </li>
+                    }
+                    @if (User.IsInRole("Employee"))
+                    {
+                    <li id="daily_report" class="nav-item has-treeview">
+                        <a asp-area="Employee" asp-controller="Reports" asp-action="Index" class="nav-link">
+                            @*<img class="nav-icon" src="~/image/4.png"/>*@
+                            <i class="nav-icon fas fa-clipboard-list"></i>
+                            <p>
+                                Кунлик отчёт
+                            </p>
+                        </a>
 
-                </nav>
-                <!-- /.sidebar-menu -->
-            </div>
-            <!-- /.sidebar -->
-        </aside>
-    </header>
-    <div class="content-wrapper">
-        <section class="content">
-            <div class="container-fluid kru-container">
-                @RenderBody()
-            </div>
-        </section>
-    </div>
+                    </li>
+                    <li id="plan_employee" class="nav-item has-treeview">
+                        <a asp-area="Employee" asp-controller="Plans" asp-action="Index" class="nav-link">
+                            @*<img class="nav-icon" src="~/image/4.png"/>*@
+                            <i class="nav-icon fas fa-calendar-alt"></i>
+                            <p>
+                                План
+                            </p>
+                        </a>
 
-    <footer class="main-footer margin-top">
-        <div class="float-lg-right d-none d-sm-block">
-            <b>Version</b> 1.0.0
+                    </li>
+                    }
+                </ul>
+
+            </nav>
+            <!-- /.sidebar-menu -->
         </div>
-        <strong>Copyright &copy; 2020 <a href="http://www.ung.uz/">Узбекнефтегаз</a>.</strong> All rights
-        reserved.
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- /.sidebar -->
+    </aside>
+</header>
+<div class="content-wrapper">
+    <section class="content">
+        <div class="container-fluid kru-container">
+            @RenderBody()
+        </div>
+    </section>
+</div>
 
+<footer class="main-footer margin-top">
+    <div class="float-lg-right d-none d-sm-block">
+        <b>Version</b> 1.0.0
+    </div>
+    <strong>Copyright &copy; 2020 <a href="http://www.ung.uz/">Узбекнефтегаз</a>.</strong> All rights
+    reserved.
+</footer>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<!-- jQuery -->
+@*
+<script src="~/theme/plugins/jquery/jquery.min.js"></script>
+*@
+<script src="~/theme/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Select2 -->
+<script src="~/theme/plugins/select2/js/select2.full.min.js"></script>
 
-    <!-- jQuery -->
-    @*<script src="~/theme/plugins/jquery/jquery.min.js"></script>*@
-    <script src="~/theme/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- Select2 -->
-    <script src="~/theme/plugins/select2/js/select2.full.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="~/theme/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="~/theme/dist/js/adminlte.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="~/theme/dist/js/demo.js"></script>
-    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>*@
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<!-- AdminLTE App -->
+<script src="~/theme/dist/js/adminlte.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="~/theme/dist/js/demo.js"></script>
+@*
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
 
-    <script src="~/theme/plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="~/theme/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="~/theme/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="~/theme/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-    <script src="~/theme//plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="~/theme//plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+*@
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
-    <script src="~/js/user.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+<script src="~/theme/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="~/theme/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/theme/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="~/theme/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="~/theme//plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="~/theme//plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="~/theme/plugins/inputmask/jquery.inputmask.min.js"></script>
+
+<script src="~/js/user.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+
+@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

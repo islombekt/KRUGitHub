@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\program\\C# projects\\KRU\\KRU.csproj": {}
+    "C:\\Users\\User\\Source\\Repos\\islombekt\\KRUGitHub\\KRU.csproj": {}
   },
   "projects": {
-    "D:\\program\\C# projects\\KRU\\KRU.csproj": {
+    "C:\\Users\\User\\Source\\Repos\\islombekt\\KRUGitHub\\KRU.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\program\\C# projects\\KRU\\KRU.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Source\\Repos\\islombekt\\KRUGitHub\\KRU.csproj",
         "projectName": "KRU",
-        "projectPath": "D:\\program\\C# projects\\KRU\\KRU.csproj",
+        "projectPath": "C:\\Users\\User\\Source\\Repos\\islombekt\\KRUGitHub\\KRU.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "D:\\program\\C# projects\\KRU\\obj\\",
+        "outputPath": "C:\\Users\\User\\Source\\Repos\\islombekt\\KRUGitHub\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",

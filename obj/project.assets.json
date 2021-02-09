@@ -8013,19 +8013,21 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Uzbekneftegaz\\KRU2\\KRU\\KRU.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Source\\Repos\\islombekt\\KRUGitHub\\KRU.csproj",
       "projectName": "KRU",
-      "projectPath": "F:\\Uzbekneftegaz\\KRU2\\KRU\\KRU.csproj",
+      "projectPath": "C:\\Users\\User\\Source\\Repos\\islombekt\\KRUGitHub\\KRU.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "F:\\Uzbekneftegaz\\KRU2\\KRU\\obj\\",
+      "outputPath": "C:\\Users\\User\\Source\\Repos\\islombekt\\KRUGitHub\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -8105,7 +8107,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
