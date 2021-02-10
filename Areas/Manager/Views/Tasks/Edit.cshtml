@@ -16,6 +16,11 @@
             <input type="hidden" asp-for="TaskId" />
             <input type="hidden" asp-for="DepartmentId" />
             <div class="form-group">
+                <label asp-for="TaskName" class="control-label"></label>
+                <input asp-for="TaskName" class="form-control" />
+                <span asp-validation-for="TaskName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="SumLost" class="control-label"></label>
                 <input asp-for="SumLost" class="form-control" />
                 <span asp-validation-for="SumLost" class="text-danger"></span>
@@ -30,7 +35,7 @@
                 <input asp-for="Comment" class="form-control" />
                 <span asp-validation-for="Comment" class="text-danger"></span>
             </div>
-       
+
             <div class="form-group" id="fileSelect">
                 <label></label>
 

@@ -85,7 +85,7 @@ namespace KRU.Areas.Manager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TaskId,SumLost,SumGain,Comment,File,Finished,TaskStarted,TaskEnd,DepartmentId,TaskTypeId")] Tasks tasks, [Bind("Task_FileId,TaskId,FileId")] Task_File task_file, List<int> ListofFiles)
+        public async Task<IActionResult> Create([Bind("TaskId,TaskName,SumLost,SumGain,Comment,File,Finished,TaskStarted,TaskEnd,DepartmentId,TaskTypeId")] Tasks tasks, [Bind("Task_FileId,TaskId,FileId")] Task_File task_file, List<int> ListofFiles)
         {
             var ManId = _context.Managers.ToList().FirstOrDefault(u => u.UserId == _userManager.GetUserId(User)).ManagerId;
             var DepId = _context.User.ToList().FirstOrDefault(u => u.Id == _userManager.GetUserId(User)).DepartmentId;
@@ -210,7 +210,7 @@ namespace KRU.Areas.Manager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TaskId,SumLost,SumGain,Comment,File,Finished,TaskStarted,TaskEnd,DepartmentId,TaskTypeId")] Tasks tasks, List<int> ListofFiles)
+        public async Task<IActionResult> Edit(int id, [Bind("TaskId,TaskName,SumLost,SumGain,Comment,File,Finished,TaskStarted,TaskEnd,DepartmentId,TaskTypeId")] Tasks tasks, List<int> ListofFiles)
         {
             if (id != tasks.TaskId)
             {
