@@ -12,6 +12,7 @@ namespace KRU.Models
     {
         [Key]
         public int TaskId { get; set; }
+        public string TaskName { get; set; }
         public string SumLost { get; set; }
         public string SumGain { get; set; }
         public string Comment { get; set; }

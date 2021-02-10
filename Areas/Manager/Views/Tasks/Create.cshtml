@@ -14,20 +14,25 @@ ViewData["FileType"] = "";
         <form asp-action="Create" class="kru-form">
             <div class="kru-form-container">
                 <div>
+                    <label>Название задачи</label>
+                    <input asp-for="TaskName" class="form-control" />
+                    <span asp-validation-for="TaskName" class="text-danger"></span>
+                </div>
+                <div>
                     <label>Начало поручения</label>
-                    <input asp-for="TaskStarted" class="form-control"/>
+                    <input asp-for="TaskStarted" class="form-control" />
                     <span asp-validation-for="TaskStarted" class="text-danger"></span>
                 </div>
                 <div>
                     <label>Дедлайн поручения</label>
-                    <input asp-for="TaskEnd" class="form-control"/>
+                    <input asp-for="TaskEnd" class="form-control" />
                     <span asp-validation-for="TaskEnd" class="text-danger"></span>
                 </div>
                 @*
-                <div>
-                    <label asp-for="DepartmentId" class="control-label"></label>
-                    <select asp-for="DepartmentId" class="form-control" asp-items="ViewBag.DepartmentId"></select>
-                </div>
+        <div>
+            <label asp-for="DepartmentId" class="control-label"></label>
+            <select asp-for="DepartmentId" class="form-control" asp-items="ViewBag.DepartmentId"></select>
+        </div>
                 *@
                 <div>
                     <label>Вид документа</label>
