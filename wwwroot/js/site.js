@@ -101,6 +101,7 @@ function validateForms() {
         .forEach(function (form) {
             form.addEventListener('submit', function (event) {
                 let passValidation;
+                let globalValidation;
                 for(const [key, val] of Object.entries(form)){
                     let messages = [];
                     passValidation = true;
@@ -163,9 +164,13 @@ function validateForms() {
                             errMsgContainer.css({"display" : "none"});
                         }
                     }
+
+                    if(!passValidation){
+                        globalValidation = false;
+                    }
                 }
 
-                if(!passValidation){
+                if(!globalValidation){
                     console.log("Prevent submit");
                     event.preventDefault();
                     event.stopPropagation();
