@@ -1110,6 +1110,7 @@ F:\Uzbekneftegaz\KRU2\KRU\obj\Debug\net5.0\KRU.RazorTargetAssemblyInfo.cs
 F:\Uzbekneftegaz\KRU2\KRU\obj\Debug\net5.0\KRU.Views.pdb
 F:\Uzbekneftegaz\KRU2\KRU\obj\Debug\net5.0\KRU.csproj.CopyComplete
 F:\Uzbekneftegaz\KRU2\KRU\obj\Debug\net5.0\KRU.genruntimeconfig.cache
+<<<<<<< HEAD
 C:\Users\User\Source\Repos\islombekt\KRUGitHub\bin\Debug\net5.0\appsettings.Development.json
 C:\Users\User\Source\Repos\islombekt\KRUGitHub\bin\Debug\net5.0\appsettings.json
 C:\Users\User\Source\Repos\islombekt\KRUGitHub\bin\Debug\net5.0\KRU.StaticWebAssets.xml
@@ -1666,3 +1667,5 @@ C:\Users\User\Source\Repos\islombekt\KRUGitHub\obj\Debug\net5.0\KRU.dll
 C:\Users\User\Source\Repos\islombekt\KRUGitHub\obj\Debug\net5.0\ref\KRU.dll
 C:\Users\User\Source\Repos\islombekt\KRUGitHub\obj\Debug\net5.0\KRU.pdb
 C:\Users\User\Source\Repos\islombekt\KRUGitHub\obj\Debug\net5.0\KRU.genruntimeconfig.cache
+=======
+>>>>>>> 41a78f34ff7881b0b11325518fa22fa2c1c2c24a
