@@ -92,7 +92,9 @@ namespace KRU.Areas.Identity.Pages.Account
             public int AddressId { get; set; }
             [Required]
             public string Position { get;  set; }
-            
+            public DateTime EnteredToWork { get; set; }
+          
+
             public int DepartmentId { get; set; }
             public int? ManagerId { get; set; }
 
@@ -162,7 +164,8 @@ namespace KRU.Areas.Identity.Pages.Account
                     AddressId = Input.AddressId,
                     DepartmentId = Input.DepartmentId,
                     Position = Input.Position,
-                    
+                    EnteredToWork = Input.EnteredToWork,
+                   
                     EmailConfirmed = true
                 };
 
