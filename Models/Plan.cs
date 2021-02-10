@@ -14,6 +14,7 @@ namespace KRU.Models
         public DateTime PlanStart { get; set; }
         public DateTime PlanEnd { get; set; }
         public string PlanDescription { get; set; }
+        public bool HaveSeen { get; set; } // Manager saw the report
 
 
 

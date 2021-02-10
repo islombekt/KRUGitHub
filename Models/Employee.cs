@@ -13,6 +13,7 @@ namespace KRU.Models
         public int EmployeeId { get; set; }
         public string EmployeeState { get; set; }
         public double Score { get; set; }
+        public string FileUrl { get; set; }
         public int? ManagerId { get; set; }
         [ForeignKey("ManagerId")]
         public virtual Manager Manager { get; set; }

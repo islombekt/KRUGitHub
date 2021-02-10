@@ -16,8 +16,9 @@ namespace KRU.Models
         public string ReportDescription { get; set; }
         public string ReportComment { get; set; } // from manager side
         public double ReportScore { get; set; }
-        
-        
+
+        public bool HaveSeen { get; set; } // Manager saw the report
+
         public int? TaskId { get; set; }
         public int? AddressId { get; set; }
         public int? ObjectId { get; set; }
