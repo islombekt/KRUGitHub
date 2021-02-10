@@ -141,11 +141,14 @@
                 globalValidation = false;
             }
         }
+
         if(!globalValidation){
+            console.log("Prevent submit");
             event.preventDefault();
-            event.stopPropagation();
+            // event.stopPropagation();
+            // return false;
         }
-    }, false);
+    });
 </script>
 </body>
 @section Scripts {

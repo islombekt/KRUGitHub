@@ -97,84 +97,92 @@ function validateForms() {
     var forms = document.querySelectorAll('.custom-validation');
 
     // Loop over them and prevent submission
-    Array.prototype.slice.call(forms)
-        .forEach(function (form) {
+    Array.prototype.slice.call(forms).forEach(function (form) {
             form.addEventListener('submit', function (event) {
                 let passValidation;
-                let globalValidation;
-                for(const [key, val] of Object.entries(form)){
+                let globalValidation = true;
+
+                const formArray = $(form).serializeArray();
+                let i = 0;
+                for (const input of formArray) {
                     let messages = [];
                     passValidation = true;
-                    const inputValue = val.value;
-                    if(inputValue === ""){
+                    const inputValue = input.value;
+                    const inputName = input.name;
+
+                    if (inputValue === "") {
                         passValidation = false;
                         messages.push("Это поле обязательно");
                     }
-                    if(key === "6"){
+                    if (inputName === "Input.Email") {
                         const re = /^[\w-\.]+@([\w-]+\.)+[\w-]+$/;
-                        if(!re.test(inputValue)){
+                        if (!re.test(inputValue)) {
                             passValidation = false;
                         }
                         messages.push("Введите почту в правильном формате");
                     }
-                    if(key === "3"){
+                    if (inputName === "Input.PhoneNumber") {
                         const re = /^\+998 \([\d]{2}\) [\d]{3}-[\d]{2}-[\d]{2}$/;
-                        if(!re.test(inputValue)){
+                        if (!re.test(inputValue)) {
                             passValidation = false;
                         }
                         messages.push("Введите номер телефона в правильном формате");
                     }
-                    if(key === "7"){
+                    if (inputName === "Input.Password") {
                         const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{6,15}$/;
-                        if(!re.test(inputValue)){
+                        if (!re.test(inputValue)) {
                             passValidation = false;
                         }
                         messages.push("Ваш пароль должен содержать как минимум одну цифру, прописную и строчную букву, знак");
                     }
-                    if(key === "8"){
-                        if(inputValue !== form["7"].value) {
+                    if (inputName === "Input.ConfirmPassword") {
+                        if (inputValue !== formArray.find(inp => inp.name === "Input.Password").value) {
                             passValidation = false;
                         }
                         messages.push("Пароли должны совпадать");
                     }
 
-                    if(val.classList !== undefined){
-                        if(!passValidation){
-                            val.classList.remove("is-valid");
-                            val.classList.add("is-invalid");
+                    if (form[i].classList !== undefined) {
+                        if (!passValidation) {
+                            form[i].classList.remove("is-valid");
+                            form[i].classList.add("is-invalid");
 
-                            if($(val).closest(".form-group").find('.invalid-feedback').html() !== undefined){
+                            if ($(form[i]).closest(".form-group").find('.invalid-feedback').html() !== undefined) {
                                 let htmlMessages = "<ol>";
                                 messages.forEach(msg => {
                                     htmlMessages += ("<li>" + msg + "</li>");
                                 });
                                 htmlMessages += "</ol>";
 
-                                const errMsgContainer = $(val).closest(".form-group").find('.invalid-feedback');
+                                const errMsgContainer = $(form[i]).closest(".form-group").find('.invalid-feedback');
                                 errMsgContainer.html(htmlMessages);
-                                errMsgContainer.css({"display" : "block"});
+                                errMsgContainer.css({"display": "block"});
                             }
-                        }
-                        else{
-                            val.classList.remove("is-invalid");
-                            val.classList.add("is-valid");
+                        } else {
+                            form[i].classList.remove("is-invalid");
+                            form[i].classList.add("is-valid");
 
-                            const errMsgContainer = $(val).closest(".form-group").find('.invalid-feedback');
+                            const errMsgContainer = $(form[i]).closest(".form-group").find('.invalid-feedback');
                             errMsgContainer.html("");
-                            errMsgContainer.css({"display" : "none"});
+                            errMsgContainer.css({"display": "none"});
                         }
                     }
 
-                    if(!passValidation){
+                    if (!passValidation) {
                         globalValidation = false;
                     }
+                    i += 1;
                 }
 
                 if(!globalValidation){
                     console.log("Prevent submit");
                     event.preventDefault();
-                    event.stopPropagation();
+                    return false;
+                }
+                else{
+                    console.log("Submit");
+                    return true;
                 }
             }, false);
-        });
+    });
 }
