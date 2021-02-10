@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using KRU.Data;
 using KRU.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace KRU.Areas.Employee.Controllers
 {
@@ -16,9 +17,11 @@ namespace KRU.Areas.Employee.Controllers
     public class ReportsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public ReportsController(ApplicationDbContext context)
+        public ReportsController(UserManager<IdentityUser> userManager, ApplicationDbContext context)
         {
+            _userManager = userManager;
             _context = context;
         }
 
@@ -58,8 +61,8 @@ namespace KRU.Areas.Employee.Controllers
             ViewData["AddressId"] = new SelectList(_context.Addresses, "AddressId", "Building");
             ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeId");
             ViewData["ManagerId"] = new SelectList(_context.Managers, "ManagerId", "ManagerId");
-            ViewData["ObjectId"] = new SelectList(_context.Objects, "ObjectId", "ObjectId");
-            ViewData["TaskId"] = new SelectList(_context.Tasks, "TaskId", "TaskId");
+            ViewData["ObjectId"] = new SelectList(_context.Objects, "ObjectId", "ObjectName");
+            ViewData["TaskId"] = new SelectList(_context.Tasks, "TaskId", "TaskName");
             return View();
         }
 
@@ -70,6 +73,12 @@ namespace KRU.Areas.Employee.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ReportId,State,ReportDate,ReportDescription,ReportComment,ReportScore,TaskId,AddressId,ObjectId,ManagerId,EmployeeId")] Report report)
         {
+            var EmpId = _context.Employees.ToList().FirstOrDefault(u => u.UserId == _userManager.GetUserId(User)).EmployeeId;
+           var ManId = _context.Employees.ToList().FirstOrDefault(u => u.UserId == _userManager.GetUserId(User)).ManagerId;
+            // var DepId = _context.User.ToList().FirstOrDefault(u => u.Id == _userManager.GetUserId(User)).DepartmentId;
+            report.EmployeeId = EmpId;
+            report.ManagerId = ManId;
+            report.ReportDate = DateTime.Now;
             if (ModelState.IsValid)
             {
                 _context.Add(report);
