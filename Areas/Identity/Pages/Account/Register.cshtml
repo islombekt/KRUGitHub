@@ -1,20 +1,48 @@
-﻿
-@page
+﻿@page
 @using KRU.Data
 @model RegisterModel
 @{
-    ViewData["Title"] = "Register";
+ViewData["Title"] = "Регистрация";
+Layout = null;
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - KRU</title>
 
-<div class="kru-form">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
+    <!-- Font Awesome Est -->
+    <link rel="stylesheet" href="~/theme/plugins/fontawesome-free/css/all.min.css">
+
+    <link href="~/theme/plugins/datatables-autofill/css/autoFill.bootstrap4.min.css" rel="stylesheet"/>
+    <link href="~/theme/plugins/icheck-bootstrap/icheck-bootstrap.min.css" rel="stylesheet">
+
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="~/theme/plugins/daterangepicker/daterangepicker.css">
+    <link href="~/theme/plugins/dropzone/min/dropzone.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="~/theme/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="~/theme/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="~/theme/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/theme/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="~/css/style.css"/>
+</head>
+<body class="reg-background">
+<div class="kru-form kru-registration">
     <h1>@ViewData["Title"]</h1>
 
     <div class="row">
         <div class="col-md-12">
-            <form autocomplete="off" novalidate="true" class="kru custom-validation" asp-route-returnUrl="@Model.ReturnUrl" id="app" method="post">
+            <form autocomplete="off" novalidate="true" class="kru custom-validation"
+                  asp-route-returnUrl="@Model.ReturnUrl" id="app" method="post">
                 <h4>Create a new account.</h4>
                 <div class="kru-form-subtitle"><span class="round-shell">1</span>Личные данные</div>
-                <hr />
+                <hr/>
                 <div class="kru-form-container">
                     <div class="form-group">
                         <label class="control-label">Имя</label>
@@ -24,10 +52,10 @@
                                    <i class="fas fa-user-alt"></i>
                                </span>
                             </div>
-                            <input type="text" asp-for="Input.FName" class="form-control" />
+                            <input type="text" asp-for="Input.FName" class="form-control"/>
                         </div>
                         <span class="invalid-feedback"></span>
-<!--                        <span asp-validation-for="Input.FName" class="text-danger"></span>-->
+                        <!--                        <span asp-validation-for="Input.FName" class="text-danger"></span>-->
                     </div>
                     <div class="form-group">
                         <label class="control-label">Фамилия</label>
@@ -37,10 +65,10 @@
                                    <i class="fas fa-user-alt"></i>
                                </span>
                             </div>
-                            <input type="text" asp-for="Input.LName" class="form-control" />
+                            <input type="text" asp-for="Input.LName" class="form-control"/>
                         </div>
                         <span class="invalid-feedback"></span>
-<!--                        <span asp-validation-for="Input.LName" class="text-danger"></span>-->
+                        <!--                        <span asp-validation-for="Input.LName" class="text-danger"></span>-->
                     </div>
                     <div class="form-group">
                         <label class="control-label">Отчество</label>
@@ -50,10 +78,10 @@
                                    <i class="fas fa-user-alt"></i>
                                </span>
                             </div>
-                            <input type="text" asp-for="Input.SName" class="form-control" />
+                            <input type="text" asp-for="Input.SName" class="form-control"/>
                         </div>
                         <span class="invalid-feedback"></span>
-<!--                        <span asp-validation-for="Input.SName" class="text-danger"></span>-->
+                        <!--                        <span asp-validation-for="Input.SName" class="text-danger"></span>-->
                     </div>
                     <div class="form-group">
                         <label class="control-label">Номер телефона</label>
@@ -63,14 +91,14 @@
                                    <i class="fas fa-phone"></i>
                                </span>
                             </div>
-                            <input value="+998" type="tel" asp-for="Input.PhoneNumber" id="phone" class="form-control" >
+                            <input value="+998" type="tel" asp-for="Input.PhoneNumber" id="phone" class="form-control">
                         </div>
                         <span class="invalid-feedback"></span>
-<!--                        <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>-->
+                        <!--                        <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>-->
                     </div>
                 </div>
                 <div class="kru-form-subtitle"><span class="round-shell">2</span>Данные о должности</div>
-                <hr />
+                <hr/>
                 <div class="kru-form-container">
                     <div class="form-group">
                         <label class="control-label">Должность</label>
@@ -80,160 +108,202 @@
                                     <i class="fas fa-briefcase"></i>
                                 </span>
                             </div>
-                            <input asp-for="Input.Position" class="form-control" />
+                            <input asp-for="Input.Position" class="form-control"/>
                         </div>
                         <span class="invalid-feedback"></span>
-                        <!--                        <span asp-validation-for="Input.Position" class="text-danger"></span>-->
+                        <!--                         <span asp-validation-for="Input.Position" class="text-danger"></span>-->
                     </div>
-                    <hr />
-                        <div class="form-group">
-                            <label class="control-label">Работает с</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
+                    <hr/>
+
+                    @*<div class="form-group">
+                        <label class="control-label">Дата приема на работу</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
                                     <span class="input-group-text">
                                         <i class="fas fa-briefcase"></i>
                                     </span>
-                                </div>
-                                <input asp-for="Input.EnteredToWork" class="form-control" />
                             </div>
-                            <span class="invalid-feedback"></span>
+                            <input asp-for="Input.EnteredToWork" class="form-control"/>
                         </div>
-                        @*<div class="kru-form-group">
-                                        <label asp-for="Input.AddressId"></label>
-                                        <input asp-for="Input.AddressId" class="form-control" />
-            <!--                            <span asp-validation-for="Input.AddressId" class="invalid-feedback"></span>-->
-                                    </div>*@
+                        <span class="invalid-feedback"></span>
+                    </div>*@
 
-                        <div class="form-group">
-                            <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-house "></i></span>
-                            <div class="kru-form-group">
-                                <label class="control-label">Бинони танланг</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
+                    <div class="form-group">
+                        <label class="control-label">Дата приема на работу</label>
+                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                            <input id="Input_EnteredToWork" name="Input.EnteredToWork" class="form-control datetimepicker-input" data-target="#reservationdate" data-toggle="datetimepicker"/>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-house "></i></span>
+                        <div class="kru-form-group">
+                            <label class="control-label">Место работы</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
                                         <span class="input-group-text">
                                             <i class="fas fa-building"></i>
                                         </span>
-                                    </div>
-                                    @Html.DropDownListFor(m => m.Input.AddressId, Model.Input.BuildingList ?? new List<SelectListItem>(),
-                                    "", new { @class = "form-control" })
-                                    <span class="invalid-feedback"></span>
                                 </div>
+                                @Html.DropDownListFor(m => m.Input.AddressId, Model.Input.BuildingList ?? new List
+                                <SelectListItem>(),
+                                    "", new { @class = "form-control select2" })
+                                    <span class="invalid-feedback"></span>
                             </div>
                         </div>
-
-                        @if (User.IsInRole(SD.Role_Admin))
-                        {
-
-                            <div>
-                                <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-house "></i></span>
-                                <div id="role" class="kru-form-group">
-                                    <label>Рольни танланг</label>
-                                    @Html.DropDownListFor(m => m.Input.Role, Model.Input.RoleList ?? new List<SelectListItem>(),
-                            "", new { @class = "form-control" })
-                                    <span class="invalid-feedback"></span>
-                                </div>
-                            </div>
-                            <div>
-                                <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-house "></i></span>
-                                <div id="department" class="kru-form-group">
-                                    <label>Департамент йоки гурухни танланг</label>
-                                    @Html.DropDownListFor(m => m.Input.DepartmentId, Model.Input.DepartmentList ?? new List<SelectListItem>(),
-                            "", new { @class = "form-control" })
-                                    <span class="invalid-feedback"></span>
-                                </div>
-                            </div>
-                            <div>
-                                <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-house "></i></span>
-                                <div id="manager" class="kru-form-group">
-                                    <label>Менеджерни танланг</label>
-                                    @Html.DropDownListFor(m => m.Input.ManagerId, Model.Input.ManagerList ?? new List<SelectListItem>(),
-                            "", new { @class = "form-control" })
-                                    <span class="invalid-feedback"></span>
-                                </div>
-                            </div>
-                        }
                     </div>
-                    <div class="kru-form-subtitle"><span class="round-shell">3</span>Аккаунтные данные</div>
-                    <hr />
-                    <div class="kru-form-container">
-                        <div class="form-group">
-                            <label class="control-label" asp-for="Input.Email"></label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
+
+                    @if (User.IsInRole(SD.Role_Admin))
+                    {
+
+                    <div class="form-group">
+                        <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-house "></i></span>
+                        <div id="role" class="kru-form-group">
+                            <label>Роль</label>
+                            @Html.DropDownListFor(m => m.Input.Role, Model.Input.RoleList ?? new List
+                            <SelectListItem>(),
+                                "", new { @class = "form-control" })
+                                <span class="invalid-feedback"></span>
+                        </div>
+                    </div>
+                    <div id="department" class="form-group d-none">
+                        <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-house "></i></span>
+                        <div class="kru-form-group">
+                            <label>Департамент или отдел</label>
+                            @Html.DropDownListFor(m => m.Input.DepartmentId, Model.Input.DepartmentList ?? new List
+                            <SelectListItem>(),
+                                "", new { @class = "form-control select2" })
+                                <span class="invalid-feedback"></span>
+                        </div>
+                    </div>
+                    <div id="manager" class="form-group d-none">
+                        <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-house "></i></span>
+                        <div class="kru-form-group">
+                            <label>Менеджер работника</label>
+                            @Html.DropDownListFor(m => m.Input.ManagerId, Model.Input.ManagerList ?? new List
+                            <SelectListItem>(),
+                                "", new { @class = "form-control select2" })
+                                <span class="invalid-feedback"></span>
+                        </div>
+                    </div>
+                    }
+                </div>
+                <div class="kru-form-subtitle"><span class="round-shell">3</span>Аккаунтные данные</div>
+                <hr/>
+                <div class="kru-form-container">
+                    <div class="form-group">
+                        <label class="control-label">Адрес электронной почты</label>
+                        <a data-bs-animation="true" data-bs-toggle="tooltip" data-bs-placement="right"
+                           title="Введите адрес корпоративной почты (n.surname@ung.uz)">
+                            <i class="fas fa-info-circle info-icon"></i>
+                        </a>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
                                     <span class="input-group-text">
                                         <i class="fas fa-envelope"></i>
                                     </span>
-                                </div>
-                                <input asp-for="Input.Email" class="form-control" />
                             </div>
-                            <span class="invalid-feedback"></span>
-                            <!--                        <span asp-validation-for="Input.Email" class="text-danger"></span>-->
+                            <input asp-for="Input.Email" class="form-control"/>
                         </div>
-                        <div class="form-group">
-
-                            <div class="d-flex align-items-center control-label my-mb">
-                                <label class="mb-0 mr-2" asp-for="Input.Password"></label>
-                                <a data-bs-animation="true" data-bs-toggle="tooltip" data-bs-placement="right" title="Password must have minimum 10 symbols: at least an uppercase, lowercase letter, a digit, a sign">
-                                    <i class="fas fa-info-circle info-icon"></i>
-                                </a>
-                            </div>
-
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="fas fa-lock"></i>
-                                    </span>
-                                </div>
-                                <input type="password" asp-for="Input.Password" class="form-control" />
-                            </div>
-                            <span class="invalid-feedback"></span>
-                            <!--                        <span asp-validation-for="Input.Password" class="text-danger"></span>-->
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" asp-for="Input.ConfirmPassword"></label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="fas fa-lock"></i>
-                                    </span>
-                                </div>
-                                <input type="password" asp-for="Input.ConfirmPassword" class="form-control" />
-                            </div>
-                            <span class="invalid-feedback"></span>
-                            <!--                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>-->
-                        </div>
+                        <span class="invalid-feedback"></span>
+                        <!--                            <span asp-validation-for="Input.Email" class="text-danger"></span>-->
                     </div>
-                    <button type="submit" class="btn btn-primary">Register</button>
-</form>
+                    <div class="form-group">
+
+                        <div class="d-flex align-items-center control-label my-mb">
+                            <label class="mb-0 mr-2">Пароль</label>
+                            <a data-bs-animation="true" data-bs-toggle="tooltip" data-bs-placement="right"
+                               title="Пароль должен содержать минимум одну прописную и одну заглавную букву на латинице, одну цифру, один знак и быть длиной от 6 до 15 символов">
+                                <i class="fas fa-info-circle info-icon"></i>
+                            </a>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                            </div>
+                            <input type="password" asp-for="Input.Password" class="form-control"/>
+                        </div>
+                        <span class="invalid-feedback"></span>
+                        <!--                            <span asp-validation-for="Input.Password" class="text-danger"></span>-->
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">
+                            Повторите пароль
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                            </div>
+                            <input type="password" asp-for="Input.ConfirmPassword" class="form-control"/>
+                        </div>
+                        <span class="invalid-feedback"></span>
+                        <!--                            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>-->
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Зарегистрировать</button>
+            </form>
         </div>
     </div>
 </div>
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="~/theme/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+<!-- Select2 -->
+<script src="~/theme/plugins/select2/js/select2.full.min.js"></script>
+<!-- InputMask -->
+<script src="~/theme/plugins/moment/moment.min.js"></script>
+<script src="~/theme/plugins/inputmask/jquery.inputmask.min.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="~/theme/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 
-<script src="~/theme/plugins/jquery/jquery.min.js"></script>
+<!-- AdminLTE App -->
+<script src="~/theme/dist/js/adminlte.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="~/theme/dist/js/demo.js"></script>
+
+<script src="~/js/validate.js"></script>
+<script src="~/js/user.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
 
 <script>
-    jQuery(document).ready(function ($) {
-        $('#app').change(function () {
-            // hide all optional elements
-            $('#manager').hide();
-            $('#department').hide();
-            $("#role").each(function () {
-                if ($('#role option:selected').text() == "Employee") {
-                    $('#manager').slideDown();
-                    $('#department').slideDown();
-                }
-                else if ($('#role option:selected').text() == "Manager") {
-                    $('#department').slideDown();
-                }
-                else
-                    $('#manager').filter(':hidden');
-            });
+    function roleForms(){
+        const managerInput = $('.kru-form #manager');
+        const departmentInput = $('.kru-form #department');
+        $("#role").each(function () {
+            const selectedRole = $('#role option:selected').text();
+            if (selectedRole === "Employee") {
+                managerInput.removeClass('d-none');
+                departmentInput.addClass('d-none');
+            } else if (selectedRole === "Manager") {
+                departmentInput.removeClass('d-none');
+                managerInput.addClass('d-none');
+            } else {
+                departmentInput.addClass('d-none');
+                managerInput.addClass('d-none');
+            }
         });
-
+    }
+    jQuery(document).ready(function ($) {
+        roleForms();
+        $("#role").change(function () {
+            // hide all optional elements
+            roleForms();
+        });
+        $('.select2').select2();
     });
 </script>
+</body>
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+}

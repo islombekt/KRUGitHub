@@ -133,8 +133,7 @@
 }
 
 .kru-form{
-  padding-left: 50px;
-  padding-right: 50px;
+  padding: 50px 70px;
 }
 
 .kru-form-container{
@@ -146,7 +145,7 @@
 
 .kru-form-container > div{
   width: 43%;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .kru-form-container > button{
@@ -155,13 +154,17 @@
   align-self: flex-end;
 }
 
+.kru-form-container label{
+  margin-bottom: 4px;
+}
+
 form.kru button{
   display: block;
   margin-left: auto;
 }
 
 form.kru .kru-form-subtitle{
-  margin-top: 50px;
+  margin-top: 20px;
   font-size: 22px;
   font-weight: 600;
 }
@@ -320,4 +323,25 @@ input:checked + .slider:before {
 
 .my-mb {
   margin-bottom: .5rem;
+}
+
+.form-control.is-invalid:focus {
+  box-shadow: 0 0 0 0.2rem rgb(220 53 69 / 25%);
+}
+
+.kru-registration{
+  width: 70%;
+  min-width: 650px;
+  display: block;
+  margin: 30px auto;
+  background-color: white;
+  background-image: url(/images/UNGBrand.png);
+  background-position: left;
+  background-repeat: repeat-y;
+  background-size: 50px;
+  box-shadow: 0 1rem 3rem rgba(0,0,0,.175);
+}
+
+.reg-background{
+  background-color: #e9ecef;
 }

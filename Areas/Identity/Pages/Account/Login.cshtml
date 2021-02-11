@@ -2,155 +2,109 @@
 @model LoginModel
 
 @{
-    Layout = null;
-    ViewData["Title"] = "Log in";
+Layout = null;
+ViewData["Title"] = "Авторизация";
 }
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Log in</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewData["Title"] - KRU</title>
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="/theme/plugins/fontawesome-free/css/all.min.css">
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="/theme/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="/theme/dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/theme/plugins/fontawesome-free/css/all.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="/theme/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/theme/dist/css/adminlte.min.css">
 
-  <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body class="hold-transition login-page">
 
-    <div class="login-box">
-        <div class="kru-logo">
-            <img width="150" alt="UNG-Logo" src="/images/logo.png" />
-            Комплаенс назорат дастури
-        </div>
-        <!-- /.login-logo -->
-  <div class="card">
-    <div class="card-body login-card-body">
-      <p class="login-box-msg">@ViewData["Title"]</p>
+<div class="login-box">
+    <div class="kru-logo">
+        <img width="150" alt="UNG-Logo" src="/images/logo.png"/>
+        Комплаенс назорат дастури
+    </div>
+    <!-- /.login-logo -->
+    <div class="card">
+        <div class="card-body login-card-body">
+            <p class="login-box-msg">@ViewData["Title"]</p>
 
-      <form autocomplete="off" novalidate="true" class="kru" id="kru-login-form" method="post">
-        <div class="mb-3 form-group">
-            <div class="input-group">
-                <input asp-for="Input.Email" type="email" class="form-control" placeholder="Email">
-                <div class="input-group-append">
-                    <div class="input-group-text">
-                    <span class="fas fa-envelope"></span>
+            <form autocomplete="off" novalidate="true" class="kru custom-validation" id="kru-login-form" method="post">
+                <div class="mb-3 form-group">
+                    <div class="input-group">
+                        <input asp-for="Input.Email" type="email" class="form-control"
+                               placeholder="Адрес электронной почты">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
                     </div>
+                    <span class="invalid-feedback"></span>
+                    <!--            <span asp-validation-for="Input.Email" class="text-danger"></span>-->
                 </div>
-            </div>
-            <span class="invalid-feedback"></span>
-<!--            <span asp-validation-for="Input.Email" class="text-danger"></span>-->
-        </div>
-        
-        <div class="mb-3 form-group">
-            <div class="input-group">
-                <input asp-for="Input.Password" type="password" class="form-control" placeholder="Password">
-                <div class="input-group-append">
-                    <div class="input-group-text">
-                        <span class="fas fa-lock"></span>
+
+                <div class="mb-3 form-group">
+                    <div class="input-group">
+                        <input asp-for="Input.Password" type="password" class="form-control" placeholder="Пароль">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
                     </div>
+                    <span class="invalid-feedback"></span>
+                    <!--            <span asp-validation-for="Input.Password" class="text-danger"></span>-->
                 </div>
-            </div>
-            <span class="invalid-feedback"></span>
-<!--            <span asp-validation-for="Input.Password" class="text-danger"></span>-->
+
+                <div class="row">
+                    <div class="col-8">
+                        <div class="icheck-primary">
+                            <input asp-for="Input.RememberMe" type="checkbox" id="remember">
+                            @* @Html.DisplayNameFor(m => m.Input.RememberMe) *@
+                            <label asp-for="Input.RememberMe" for="remember">
+                                Remember Me
+                            </label>
+                        </div>
+
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary btn-block">Войти</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </form>
+            @*<p class="mb-1">
+            <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+        </p>
+            <p class="mb-0">
+                <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+            </p>*@
         </div>
-        
-        <div class="row">
-          <div class="col-8">
-            <div class="icheck-primary">
-              <input asp-for="Input.RememberMe" type="checkbox" id="remember">
-              @* @Html.DisplayNameFor(m => m.Input.RememberMe) *@
-              <label asp-for="Input.RememberMe" for="remember">
-                Remember Me
-              </label>
-            </div>
-                        
-          </div>
-          <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-          </div>
-          <!-- /.col -->
-        </div>
-      </form>
-        @*<p class="mb-1">
-        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-      </p>
-      <p class="mb-0">
-        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-      </p>*@
+        <!-- /.login-card-body -->
     </div>
-    <!-- /.login-card-body -->
-  </div>
-    </div>
-    <!-- jQuery -->
+</div>
+<!-- jQuery -->
 <script src="/theme/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="/theme/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/theme/dist/js/adminlte.min.js"></script>
+<script src="~/js/validate.js"></script>
 <script>
-    const form = document.getElementById('kru-login-form');
-    form.addEventListener('submit', function (event) {
-        let passValidation;
-        let globalValidation = true;
-        for(const [key, val] of Object.entries(form)) {
-            let messages = [];
-            passValidation = true;
-            const inputValue = val.value;
-            if(key === "0" || key === "1"){
-                if (inputValue === "") {
-                    passValidation = false;
-                    messages.push("Это поле обязательно");
-                }
-            }
-            if(val.classList !== undefined){
-                if(!passValidation){
-                    val.classList.remove("is-valid");
-                    val.classList.add("is-invalid");
-
-                    if($(val).closest(".form-group").find('.invalid-feedback').html() !== undefined){
-                        let htmlMessages = "<ol>";
-                        messages.forEach(msg => {
-                            htmlMessages += ("<li>" + msg + "</li>");
-                        });
-                        htmlMessages += "</ol>";
-
-                        const errMsgContainer = $(val).closest(".form-group").find('.invalid-feedback');
-                        errMsgContainer.html(htmlMessages);
-                        errMsgContainer.css({"display" : "block"});
-                    }
-                }
-                else{
-                    val.classList.remove("is-invalid");
-                    val.classList.add("is-valid");
-
-                    const errMsgContainer = $(val).closest(".form-group").find('.invalid-feedback');
-                    errMsgContainer.html("");
-                    errMsgContainer.css({"display" : "none"});
-                }
-            }
-            if(!passValidation){
-                globalValidation = false;
-            }
-        }
-
-        if(!globalValidation){
-            console.log("Prevent submit");
-            event.preventDefault();
-            // event.stopPropagation();
-            // return false;
-        }
+    $(document).ready(function () {
+        validateForms();
     });
 </script>
 </body>
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+<partial name="_ValidationScriptsPartial"/>
 }

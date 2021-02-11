@@ -18,7 +18,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using System.Security.Claims;
-
+using System.Globalization;
 namespace KRU.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
@@ -76,7 +76,7 @@ namespace KRU.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
             [Required]
-            [RegularExpression("^[9,7][0-9]{8}$", ErrorMessage = "Тел. рақами нотўғри кўрсатилган!")]
+            //[RegularExpression("^[9,7][0-9]{8}$", ErrorMessage = "Тел. рақами нотўғри кўрсатилган!")]
             [DataType(DataType.PhoneNumber)]
             [Display(Name = "Телефон номер")]
             public string PhoneNumber { get; set; }
@@ -86,17 +86,15 @@ namespace KRU.Areas.Identity.Pages.Account
             public string LName { get; set; }
             [Required]
             public string SName { get; set; }
-           
+           public string EnteredToWork{get;set;}
             public string Role { get; set; }
            
             public int AddressId { get; set; }
             [Required]
             public string Position { get;  set; }
-            public DateTime EnteredToWork { get; set; }
-          
-
-            public int DepartmentId { get; set; }
-            public int? ManagerId { get; set; }
+            
+            public int? DepartmentId { get; set; }
+            public string ManagerId { get; set; }
 
             public IEnumerable<SelectListItem> BuildingList { get; set; }
             public IEnumerable<SelectListItem> DepartmentList { get; set; }
@@ -164,8 +162,7 @@ namespace KRU.Areas.Identity.Pages.Account
                     AddressId = Input.AddressId,
                     DepartmentId = Input.DepartmentId,
                     Position = Input.Position,
-                    EnteredToWork = Input.EnteredToWork,
-                   
+                    EnteredToWork = DateTime.ParseExact(Input.EnteredToWork, "MM/dd/yyyy", CultureInfo.InvariantCulture),
                     EmailConfirmed = true
                 };
 
@@ -177,13 +174,20 @@ namespace KRU.Areas.Identity.Pages.Account
                 {
                     UserId = user.Id
                 };
+              
                 var employee = new Models.Employee
                 {
                     UserId = user.Id,
-
-                    ManagerId = Input.ManagerId,
+                  
                 };
-
+                var emp = new Models.Employee();
+                if(user.Role != null && user.Role == SD.Role_Employee)
+                {
+                    var managers = _db.Managers.ToList();
+                    var managerId = managers.FirstOrDefault(u => u.UserId == Input.ManagerId).ManagerId;
+                    emp.ManagerId = managerId;
+                    emp.UserId = user.Id;
+                }
                 // Manager is creating new user
                 if (User.IsInRole(SD.Role_Manager))
                 {
@@ -259,16 +263,16 @@ namespace KRU.Areas.Identity.Pages.Account
                             await _signInManager.SignInAsync(user, isPersistent: false);
                             return LocalRedirect(returnUrl);
                         }
-                        else if(user.Role == SD.Role_Admin)
-                        {
-                            //admin is registering new user
-                            return RedirectToAction("Index", "Users", new { Area = "Admin" });
-                        }
-                        else if(user.Role == SD.Role_Manager)
-                        {
-                            return RedirectToAction("Index", "Users", new { Area = "Admin" });
-                        }
-                        else if(user.Role == SD.Role_Employee)
+                      else if(User.IsInRole(SD.Role_Admin))
+                                              {
+                                                  //admin is registering new user
+                                                  return RedirectToAction("Index", "Users", new { Area = "Admin" });
+                                              }
+                     //   else if(user.Role == SD.Role_Manager)
+                      //  {
+                       //     return RedirectToAction("Index", "Users", new { Area = "Admin" });
+                        //}
+                        else if(User.IsInRole(SD.Role_Manager))
                         {
                             return RedirectToAction("Index", "Employees", new { Area = "Manager" });
                         }
