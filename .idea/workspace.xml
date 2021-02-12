@@ -2,19 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="08026dd5-4f3e-4085-9c12-5f36a5939dc9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/wwwroot/js/validate.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Areas/Identity/Pages/Account/Login.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Areas/Identity/Pages/Account/Login.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Areas/Identity/Pages/Account/Register.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Areas/Identity/Pages/Account/Register.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Areas/Identity/Pages/Account/Register.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Areas/Identity/Pages/Account/Register.cshtml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Shared/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Shared/_Layout.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/KRU.Views.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/KRU.Views.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/KRU.Views.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/KRU.Views.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/KRU.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/KRU.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/KRU.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/KRU.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/ref/KRU.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/ref/KRU.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wwwroot/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/wwwroot/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wwwroot/js/site.js" beforeDir="false" afterPath="$PROJECT_DIR$/wwwroot/js/site.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,20 +20,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wwwroot/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="569">
-              <caret line="335" column="11" selection-start-line="335" selection-start-column="11" selection-end-line="335" selection-end-column="11" />
+            <state relative-caret-position="-32">
+              <caret line="342" column="11" selection-start-line="342" selection-start-column="1" selection-end-line="342" selection-end-column="11" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Areas/Identity/Pages/Account/Register.cshtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="113">
-              <caret line="152" column="47" selection-start-line="152" selection-start-column="33" selection-end-line="152" selection-end-column="47" />
+            <state relative-caret-position="191">
+              <caret line="35" column="48" selection-start-line="35" selection-start-column="48" selection-end-line="35" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -48,8 +41,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wwwroot/theme/pages/forms/advanced.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="19" column="2" lean-forward="true" selection-start-line="19" selection-start-column="2" selection-end-line="21" selection-end-column="98" />
+            <state relative-caret-position="456">
+              <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="21" selection-end-column="98" />
               <folding>
                 <element signature="n#style#0;n#select#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -60,7 +53,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Views/Shared/_Layout.cshtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="55">
+            <state relative-caret-position="120">
               <caret line="5" column="43" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
             </state>
           </provider>
@@ -69,10 +62,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Areas/Identity/Pages/Account/Login.cshtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1909">
-              <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+            <state relative-caret-position="93">
+              <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
               <folding>
-                <marker date="1613050499517" expanded="true" signature="2800:3233" ph="..." />
+                <marker date="1613108468034" expanded="true" signature="2824:3215" ph="..." />
               </folding>
             </state>
           </provider>
@@ -89,11 +82,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>kru-form</find>
-      <find>.form-group</find>
-      <find>Бинони танланг</find>
-      <find>form-group</find>
-      <find>form-control</find>
       <find>kru-form-subtitle</find>
       <find>&lt;hr /&gt;</find>
       <find>text-danger</find>
@@ -119,6 +107,11 @@
       <find>.kru-registration</find>
       <find>select2</find>
       <find>SelectListItem</find>
+      <find>.kru-form</find>
+      <find>is-i</find>
+      <find>reg-background</find>
+      <find>login-box</find>
+      <find>login-page</find>
     </findStrings>
     <replaceStrings>
       <replace>kru-form-group</replace>
@@ -150,10 +143,10 @@
         <option value="$PROJECT_DIR$/wwwroot/js/validate.js" />
         <option value="$PROJECT_DIR$/Areas/Identity/Pages/Account/Register.cshtml.cs" />
         <option value="$PROJECT_DIR$/wwwroot/js/site.js" />
-        <option value="$PROJECT_DIR$/Areas/Identity/Pages/Account/Login.cshtml" />
         <option value="$PROJECT_DIR$/Views/Shared/_Layout.cshtml" />
         <option value="$PROJECT_DIR$/wwwroot/css/style.css" />
         <option value="$PROJECT_DIR$/Areas/Identity/Pages/Account/Register.cshtml" />
+        <option value="$PROJECT_DIR$/Areas/Identity/Pages/Account/Login.cshtml" />
       </list>
     </option>
   </component>
@@ -167,6 +160,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -177,18 +171,13 @@
             <path>
               <item name="KRU" type="b2602c69:ProjectViewProjectNode" />
               <item name="KRU" type="462c0819:PsiDirectoryNode" />
-              <item name="Areas" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="KRU" type="b2602c69:ProjectViewProjectNode" />
-              <item name="KRU" type="462c0819:PsiDirectoryNode" />
               <item name="wwwroot" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="KRU" type="b2602c69:ProjectViewProjectNode" />
               <item name="KRU" type="462c0819:PsiDirectoryNode" />
               <item name="wwwroot" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="KRU" type="b2602c69:ProjectViewProjectNode" />
@@ -200,7 +189,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -248,12 +236,13 @@
       <workItem from="1612928772935" duration="603000" />
       <workItem from="1612934088218" duration="20370000" />
       <workItem from="1613022893346" duration="16042000" />
-      <workItem from="1613040741703" duration="12872000" />
+      <workItem from="1613040741703" duration="13472000" />
+      <workItem from="1613101250354" duration="6513000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="117271000" />
+    <option name="totallyTimeSpent" value="124384000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -268,7 +257,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24851191" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24851191" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -279,14 +268,34 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32991454" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.16923077" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="8" visible="true" weight="0.2" />
       <window_info anchor="bottom" id="GraphQL" order="9" weight="0.32991454" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.26153848" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.41538462" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24851191" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32991454" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.6529915" />
+      <window_info anchor="bottom" id="GraphQL" order="9" weight="0.32991454" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.41538462" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -554,44 +563,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Views/Shared/_Layout.cshtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="55">
-          <caret line="5" column="43" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Areas/Identity/Pages/Account/Login.cshtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1909">
-          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-          <folding>
-            <marker date="1613050499517" expanded="true" signature="2800:3233" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wwwroot/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="569">
-          <caret line="335" column="11" selection-start-line="335" selection-start-column="11" selection-end-line="335" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wwwroot/theme/pages/forms/advanced.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="19" column="2" lean-forward="true" selection-start-line="19" selection-start-column="2" selection-end-line="21" selection-end-column="98" />
+        <state relative-caret-position="456">
+          <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="21" selection-end-column="98" />
           <folding>
             <element signature="n#style#0;n#select#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Views/Shared/_Layout.cshtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="5" column="43" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Areas/Identity/Pages/Account/Login.cshtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="93">
+          <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
+          <folding>
+            <marker date="1613108468034" expanded="true" signature="2824:3215" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Areas/Identity/Pages/Account/Register.cshtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="152" column="47" selection-start-line="152" selection-start-column="33" selection-end-line="152" selection-end-column="47" />
+        <state relative-caret-position="191">
+          <caret line="35" column="48" selection-start-line="35" selection-start-column="48" selection-end-line="35" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wwwroot/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-32">
+          <caret line="342" column="11" selection-start-line="342" selection-start-column="1" selection-end-line="342" selection-end-column="11" />
         </state>
       </provider>
     </entry>

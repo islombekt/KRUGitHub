@@ -32,66 +32,65 @@ Layout = null;
     <link rel="stylesheet" href="~/theme/dist/css/adminlte.min.css">
     <link rel="stylesheet" href="~/css/style.css"/>
 </head>
-<body class="reg-background">
-<div class="kru-form kru-registration">
+<body class="brand-background">
+<div class="kru-form kru-registration card-brand">
     <h1>@ViewData["Title"]</h1>
-
     <div class="row">
         <div class="col-md-12">
             <form autocomplete="off" novalidate="true" class="kru custom-validation"
                   asp-route-returnUrl="@Model.ReturnUrl" id="app" method="post">
-                <h4>Create a new account.</h4>
+
                 <div class="kru-form-subtitle"><span class="round-shell">1</span>Личные данные</div>
                 <hr/>
                 <div class="kru-form-container">
                     <div class="form-group">
-                        <label class="control-label">Имя</label>
+<!--                        <label class="control-label"></label>-->
                         <div class="input-group">
                             <div class="input-group-prepend">
                                <span class="input-group-text">
                                    <i class="fas fa-user-alt"></i>
                                </span>
                             </div>
-                            <input type="text" asp-for="Input.FName" class="form-control"/>
+                            <input placeholder="Имя" type="text" asp-for="Input.FName" class="form-control"/>
                         </div>
                         <span class="invalid-feedback"></span>
                         <!--                        <span asp-validation-for="Input.FName" class="text-danger"></span>-->
                     </div>
                     <div class="form-group">
-                        <label class="control-label">Фамилия</label>
+<!--                        <label class="control-label"></label>-->
                         <div class="input-group">
                             <div class="input-group-prepend">
                                <span class="input-group-text">
                                    <i class="fas fa-user-alt"></i>
                                </span>
                             </div>
-                            <input type="text" asp-for="Input.LName" class="form-control"/>
+                            <input placeholder="Фамилия" type="text" asp-for="Input.LName" class="form-control"/>
                         </div>
                         <span class="invalid-feedback"></span>
                         <!--                        <span asp-validation-for="Input.LName" class="text-danger"></span>-->
                     </div>
                     <div class="form-group">
-                        <label class="control-label">Отчество</label>
+<!--                        <label class="control-label"></label>-->
                         <div class="input-group">
                             <div class="input-group-prepend">
                                <span class="input-group-text">
                                    <i class="fas fa-user-alt"></i>
                                </span>
                             </div>
-                            <input type="text" asp-for="Input.SName" class="form-control"/>
+                            <input placeholder="Отчество" type="text" asp-for="Input.SName" class="form-control"/>
                         </div>
                         <span class="invalid-feedback"></span>
                         <!--                        <span asp-validation-for="Input.SName" class="text-danger"></span>-->
                     </div>
                     <div class="form-group">
-                        <label class="control-label">Номер телефона</label>
+<!--                        <label class="control-label"></label>-->
                         <div class="input-group">
                             <div class="input-group-prepend">
                                <span class="input-group-text">
                                    <i class="fas fa-phone"></i>
                                </span>
                             </div>
-                            <input value="+998" type="tel" asp-for="Input.PhoneNumber" id="phone" class="form-control">
+                            <input placeholder="Номер телефона" value="+998" type="tel" asp-for="Input.PhoneNumber" id="phone" class="form-control">
                         </div>
                         <span class="invalid-feedback"></span>
                         <!--                        <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>-->
@@ -101,14 +100,14 @@ Layout = null;
                 <hr/>
                 <div class="kru-form-container">
                     <div class="form-group">
-                        <label class="control-label">Должность</label>
+<!--                        <label class="control-label">Должность</label>-->
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">
                                     <i class="fas fa-briefcase"></i>
                                 </span>
                             </div>
-                            <input asp-for="Input.Position" class="form-control"/>
+                            <input placeholder="Должность" asp-for="Input.Position" class="form-control"/>
                         </div>
                         <span class="invalid-feedback"></span>
                         <!--                         <span asp-validation-for="Input.Position" class="text-danger"></span>-->
@@ -116,7 +115,7 @@ Layout = null;
                     <hr/>
 
                     @*<div class="form-group">
-                        <label class="control-label">Дата приема на работу</label>
+<!--                        <label class="control-label">Дата приема на работу</label>-->
                         <div class="input-group">
                             <div class="input-group-prepend">
                                     <span class="input-group-text">
@@ -129,20 +128,21 @@ Layout = null;
                     </div>*@
 
                     <div class="form-group">
-                        <label class="control-label">Дата приема на работу</label>
+<!--                        <label class="control-label"></label>-->
                         <div class="input-group date" id="reservationdate" data-target-input="nearest">
                             <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
-                            <input id="Input_EnteredToWork" name="Input.EnteredToWork" class="form-control datetimepicker-input" data-target="#reservationdate" data-toggle="datetimepicker"/>
+                            <input placeholder="Дата приема на работу" id="Input_EnteredToWork" name="Input.EnteredToWork" class="form-control datetimepicker-input" data-target="#reservationdate" data-toggle="datetimepicker"/>
                         </div>
+                        <span class="invalid-feedback"></span>
                     </div>
 
 
                     <div class="form-group">
                         <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-house "></i></span>
                         <div class="kru-form-group">
-                            <label class="control-label">Место работы</label>
+<!--                            <label class="control-label"></label>-->
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                         <span class="input-group-text">
@@ -151,7 +151,7 @@ Layout = null;
                                 </div>
                                 @Html.DropDownListFor(m => m.Input.AddressId, Model.Input.BuildingList ?? new List
                                 <SelectListItem>(),
-                                    "", new { @class = "form-control select2" })
+                                    "Место работы", new {@class = "form-control select2" })
                                     <span class="invalid-feedback"></span>
                             </div>
                         </div>
@@ -163,30 +163,30 @@ Layout = null;
                     <div class="form-group">
                         <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-house "></i></span>
                         <div id="role" class="kru-form-group">
-                            <label>Роль</label>
+<!--                            <label></label>-->
                             @Html.DropDownListFor(m => m.Input.Role, Model.Input.RoleList ?? new List
                             <SelectListItem>(),
-                                "", new { @class = "form-control" })
+                                "Роль", new { @class = "form-control" })
                                 <span class="invalid-feedback"></span>
                         </div>
                     </div>
                     <div id="department" class="form-group d-none">
                         <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-house "></i></span>
                         <div class="kru-form-group">
-                            <label>Департамент или отдел</label>
+<!--                            <label></label>-->
                             @Html.DropDownListFor(m => m.Input.DepartmentId, Model.Input.DepartmentList ?? new List
                             <SelectListItem>(),
-                                "", new { @class = "form-control select2" })
+                                "Департамент или отдел", new { @class = "form-control select2" })
                                 <span class="invalid-feedback"></span>
                         </div>
                     </div>
                     <div id="manager" class="form-group d-none">
                         <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-house "></i></span>
                         <div class="kru-form-group">
-                            <label>Менеджер работника</label>
+<!--                            <label></label>-->
                             @Html.DropDownListFor(m => m.Input.ManagerId, Model.Input.ManagerList ?? new List
                             <SelectListItem>(),
-                                "", new { @class = "form-control select2" })
+                                "Менеджер работника", new { @class = "form-control select2" })
                                 <span class="invalid-feedback"></span>
                         </div>
                     </div>
@@ -196,31 +196,31 @@ Layout = null;
                 <hr/>
                 <div class="kru-form-container">
                     <div class="form-group">
-                        <label class="control-label">Адрес электронной почты</label>
-                        <a data-bs-animation="true" data-bs-toggle="tooltip" data-bs-placement="right"
-                           title="Введите адрес корпоративной почты (n.surname@ung.uz)">
-                            <i class="fas fa-info-circle info-icon"></i>
-                        </a>
+<!--                        <label class="control-label"></label>-->
+<!--                        <a data-bs-animation="true" data-bs-toggle="tooltip" data-bs-placement="right"-->
+<!--                           title="Введите адрес корпоративной почты (n.surname@ung.uz)">-->
+<!--                            <i class="fas fa-info-circle info-icon"></i>-->
+<!--                        </a>-->
                         <div class="input-group">
                             <div class="input-group-prepend">
                                     <span class="input-group-text">
                                         <i class="fas fa-envelope"></i>
                                     </span>
                             </div>
-                            <input asp-for="Input.Email" class="form-control"/>
+                            <input placeholder="Адрес электронной почты" asp-for="Input.Email" class="form-control"/>
                         </div>
                         <span class="invalid-feedback"></span>
                         <!--                            <span asp-validation-for="Input.Email" class="text-danger"></span>-->
                     </div>
                     <div class="form-group">
 
-                        <div class="d-flex align-items-center control-label my-mb">
-                            <label class="mb-0 mr-2">Пароль</label>
-                            <a data-bs-animation="true" data-bs-toggle="tooltip" data-bs-placement="right"
-                               title="Пароль должен содержать минимум одну прописную и одну заглавную букву на латинице, одну цифру, один знак и быть длиной от 6 до 15 символов">
-                                <i class="fas fa-info-circle info-icon"></i>
-                            </a>
-                        </div>
+<!--                        <div class="d-flex align-items-center control-label my-mb">-->
+<!--                            <label class="mb-0 mr-2"></label>-->
+<!--                            <a data-bs-animation="true" data-bs-toggle="tooltip" data-bs-placement="right"-->
+<!--                               title="Пароль должен содержать минимум одну прописную и одну заглавную букву на латинице, одну цифру, один знак и быть длиной от 6 до 15 символов">-->
+<!--                                <i class="fas fa-info-circle info-icon"></i>-->
+<!--                            </a>-->
+<!--                        </div>-->
 
                         <div class="input-group">
                             <div class="input-group-prepend">
@@ -228,22 +228,22 @@ Layout = null;
                                         <i class="fas fa-lock"></i>
                                     </span>
                             </div>
-                            <input type="password" asp-for="Input.Password" class="form-control"/>
+                            <input placeholder="Пароль" type="password" asp-for="Input.Password" class="form-control"/>
                         </div>
                         <span class="invalid-feedback"></span>
                         <!--                            <span asp-validation-for="Input.Password" class="text-danger"></span>-->
                     </div>
                     <div class="form-group">
-                        <label class="control-label">
-                            Повторите пароль
-                        </label>
+<!--                        <label class="control-label">-->
+<!--                            -->
+<!--                        </label>-->
                         <div class="input-group">
                             <div class="input-group-prepend">
                                     <span class="input-group-text">
                                         <i class="fas fa-lock"></i>
                                     </span>
                             </div>
-                            <input type="password" asp-for="Input.ConfirmPassword" class="form-control"/>
+                            <input placeholder="Повторите пароль" type="password" asp-for="Input.ConfirmPassword" class="form-control"/>
                         </div>
                         <span class="invalid-feedback"></span>
                         <!--                            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>-->

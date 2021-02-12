@@ -133,7 +133,11 @@
 }
 
 .kru-form{
-  padding: 50px 70px;
+  padding: 30px 70px;
+}
+
+.kru-form h1{
+  font-size: 2rem;
 }
 
 .kru-form-container{
@@ -330,18 +334,21 @@ input:checked + .slider:before {
 }
 
 .kru-registration{
-  width: 70%;
+  width: 60%;
   min-width: 650px;
   display: block;
   margin: 30px auto;
+}
+
+.card-brand{
   background-color: white;
   background-image: url(/images/UNGBrand.png);
   background-position: left;
   background-repeat: repeat-y;
   background-size: 50px;
-  box-shadow: 0 1rem 3rem rgba(0,0,0,.175);
+  box-shadow: 0 1rem 3rem rgba(0,0,0,.4);
 }
 
-.reg-background{
-  background-color: #e9ecef;
+.brand-background{
+  background-image: url(/images/background.png);
 }
