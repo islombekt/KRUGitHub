@@ -11,6 +11,7 @@ namespace KRU.Models
     {
         [Key]
         public int ReportId { get; set; }
+        [Required]
         public string State { get; set; } //Worker State
         public DateTime ReportDate { get; set; }
         public string ReportDescription { get; set; }
@@ -24,6 +25,8 @@ namespace KRU.Models
         public int? ObjectId { get; set; }
         public int? ManagerId { get; set; }
         public int? EmployeeId { get; set; }
+        [NotMapped]
+        public List<int> selectedTasks { get; set; }
 
         [ForeignKey("ObjectId")]
         public virtual Objects Objects { get; set; }
@@ -36,5 +39,7 @@ namespace KRU.Models
         public virtual Manager Manager { get; set; }
         [ForeignKey("EmployeeId")]
         public Employee Employee { get; set; }
+
+        public virtual ICollection<Task_Report> Task_Reports { get; set; }
     }
 }

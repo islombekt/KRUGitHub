@@ -1,0 +1,154 @@
+﻿@model  IEnumerable<KRU.Models.Question>
+
+    @{
+        ViewData["Title"] = "Details";
+        int count = 0;
+    }
+
+    <div class="callout callout-info">
+        <div class="flex-container align-items-center">
+            <i class="fas fa-info-circle"></i><h5>Тафсилотлар</h5>
+        </div>
+        Бу ердан сиз Тест тафсилотларини коришингиз мумкин.
+    </div>
+    <br />
+    <div>
+        <h4></h4>
+
+        <div class="row">
+            <section class="col-lg-9 connectedSortable ui-sortable">
+                <div class="card box-shadow card-simple-form">
+
+
+                    <table class="table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    #
+                                </th>
+                                <th>
+                                    Савол
+                                </th>
+                                <th>
+                                    Қийинлик даражаси
+                                </th>
+                                <th>
+                                    Белгиланган жавоб
+                                </th>
+                                <th>
+                                    Тоғри жавоб
+                                </th>
+
+                              
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null)
+                            {
+                            int opt = 0;
+                            int d = 1;
+                            @foreach (var item in Model)
+                            {
+                                if (item.Options != null)
+                                {
+                                    {
+                                        foreach (var sq in item.Options)
+                                            opt++;
+                                    }
+                                }
+                                var className = item.IsUserSelectedOptionCorrect ? "table-success" : "table-danger";
+                          
+                            <tr class="@className">
+                                <td>
+                                    @d
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.QName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.QWeight)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UserSelectedOption)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CorrectOption)
+                                </td>
+                              
+                            </tr>
+                            d++;
+                            opt = 0;
+                            }}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="col-lg-3 connectedSortable ui-sortable">
+
+                <div class="card box-shadow card-simple-form">
+
+                    @foreach (var item in Model)
+            {
+
+
+
+                        @if (count == 0) { 
+                        <dl class="row">
+                            <dt class="col-sm-6">
+                                Тест
+                            </dt>
+                            <dd class="col-sm-6">
+                                @Html.DisplayFor(model => item.Test.TestName)
+                            </dd>
+                            <dt class="col-sm-6">
+                                Тавсиф
+                            </dt>
+                            <dd class="col-sm-6">
+                                @Html.DisplayFor(model => item.Test.TestDescription)
+                            </dd>
+                            <dt class="col-sm-6">
+                                Бошланиш вақти
+                            </dt>
+                            <dd class="col-sm-6">
+                                @Html.DisplayFor(model => item.Test.TestStarted)
+                            </dd>
+                            <dt class="col-sm-6">
+                                Тугаш вақти
+                            </dt>
+                            <dd class="col-sm-6">
+                                @Html.DisplayFor(model => item.Test.TestEnd)
+                            </dd>
+
+                            <dt class="col-sm-6">
+                                Менеджер
+                            </dt>
+                            <dd class="col-sm-6">
+                                @Html.DisplayFor(model => item.Test.Manager.User.FullName)
+                            </dd>
+                            <dt class="col-sm-6">
+                                Департамент
+                            </dt>
+                            <dd class="col-sm-6">
+                                @Html.DisplayFor(model => item.Test.Department.DepartmentName)
+                            </dd>
+
+                        </dl>
+                        }
+                        count++;
+                    }
+
+                </div>
+
+
+            </section>
+        </div>
+        <a class="btn btn-outline-primary mr-3 no-outline" asp-action="Index">
+            <i class="fas fa-arrow-left mr-2"></i>Ортга қайтиш
+        </a>
+
+    </div>
+

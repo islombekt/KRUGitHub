@@ -1,0 +1,62 @@
+﻿@model KRU.Models.Test
+
+@{
+    ViewData["Title"] = "Delete";
+}
+<h1>Ўчириш</h1>
+<h3>Ҳақиқатан ҳам ўчиришни хоҳлайсизми?</h3>
+<br />
+<div class="card box-shadow card-simple-form">
+
+
+    
+
+    <div>
+        <h4>Тест</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TestName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TestName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TestDescription)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TestDescription)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TestStarted)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TestStarted)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TestEnd)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TestEnd)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Manager)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Manager.User.FullName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Department)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Department.DepartmentName)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="TestId" />
+            <input type="submit" value="Ўчириш" class="btn btn-danger" /> |
+            <a asp-controller="Tests" asp-action="Details" asp-route-id="@Model.TestId">Ортга қайтиш</a>
+        </form>
+    </div>
+    </div>

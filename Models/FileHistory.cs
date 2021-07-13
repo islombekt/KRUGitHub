@@ -22,5 +22,7 @@ namespace KRU.Models
         [ForeignKey("TaskTypeId")]
         public virtual Task_Type Task_Type { get; set; }
         public virtual ICollection<Task_File> Task_Files { get; set; }
+
+       
     }
 }

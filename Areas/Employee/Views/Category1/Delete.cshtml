@@ -1,0 +1,112 @@
+﻿@model KRU.Models.Category1
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="callout callout-danger">
+    <h5><i class="fas fa-info-circle"></i> Delete:</h5>
+    Are you sure you want to delete this?
+</div>
+<div class="kru-form card box-shadow">
+    <div class="row">
+        <div class="col-12">
+            <h4>
+                    <span class="categoryIcon">
+                        <i class="fas fa-circle activeIcon"></i>&nbsp;<i class="fas fa-long-arrow-alt-right"></i>
+                        <i class="fas fa-circle"></i>&nbsp;<i class="fas fa-long-arrow-alt-right"></i>
+                        <i class="fas fa-circle"></i>&nbsp;
+                    </span>@Html.DisplayFor(model => model.Name_C1)
+            </h4>
+            <hr />
+        </div>
+
+        <div class="mt-5 col-12">
+            <table class="table bg-color-1 table-striped table-hover">
+                <thead>
+                <tr>
+                    <th colspan="2"><h5 class="m-0" align="center">Подкатегории:</h5></th>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Category11s)
+                    </th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item1 in Model.Category11s)
+                {
+                <tr>
+                    @if (Model.Category11s == null)
+                    {
+                        <td>
+                            -
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item1.Name_C11)
+                        </td>
+                        <td class="table-button-container">
+                            <a data-bs-toggle="tooltip" title="Изменить" class="btn btn-outline-success kru-table-button" asp-controller="Category11" asp-action="Edit" asp-route-id="@item1.Category11Id"><i class="far fa-edit"></i></a>
+                            <a data-bs-toggle="tooltip" title="Подробно" class="btn btn-outline-info kru-table-button" asp-controller="Category11" asp-action="Details" asp-route-id="@item1.Category11Id"><i class="fas fa-info"></i></a>
+                            <a data-bs-toggle="tooltip" title="Удалить" class="btn btn-outline-danger kru-table-button" asp-controller="Category11" asp-action="Delete" asp-route-id="@item1.Category11Id"><i class="far fa-trash-alt"></i></a>
+                        </td>
+                    }
+                </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+        <div class="mt-5 col-12">
+            @if (Model.FinanceReports == null)
+            {
+
+            }
+            else
+            {
+            <table class="table table-hover table-success table-striped">
+                <thead>
+                <tr>
+                    <th colspan="2"><h5 class="m-0" align="center">Финансовые отчеты:</h5></th>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FinanceReports)
+                    </th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item111 in Model.FinanceReports)
+                {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item111.amount)
+                    </td>
+                    <td class="table-button-container">
+                        <a data-bs-toggle="tooltip" title="Изменить" class="btn btn-outline-success kru-table-button" asp-controller="FinanceReports" asp-action="Edit" asp-route-id="@item111.FinanceRepId"><i class="far fa-edit"></i></a>
+                        <a data-bs-toggle="tooltip" title="Подробно" class="btn btn-outline-info kru-table-button" asp-controller="FinanceReports" asp-action="Details" asp-route-id="@item111.FinanceRepId"><i class="fas fa-info"></i></a>
+                        <a data-bs-toggle="tooltip" title="Удалить" class="btn btn-outline-danger kru-table-button" asp-controller="FinanceReports" asp-action="Delete" asp-route-id="@item111.FinanceRepId"><i class="far fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+                }
+                </tbody>
+            </table>
+            }
+        </div>
+    </div>
+    <form asp-action="Delete">
+        <div class="form-button-container">
+            <a class="btn btn-outline-primary mr-3 no-outline" asp-action="Index">
+                <i class="fas fa-arrow-left mr-2" ></i>Back to List
+            </a>
+            <input type="hidden" asp-for="Category1Id" />
+            @if (Model.count11 == 0 && Model.FinCount == 0)
+            {<input type="submit" value="Delete" class="btn btn-danger" /> }
+        </div>
+    </form>
+</div>

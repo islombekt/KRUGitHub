@@ -4,67 +4,177 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Delete</h1>
+<div class="card box-shadow card-simple-form">
+    <h1>Ўчириш</h1>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Tasks</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SumLost)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SumLost)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SumGain)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SumGain)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Comment)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Comment)
-        </dd>
-        
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Finished)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Finished)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TaskStarted)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TaskStarted)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TaskEnd)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TaskEnd)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Department)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Department.DepartmentName)
-        </dd class>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Task_Type)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Task_Type.NameType)
-        </dd class>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="TaskId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+    <h3>Ҳақиқатан ҳам ўчиришни хоҳлайсизми?</h3>
+    <div>
+        <h4>Топшириқ</h4>
+      
+        <div class="row">
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <td>Масъул ходим</td>
+                        <td>
+                           
+                                @Html.DisplayFor(modelItem => modelItem.Employee.User.FullName)
+                             
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Бажарувчи ходим</td>
+                        <td>
+                            @foreach (var i in Model.Task_Emples)
+                            {
+                                @Html.DisplayFor(modelItem => i.Employee.User.FullName)
+                                <br />
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Ёъқотилган маблағ</td>
+                        <td>@Html.DisplayFor(model => model.SumLost)</td>
+                    </tr>
+                    <tr>
+                        <td>Ортирилган маблағ</td>
+                        <td>@Html.DisplayFor(model => model.SumGain)</td>
+                    </tr>
+                    <tr>
+                        <td>Изоҳ</td>
+                        <td>@Html.DisplayFor(model => model.Comment)</td>
+                    </tr>
+                    <tr>
+                        <td>Якунланган</td>
+                        <td>
+                            @Html.DisplayFor(model => model.Finished)
+                            @if (Model.File == "" || Model.File == null)
+                            {
+
+                            }
+                            else
+                            {
+                                <a asp-area="Manager" asp-controller="FileHistories" asp-action="Download_ConfigEnd"
+                                   asp-route-TaskId="@Model.TaskId">
+                                    @Html.DisplayFor(model => model.File)
+                                </a>
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Бошланиш санаси</td>
+                        <td>@Html.DisplayFor(model => model.TaskStarted)</td>
+                    </tr>
+                    <tr>
+                        <td>Тугаш санаси</td>
+                        <td>@Html.DisplayFor(model => model.TaskEnd)</td>
+                    </tr>
+                    <tr>
+                        <td>Департамент</td>
+                        <td>@Html.DisplayFor(model => model.Department.DepartmentName)</td>
+                    </tr>
+                    <tr>
+                        <td>Вазифа тури</td>
+                        <td>@Html.DisplayFor(model => model.Task_Type.NameType)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="mt-5 table bg-color-1 table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th colspan="3"><h5 class="m-0" align="center">Ҳисоботлар:</h5></th>
+                    </tr>
+                    <tr>
+                        <th>
+                           Сана
+                        </th>
+                        <th>
+                            Ходим ҳолати
+                        </th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                @if (Model.Reports == null)
+                {
+                    <tr>
+                        Ҳеч нарса топилмади
+                    </tr>
+                }
+                else
+                {
+                @foreach (var r in Model.Reports)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => r.ReportDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => r.State)
+                        </td>
+                    </tr>
+                }}
+                </tbody>
+            </table>
+            <table class="mt-5 table table-hover table-success table-striped">
+                <thead>
+                    <tr>
+                        <th colspan="4"><h5 class="m-0" align="center">Текширувлар ҳисоботи:</h5></th>
+                    </tr>
+                    <tr>
+                        <th>
+                            Ходим ҳолати
+                        </th>
+                        <th>
+                            Бошланиш санаси
+                        </th>
+                        <th>
+                            Тугаш санаси
+                        </th>
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                @if (Model.FinanceReports == null)
+                {
+                    <tr>
+                        Ҳеч нарса топилмади
+                    </tr>
+                }
+                else
+                {
+                @foreach (var f in Model.FinanceReports)
+                {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => f.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => f.StartDate)
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => f.EndDate)
+
+                    </td>
+                </tr>
+
+                }}
+                </tbody>
+            </table>
+        </div>
+        <form asp-action="Delete">
+            <div class="form-button-container">
+                <a class="btn btn-outline-primary mr-3 no-outline" asp-action="Index">
+                    <i class="fas fa-arrow-left mr-2" ></i>Ортга қайтиш
+                </a>
+                <input type="hidden" asp-for="TaskId" />
+                @if (Model.FinCount == 0 && Model.RepCount == 0)
+                {
+                <input type="submit" value="Ўчириш" class="btn btn-danger"/> }
+            </div>
+        </form>
+    </div>
 </div>

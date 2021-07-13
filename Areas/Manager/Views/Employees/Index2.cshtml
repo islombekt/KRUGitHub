@@ -1,0 +1,76 @@
+﻿@model IEnumerable<KRU.Models.Employee>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="callout callout-info">
+    <div class="flex-container align-items-center">
+        <i class="fas fa-info-circle"></i><h5>Ходимлар:</h5>
+    </div>
+    Бу ердан сиз ходимлар рўйхатига киришингиз, қўшишингиз, ўчиришингиз ва таҳрирлашингиз мумкин.
+</div>
+<div class="buttons-container">
+    <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-default" asp-area="Identity" asp-page="/Account/Register">
+        <i class="fas fa-plus mr-2"></i>Ходим Қўшиш
+    </a>
+</div>
+
+<div class="card box-shadow">
+    <div class="card-body">
+        <table id="example1" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Исми
+                    </th>
+                    <th>
+                        Фамилияси
+                    </th>
+                    <th>
+                        Телефон рақами
+                    </th>
+                    <th>
+                       Лавозим
+                    </th>
+                    <th>
+                        Адрес
+                    </th>
+                    <th>
+                        Ҳолат
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+        @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.FName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.LName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.PhoneNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.Position)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.Address.Building)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmployeeState)
+                    </td>
+                    <td class="table-button-container">
+                        <a data-bs-toggle="tooltip" title="Таҳрирлаш" class="btn btn-outline-success kru-table-button" asp-action="Edit" asp-route-id="@item.EmployeeId"><i class="far fa-edit"></i></a>
+                 
+                    </td>
+                </tr>
+        }
+            </tbody>
+        </table>
+    </div>
+</div>

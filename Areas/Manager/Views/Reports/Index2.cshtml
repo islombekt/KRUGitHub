@@ -1,0 +1,112 @@
+﻿@model IEnumerable<KRU.Models.Report>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div id="PlaceHolderHere"></div>
+<div class="callout callout-info">
+    <div class="flex-container align-items-center">
+        <i class="fas fa-info-circle"></i><h5>Кундалик ҳисобот:</h5>
+    </div>
+    Бу ердан сиз кунлик ҳисоботларига киришингиз, ўчиришингиз ва таҳрирлашингиз мумкин.
+</div>
+
+<div class="card box-shadow">
+    <div class="card-body">
+
+        <table id="example1" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Адрес
+                    </th>
+                    <th>
+                        Объект
+                    </th>
+                    <th>
+                        Тавсиф
+                    </th>
+                    <th>
+                        Ҳолат
+                    </th>
+                    <th>
+                        Вазифа
+                    </th>
+                    <th>
+                        Сана
+                    </th>
+                    <th>
+                        Ходим
+                    </th>
+                    <th>
+                        Лавозм
+                    </th>
+                    <th>
+                        Тел рақам
+                    </th>
+                    <th>
+                        Изоҳ
+                    </th>
+                    <th>
+                        Балл
+                    </th>
+
+
+
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    var className = item.HaveSeen ? "" : "table-warning";
+
+                    <tr class="@className">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address.Building)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Objects.ObjectName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ReportDescription)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.State)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tasks.TaskName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ReportDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Employee.User.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Employee.User.Position)
+                        </td>
+                        <td class="bigger-cell">
+                            @Html.DisplayFor(modelItem => item.Employee.User.PhoneNumber)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ReportComment)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ReportScore)
+                        </td>
+
+
+                        <td class="table-button-container">
+                            <a data-bs-toggle="tooltip" title="Таҳрирлаш" class="btn btn-outline-success kru-table-button" asp-action="Edit" asp-route-id="@item.ReportId"><i class="far fa-edit"></i></a>
+                            <a data-bs-toggle="tooltip" title="Тафсилотлар" data-toggle="ajax-modal" data-target="#addEmployee" class="addEmployeeButton btn btn-outline-info kru-table-button" data-url="@Url.Action("Details", "Reports", new { id = item.ReportId }, null)"><i class="fas fa-info"></i></a>
+                            <a data-bs-toggle="tooltip" title="Ўчириш" class="btn btn-outline-danger kru-table-button" asp-action="Delete" asp-route-id="@item.ReportId"><i class="far fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

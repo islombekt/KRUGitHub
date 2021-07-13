@@ -1,0 +1,198 @@
+﻿@model IEnumerable<KRU.Models.Report>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div id="PlaceHolderHere"></div>
+<div class="callout callout-info">
+    <div class="row">
+        <div class="col-6">
+            <div class="flex-container align-items-center">
+                <i class="fas fa-info-circle"></i><h5>Кундалик ҳисобот:</h5>
+            </div>
+            Бу ердан сиз кунлик ҳисоботларига киришингиз, ўчиришингиз ва таҳрирлашингиз мумкин.
+        </div>
+        <div class="col-6">
+            <div class="page-title-actions">
+                @using (Html.BeginForm("Index", "Reports", new { area = "Manager" }, FormMethod.Post))
+                {
+                    string valueSel;
+                    string mSel;
+                    if (ViewBag.ydy == 123)
+                    {
+                        valueSel = "Все";
+                    }
+                    else if (ViewBag.ydy == 0)
+                    {
+                        valueSel = "Текущий год";
+                    }
+                    else
+                    {
+                        valueSel = ViewBag.ydy.ToString();
+                    }
+
+
+                    if (ViewBag.mdm == 1)
+                        mSel = "Январь";
+                    else if (ViewBag.mdm == 2)
+                        mSel = "Февраль";
+                    else if (ViewBag.mdm == 3)
+                        mSel = "Март";
+                    else if (ViewBag.mdm == 4)
+                        mSel = "Апрель";
+                    else if (ViewBag.mdm == 5)
+                        mSel = "Май";
+                    else if (ViewBag.mdm == 6)
+                        mSel = "Июнь";
+                    else if (ViewBag.mdm == 7)
+                        mSel = "Июль";
+                    else if (ViewBag.mdm == 8)
+                        mSel = "Август";
+                    else if (ViewBag.mdm == 9)
+                        mSel = "Сентябрь";
+                    else if (ViewBag.mdm == 10)
+                        mSel = "Октябрь";
+                    else if (ViewBag.mdm == 11)
+                        mSel = "Ноябрь";
+                    else if (ViewBag.mdm == 12)
+                        mSel = "Декабрь";
+                    else if (ViewBag.mdm == 0)
+                        mSel = "Текущий месяц";
+                    else mSel = "Все";
+
+
+
+                    <div class="row">
+
+                        <div class="col">
+                            <select id="year" name="year" class="form-control" tabindex="5" asp-items="ViewBag.y">
+
+                                <option selected> @valueSel</option>
+                                <option value="123">Все</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <select id="month" name="month" class="form-control" tabindex="5" asp-items="ViewBag.m">
+                                <option selected>@mSel</option>
+                                <option value="13">Все</option>
+                            </select>
+
+
+                        </div>
+                        <div>
+                           
+                        
+                            <button type="submit" name="Export" class="form-control" style="background-color:lightseagreen; color:white"> <i class="fa fa-search" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card box-shadow">
+    <div class="card-body">
+        @using (Html.BeginForm("TabelExcel", "Reports", new { area = "Manager" }, FormMethod.Post))
+        {
+            <div class="kru-date-range flex-container flex-column">
+                <div class="col-12 date-input">
+                    <input id="start" name="start" type="date" class="form-control" />
+                    <input id="end" type="date" name="end" class="form-control" />
+                </div>
+                <div class="col-12 button-input">
+                    <input type="submit" name="Export" value="Юклаб олиш" id="btnExport" onclick="downloadExcel()" class="btn btn-success" />
+                </div>
+            </div>
+        }
+        <table id="example1" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Адрес
+                    </th>
+                    <th>
+                        Объект
+                    </th>
+                    <th>
+                        Тавсиф
+                    </th>
+                    <th>
+                        Ҳолат
+                    </th>
+                    <th>
+                        Вазифа
+                    </th>
+                    <th>
+                        Сана
+                    </th>
+                    <th>
+                        Ходим
+                    </th>
+                    <th>
+                        Лавозм
+                    </th>
+                    <th>
+                        Тел рақам
+                    </th>
+                    <th>
+                        Изоҳ
+                    </th>
+                    <th>
+                        Балл
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    var className = item.HaveSeen ? "" : "table-warning";
+
+                    <tr class="@className">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address.Building)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Objects.ObjectName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ReportDescription)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.State)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tasks.TaskName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ReportDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Employee.User.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Employee.User.Position)
+                        </td>
+                        <td class="bigger-cell">
+                            @Html.DisplayFor(modelItem => item.Employee.User.PhoneNumber)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ReportComment)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ReportScore)
+                        </td>
+                        <td class="table-button-container">
+                            <a data-bs-toggle="tooltip" title="Таҳрирлаш" class="btn btn-outline-success kru-table-button" asp-action="Edit" asp-route-id="@item.ReportId"><i class="far fa-edit"></i></a>
+                            <a data-bs-toggle="tooltip" title="Тафсилотлар" data-toggle="ajax-modal" data-target="#addEmployee" class="addEmployeeButton btn btn-outline-info kru-table-button" data-url="@Url.Action("Details", "Reports", new { id = item.ReportId }, null)"><i class="fas fa-info"></i></a>
+                            <a data-bs-toggle="tooltip" title="Ўчириш" class="btn btn-outline-danger kru-table-button" asp-action="Delete" asp-route-id="@item.ReportId"><i class="far fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

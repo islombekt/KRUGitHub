@@ -1,0 +1,101 @@
+﻿@model KRU.Models.Tasks
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="modal fade" id="addEmployee">
+    <h1>Тафсилотлар</h1>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h4 class="modal-title" id="addEmployeeLabel"> Топшириқ тафсилотлари</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>x</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered table-hover">
+                    <tbody>
+                        <tr>
+                            <td>Топшириқ</td>
+                            <td>
+                               
+                                    @Html.DisplayFor(model => model.TaskName)
+                             </td>
+                        </tr>
+                        <tr>
+                            <td>Бажарувчи ходимлар</td>
+                            <td>
+                                @foreach (var i in Model.Task_Emples)
+                                {
+                                    @Html.DisplayFor(modelItem => i.Employee.User.FullName)
+                                    <br />
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Масъул ходим</td>
+                            <td>@Html.DisplayFor(model => model.Employee.User.FullName)</td>
+                        </tr>
+                        <tr>
+                            <td>Вазифа тури</td>
+                            <td>@Html.DisplayFor(model => model.Task_Type.NameType)</td>
+                        </tr>
+                        <tr>
+                            <td>Ёъқотилган маблағ</td>
+                            <td>@Html.DisplayFor(model => model.SumLost)</td>
+                        </tr>
+                        <tr>
+                            <td>Ортирилган маблағ</td>
+                            <td>@Html.DisplayFor(model => model.SumGain)</td>
+                        </tr>
+                        <tr>
+                            <td>Изоҳ</td>
+                            <td>@Html.DisplayFor(model => model.Comment)</td>
+                        </tr>
+                        <tr>
+                            <td>Якунланган</td>
+                            <td>
+                                @Html.DisplayFor(model => model.Finished)
+                                       @if (Model.File == "" || Model.File == null)
+                                          {
+
+                                           }
+                                        else
+                                          {
+                                              <a asp-area="Manager" asp-controller="FileHistories" asp-action="Download_ConfigEnd"
+                                                               asp-route-TaskId="@Model.TaskId">
+                                                                @Html.DisplayFor(model => model.File)
+                                                </a>
+                                                        }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Бошланиш санаси</td>
+                            <td>@Html.DisplayFor(model => model.TaskStarted)</td>
+                        </tr>
+                        <tr>
+                            <td>Тугаш санаси</td>
+                            <td>@Html.DisplayFor(model => model.TaskEnd)</td>
+                        </tr>
+                        <tr>
+                            <td>Департамент</td>
+                            <td>@Html.DisplayFor(model => model.Department.DepartmentName)</td>
+                        </tr>
+                        <tr>
+                            <td>Вазифа тури</td>
+                            <td>@Html.DisplayFor(model => model.Task_Type.NameType)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

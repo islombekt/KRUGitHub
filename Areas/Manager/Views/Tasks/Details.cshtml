@@ -4,69 +4,63 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<div class="card box-shadow card-simple-form">
+    <h1>Тафсилотлар</h1>
 
-<div>
-    <h4>Tasks</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SumLost)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SumLost)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SumGain)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SumGain)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Comment)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Comment)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.File)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.File)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Finished)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Finished)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TaskStarted)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TaskStarted)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TaskEnd)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TaskEnd)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Department)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Department.DepartmentId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Task_Type)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Task_Type.TaskTypeID)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.TaskId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <h4>Топшириқ</h4>
+   
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+                <td>Масъул ходим</td>
+                <td>
+                    @foreach (var i in Model.Task_Emples)
+                    {
+                        @Html.DisplayFor(modelItem => i.Employee.User.FullName)
+                        <br />
+                    }
+                </td>
+            </tr>
+
+            <tr>
+                <td>Ёъқотилган маблағ</td>
+                <td>@Html.DisplayFor(model => model.SumLost)</td>
+            </tr>
+            <tr>
+                <td>Ортирилган маблағ</td>
+                <td>@Html.DisplayFor(model => model.SumGain)</td>
+            </tr>
+            <tr>
+                <td>Изоҳ</td>
+                <td>@Html.DisplayFor(model => model.Comment)</td>
+            </tr>
+            <tr>
+                <td>Якунланган</td>
+                <td>@Html.DisplayFor(model => model.Finished)</td>
+            </tr>
+            <tr>
+                <td>Бошланиш санаси</td>
+                <td>@Html.DisplayFor(model => model.TaskStarted)</td>
+            </tr>
+            <tr>
+                <td>Тугаш санаси</td>
+                <td>@Html.DisplayFor(model => model.TaskEnd)</td>
+            </tr>
+            <tr>
+                <td>Департамент</td>
+                <td>@Html.DisplayFor(model => model.Department.DepartmentName)</td>
+            </tr>
+            <tr>
+                <td>Вазифа тури</td>
+                <td>@Html.DisplayFor(model => model.Task_Type.NameType)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="form-button-container">
+        <a class="btn btn-outline-primary mr-3 no-outline" asp-action="Index">
+            <i class="fas fa-arrow-left mr-2" ></i>Ортга қайтиш
+        </a>
+        <a title="Edit" class="btn btn-outline-success kru-table-button" asp-action="Edit" asp-route-id="@Model.TaskId">Таҳрирлаш</a>
+    </div>
 </div>

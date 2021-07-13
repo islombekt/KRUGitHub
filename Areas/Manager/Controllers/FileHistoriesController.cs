@@ -27,7 +27,7 @@ namespace KRU.Areas.Manager.Controllers
         // GET: Manager/FileHistories
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.FileHistory.Include(f => f.Task_Type);
+            var applicationDbContext = _context.FileHistory.Include(f => f.Task_Type).OrderByDescending(a => a.FileId);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -70,7 +70,7 @@ namespace KRU.Areas.Manager.Controllers
             if (file != null)
             {
                 string type = Path.GetExtension(file.FileName);
-                if ((type != ".docx") && (type != ".doc") && (type != ".pdf"))
+                if ((type != ".docx") && (type != ".doc") && (type != ".pdf") && (type != ".xlsm"))
                     return Content("Нотогри файл тури танланди");
                 //return View("~/Views/Shared/_UnsupportedMediatype.cshtml");
                 fileHistory.FileUrl = file.FileName;
@@ -107,7 +107,7 @@ namespace KRU.Areas.Manager.Controllers
             {
                 return NotFound();
             }
-            ViewData["TaskTypeId"] = new SelectList(_context.Task_Types, "TaskTypeID", "TaskTypeID", fileHistory.TaskTypeId);
+            ViewData["TaskTypeId"] = new SelectList(_context.Task_Types, "TaskTypeID", "NameType", fileHistory.TaskTypeId);
             return View(fileHistory);
         }
 
@@ -143,7 +143,7 @@ namespace KRU.Areas.Manager.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TaskTypeId"] = new SelectList(_context.Task_Types, "TaskTypeID", "TaskTypeID", fileHistory.TaskTypeId);
+            ViewData["TaskTypeId"] = new SelectList(_context.Task_Types, "TaskTypeID", "NameType", fileHistory.TaskTypeId);
             return View(fileHistory);
         }
 
@@ -165,7 +165,7 @@ namespace KRU.Areas.Manager.Controllers
 
             return View(fileHistory);
         }
-
+      
         // POST: Manager/FileHistories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -173,6 +173,7 @@ namespace KRU.Areas.Manager.Controllers
         {
             var fileHistory = await _context.FileHistory.FindAsync(id);
             _context.FileHistory.Remove(fileHistory);
+           
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -186,9 +187,9 @@ namespace KRU.Areas.Manager.Controllers
 
 
         //File upload Download
-      
+        
         [HttpGet]
-        public async Task<IActionResult> Download_Config(int FileId)
+        public async Task<IActionResult> Download_Config(int? FileId)
         {
             if (FileId == null)
                 return Content("Файл мавжуд эмас");
@@ -209,7 +210,33 @@ namespace KRU.Areas.Manager.Controllers
                 return View("~/Views/Shared/_NotFound.cshtml", file.FileUrl);
             }
 
-            return Ok();
+           
+
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Download_ConfigEnd(int? TaskId)
+        {
+            if (TaskId == null)
+                return Content("Файл мавжуд эмас");
+            var file = await _context.Tasks.FirstOrDefaultAsync(w => w.TaskId == TaskId);
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/files/end", file.File);
+            var memory = new MemoryStream();
+            try
+            {
+                using (var stream = new FileStream(path, FileMode.Open))
+                {
+                    await stream.CopyToAsync(memory);
+                }
+                memory.Position = 0;
+                return File(memory, GetContentType(path), Path.GetFileName(path));
+            }
+            catch
+            {
+                return View("~/Views/Shared/_NotFound.cshtml", file.File);
+            }
+
+           
 
         }
         private string GetContentType(string path)
@@ -226,7 +253,9 @@ namespace KRU.Areas.Manager.Controllers
                 {".txt", "text/plain" },
                 {".pdf", "application/pdf" },
                 {".doc", "application/vnd.ms-word" },
-                {".docx", "application/vnd.ms-word" }
+                {".docx", "application/vnd.ms-word" },
+                 {".xlsm",  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"},
+                    {".xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" }
             };
         }
 

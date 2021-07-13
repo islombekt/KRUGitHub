@@ -1,0 +1,88 @@
+﻿@model KRU.Models.FinanceReport
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="modal fade" id="addEmployee">
+    <h1>Тафсилотлар</h1>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h4 class="modal-title" id="addEmployeeLabel">Текширув ҳисоботи тафсилотлари</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>x</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered table-hover">
+                    <tbody>
+                        <tr>
+                            <td> Бошланиш санаси</td>
+                            <td>@Html.DisplayFor(model => model.StartDate)</td>
+                        </tr>
+                        <tr>
+                            <td> Тугаш санаси</td>
+                            <td>@Html.DisplayFor(model => model.EndDate)</td>
+                        </tr>
+                        <tr>
+                            <td> Жами суммаси</td>
+                            <td class="amount">@Html.DisplayFor(model => model.amount)</td>
+                        </tr>
+                        <tr>
+                            <td>Изоҳ</td>
+                            <td>@Html.DisplayFor(model => model.FinComment)</td>
+                        </tr>
+                        <tr>
+                            <td> Категория х</td>
+                            <td>@Html.DisplayFor(model => model.Category1.Name_C1)</td>
+                        </tr>
+
+                        <tr>
+                            <td>Категория х.х</td>
+                            <td>@Html.DisplayFor(model => model.Category11.Name_C11)</td>
+                        </tr>
+                        <tr>
+                            <td>Категория х.х.х</td>
+                            <td>@Html.DisplayFor(model => model.Category111.Name_C111)</td>
+                        </tr>
+                        <tr>
+                            <td>Адрес</td>
+                            <td>@Html.DisplayFor(model => model.Address.Building)</td>
+                        </tr>
+                        <tr>
+                            <td>Объект</td>
+                            <td>@Html.DisplayFor(model => model.Objects.ObjectName)</td>
+                        </tr>
+                        <tr>
+                            <td>Вазифа</td>
+                            <td>@Html.DisplayFor(model => model.Tasks.TaskName)</td>
+                        </tr>
+
+                        <tr>
+                            <td>Менеджер</td>
+                            <td>@Html.DisplayFor(model => model.Manager.User.FullName)</td>
+                        </tr>
+                        <tr>
+                            <td>Ходим</td>
+                            <td>@Html.DisplayFor(model => model.Employee.User.FullName)</td>
+                        </tr>
+                        <tr>
+                            <td>Ҳолат</td>
+                            <td>@Html.DisplayFor(model => model.Status)</td>
+                        </tr>
+                        <tr>
+                            <td>Муддат</td>
+                            <td>@Html.DisplayFor(model => model.CheckPeriod)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

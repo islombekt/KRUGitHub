@@ -1,110 +1,110 @@
 ﻿@model IEnumerable<KRU.Models.Tasks>
 
 @{
-ViewData["Title"] = "Index";
+    ViewData["Title"] = "Index";
 }
+<div id="PlaceHolderHere"></div>
+<div class="callout callout-info">
+    <div class="flex-container align-items-center">
+        <i class="fas fa-info-circle"></i><h5>Топшириқлар:</h5>
+    </div>
+    Бу ердан сиз 'Топшириқлар'га киришингиз, ўчиришингиз ва таҳрирлашингиз мумкин.
+</div>
 
-<h1>Index</h1>
 <div class="buttons-container">
-    <a class="btn btn-default" asp-action="Create"><i class="fas fa-plus mr-2"></i>Create New</a>
+    <a class="btn btn-default" asp-action="Create"><i class="fas fa-plus mr-2"></i>Яратиш</a>
 </div>
 
 <div class="card">
-    <div class="card-body">
-        <table id="example1" class="table table-hover">
-            <thead>
-                <tr>
-                    <th>
-                       Задача
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.SumLost)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.SumGain)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Comment)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.File)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Finished)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.TaskStarted)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.TaskEnd)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Department)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Task_Type)
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
+
+    <table id="example1" class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Топшириқ
+                </th>
+                <th>
+                    Асос
+                </th>
+                <th>
+                    Бошланиш санаси
+                </th>
+                <th>
+                    Тугаш санаси
+                </th>
+                <th>
+                    Департамент
+                </th>
+                <th>
+                    Бириктирилган ходимлар
+                </th>
+                <th>
+                    Масъул ходим
+                </th>
+
+                <th>
+                    Изоҳ
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TaskName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SumLost)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SumGain)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Comment)
-                    </td>
-
-                    <td>
-
-                        @foreach (var i in item.Task_Files)
+                var className = item.Finished ? "table-success" : "";
+            <tr class="@className">
+                <td>
+                    @Html.DisplayFor(modelItem => item.TaskName)
+                </td>
+                <td class="file-link">
+                    @foreach (var i in item.Task_Files)
+                    {
+                        @if (i.FileHistory.FileUrl == "" || i.FileHistory.FileUrl == null)
                         {
-                            @if (i.FileHistory.FileUrl == "" || i.FileHistory.FileUrl == null)
-                            {
-                                @Html.DisplayFor(modelItem => i.FileHistory.Name)
-                            }
-                            else
-                            {
-                                <a asp-area="Manager" asp-controller="FileHistories" asp-action="Download_Config"
-                                   asp-route-FileId="@i.FileHistory.FileId">
-                                    @Html.DisplayFor(modelItem => i.FileHistory.Name)
-                                </a>}
-                            <br />
+                            @Html.DisplayFor(modelItem => i.FileHistory.Name)
                         }
-                    </td>
+                        else
+                        {
+                            <a asp-area="Manager" asp-controller="FileHistories" asp-action="Download_Config"
+                               asp-route-FileId="@i.FileHistory.FileId">
+                                @Html.DisplayFor(modelItem => i.FileHistory.Name)
+                            </a>}
+                        <br />
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TaskStarted)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TaskEnd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+                </td>
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Finished)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TaskStarted)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TaskEnd)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Department.DepartmentId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Task_Type.TaskTypeID)
-                    </td>
-                    <td class="table-button-container">
-                        <a data-bs-toggle="tooltip" title="Edit" class="btn btn-outline-success kru-table-button" asp-action="Edit" asp-route-id="@item.TaskId"><i class="far fa-edit"></i></a>
-                        <a data-bs-toggle="tooltip" title="Details" class="btn btn-outline-info kru-table-button" asp-action="Details" asp-route-id="@item.TaskId"><i class="fas fa-info"></i></a>
-                        <a data-bs-toggle="tooltip" title="Delete" class="btn btn-outline-danger kru-table-button" asp-action="Delete" asp-route-id="@item.TaskId"><i class="far fa-trash-alt"></i></a>
-                    </td>
-                </tr>
+                <td>
+                    @foreach (var i in item.Task_Emples)
+                    {
+                        <span># </span>
+                        @Html.DisplayFor(modelItem => i.Employee.User.FullName)
+                        <br />
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee.User.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comment)
+                </td>
+
+                <td class="table-button-container">
+                    <a data-bs-toggle="tooltip" title="Таҳрирлаш" class="btn btn-outline-success kru-table-button" asp-action="Edit" asp-route-id="@item.TaskId"><i class="far fa-edit"></i></a>
+                    <a data-bs-toggle="tooltip" title="Тафсилотлар" data-toggle="ajax-modal" data-target="#addEmployee" class="addEmployeeButton btn btn-outline-info kru-table-button" data-url="@Url.Action("Details", "Tasks", new { id = item.TaskId }, null)"><i class="fas fa-info"></i></a>
+                    <a data-bs-toggle="tooltip" title="Ўчириш" class="btn btn-outline-danger kru-table-button" asp-action="Delete" asp-route-id="@item.TaskId"><i class="far fa-trash-alt"></i></a>
+                </td>
+            </tr>
             }
-            </tbody>
-        </table>
-    </div>
+        </tbody>
+    </table>
+</div>
 </div>

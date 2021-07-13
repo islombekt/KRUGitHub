@@ -1,0 +1,59 @@
+﻿@model IEnumerable<KRU.Models.Empl_Selected_Option>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Test)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Question)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Option)
+            </th>
+            <th>
+                
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.User.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Test.TestName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Question.QName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Option.OptName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Option.Correct)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SelectedId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.SelectedId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.SelectedId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

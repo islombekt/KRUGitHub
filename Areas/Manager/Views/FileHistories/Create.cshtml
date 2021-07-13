@@ -4,68 +4,76 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<div class="card box-shadow card-simple-form card-small">
+    
+    <h1>Яратиш</h1>
 
-<h4>FileHistory</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post" enctype="multipart/form-data" asp-area="Manager" asp-controller="FileHistories" asp-action="Create" >
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
+    <h4>Асос</h4>
+    <hr />
+    <div class="row">
+        <div class="col-12">
+            <form class="kru custom-validation" method="post" enctype="multipart/form-data" asp-area="Manager" asp-controller="FileHistories" asp-action="Create" >
+                <div class="kru-form-container-small">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label">Асос номи</label>
+                        <input asp-for="Name" class="form-control" />
+                        <span class="invalid-feedback"></span>
+                    </div>
 
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FileStart" class="control-label"></label>
-                <input asp-for="FileStart" class="form-control" />
-                <span asp-validation-for="FileStart" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FileEnd" class="control-label"></label>
-                <input asp-for="FileEnd" class="form-control" />
-                <span asp-validation-for="FileEnd" class="text-danger"></span>
-            </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label">Тавсиф</label>
+                        <input asp-for="Description" class="form-control" />
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FileStart" class="control-label">Бошланиш санаси</label>
+                        <input asp-for="FileStart" class="form-control" />
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FileEnd" class="control-label">Тугаш санаси</label>
+                        <input asp-for="FileEnd" class="form-control" />
+                        <span class="invalid-feedback"></span>
+                    </div>
 
-            <div class="form-group">
-                <label asp-for="TaskTypeId" class="control-label"></label>
-                <select asp-for="TaskTypeId" class="form-control" asp-items="ViewBag.TaskTypeId"></select>
-            </div>
-            <div class="form-group">
-                <div>
-                    <input type="file" name="file" value="" />
-                </div>
-            </div>
-            @*<form asp-action="Create" asp-area="Manager" asp-controller="FileHistories" method="post" enctype="multipart/form-data">
-                <div class="custom-file mb-3">
-                    <div class="card" style="background:white">
-                        <label style="color:darkcyan; cursor: pointer;">
-                            &nbsp;&nbsp;&nbsp;Выберите файл
-                            <input type="file" class="" accept=".doc,.docx, .pdf, application/vnd.ms-word.document.macroEnabled.12,application/vnd.ms-word" style="display:none;" onchange="this.form.submit()" name="file" />
-                            <input type="text" onclick="Good" class="invisible " name="file" />
+                    <div class="form-group">
+                        <label asp-for="TaskTypeId" class="control-label">Тур номи</label>
+                        <select asp-for="TaskTypeId" class="form-control" asp-items="ViewBag.TaskTypeId"></select>
+                    </div>
+                    <div class="form-group input-group mt-2">
+                        <div class="upload-files input-group-prepend">
+                            <span class="input-group-text" id="inputGroupFileAddon01">
+                                <i class="fas fa-upload"></i>
+                            </span>
+                        </div>
 
-                        </label>
+                        <div class="custom-file">
+                            <input name="file" type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                            <label class="custom-file-label" for="inputGroupFile01">Файл танланг</label>
+                        </div>
                     </div>
                 </div>
-            </form>*@
-            <div class="form-group">
-                <input type="submit" value="Upload" class="btn btn-primary" />
-            </div>
-        </form>
+                <div class="form-button-container">
+                    <a class="btn btn-outline-primary mr-3 no-outline" asp-action="Index">
+                        <i class="fas fa-arrow-left mr-2" ></i>Ортга қайтиш
+                    </a>
+                    <input type="submit" value="Яратиш" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+<script>
+    $(document).ready(function () {
+        $("#inputGroupFile01").change(function () {
+            const curObj = $(this);
+            const fileName = curObj.val().split("\\").pop();
+            const fileLabel = curObj.siblings("label");
+            fileLabel.text(fileName);
+        });
+    });
+</script>

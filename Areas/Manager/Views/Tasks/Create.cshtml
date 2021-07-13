@@ -4,64 +4,84 @@
 ViewData["Title"] = "Create";
 ViewData["FileType"] = "";
 }
+<div class="card box-shadow card-simple-form card-small">
+    <h1>Яратиш</h1>
 
-<h1>Create</h1>
+    <h4>Топшириқлар</h4>
+    <hr/>
+    <div class="row">
+        <div class="col-12">
+            <form class="kru custom-validation" asp-action="Create">
+                <div class="kru-form-container-small">
+                    <div class="form-group">
+                        <label>Топшириқ номи</label>
+                        <input asp-for="TaskName" class="form-control" />
+                        <span class="invalid-feedback"></span>
+                    </div>
 
-<h4>Tasks</h4>
-<hr/>
-<div class="row">
-    <div class="col-md-12">
-        <form asp-action="Create" class="kru-form">
-            <div class="kru-form-container">
-                <div>
-                    <label>Название задачи</label>
-                    <input asp-for="TaskName" class="form-control" />
-                    <span asp-validation-for="TaskName" class="text-danger"></span>
+                    <div class="form-group">
+                        <label asp-for="TaskStarted" class="control-label">Бошланиш санаси</label>
+                        <input asp-for="TaskStarted" class="form-control" />
+                        <span class="invalid-feedback"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="TaskEnd" class="control-label">Тугаш санаси</label>
+                        <input asp-for="TaskEnd" class="form-control" />
+                        <span class="invalid-feedback"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Асос тури</label>
+                        <select asp-for="TaskTypeId" class="form-control" asp-items="ViewBag.TaskTypeId"></select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Асосларни бириктириш</label>
+                        <div class="kru-toggle-files">
+                            <div class="switch_container">
+                                <label class="switch">
+                                    <input type="checkbox" id="clickFile">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <div id="fileSelect" class="form-group display-none">
+                                <select id="ListFile" name="ListofFiles" asp-items="ViewBag.File" asp-for="File"
+                                        data-placeholder="Асосларни танланг" class="select2 multiple-select" multiple="multiple" style="width:100%;">
+                                </select>
+                                <span class="invalid-feedback"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Ходимларни бириктириш</label>
+                        <div class="kru-toggle-files">
+                            <div class="switch_container">
+                                <label class="switch">
+                                    <input type="checkbox" id="clickEmp">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <div id="EmpSelect" class="form-group display-none">
+                                <select id="ListEmp" name="ListofEmp" asp-items="ViewBag.Emp" 
+                                        data-placeholder="Ходимларни танланг" class="select2 multiple-select" multiple="multiple" style="width:100%;">
+                                </select>
+                                <span class="invalid-feedback"></span>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
-                <div>
-                    <label>Начало поручения</label>
-                    <input asp-for="TaskStarted" class="form-control" />
-                    <span asp-validation-for="TaskStarted" class="text-danger"></span>
+
+                <div class="form-button-container">
+                    <a class="btn btn-outline-primary mr-3 no-outline" asp-action="Index">
+                        <i class="fas fa-arrow-left mr-2" ></i>Ортга қайтиш
+                    </a>
+                    <input type="submit" id="btnSave" value="Яратиш" class="btn btn-primary"/>
                 </div>
-                <div>
-                    <label>Дедлайн поручения</label>
-                    <input asp-for="TaskEnd" class="form-control" />
-                    <span asp-validation-for="TaskEnd" class="text-danger"></span>
-                </div>
-                @*
-        <div>
-            <label asp-for="DepartmentId" class="control-label"></label>
-            <select asp-for="DepartmentId" class="form-control" asp-items="ViewBag.DepartmentId"></select>
+            </form>
         </div>
-                *@
-                <div>
-                    <label>Вид документа</label>
-                    <select asp-for="TaskTypeId" class="form-control" asp-items="ViewBag.TaskTypeId"></select>
-                </div>
-            </div>
-            <label>Добавить файлы</label>
-            <div class="flex-container">
-                <div class="switch_container">
-                    <label class="switch">
-                        <input type="checkbox" id="clickFile">
-                        <span class="slider round"></span>
-                    </label>
-                </div>
-                <div id="fileSelect" class="form-group display-none">
-                    <select id="ListFile" name="ListofFiles" asp-items="ViewBag.File" asp-for="File"
-                            data-placeholder="Выберите файлы" class="select2 multiple-select" multiple="multiple"
-                            data-placeholder="Select a State" style="width: 100%;">
-                    </select>
-                    <span asp-validation-for="File" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-button-container">
-                <a class="btn btn-outline-primary" asp-action="Index">
-                    <i class="fas fa-arrow-left mr-2" ></i>Back to List
-                </a>
-                <input type="submit" id="btnSave" value="Create" class="btn btn-primary"/>
-            </div>
-        </form>
     </div>
 </div>
 
@@ -89,36 +109,15 @@ ViewData["FileType"] = "";
                 $("#fileSelect").css({display: 'none'});
             }
         });
-        //function SaveSelectedFiles() {
-        //    var fileList = "";
-        //    var ListOfFiles = []
-        //    $.each($("#ListFile option:selected"),
-        //        function (index, data) {
-        //            //fileList += $(this).val() + " " + $(this).text() + "\n";
-        //            ListOfFiles.push($(this).val());
-        //            console.log(ListOfFiles);
-        //        });
-        //    console.log(ListOfFiles);
-        //    $.ajax({
-        //        async: true,
-        //        type: 'POST',
-        //        dataType: 'json',
-        //        url: '/Manager/Tasks/Create',
-        //        traditional: true,
-        //        contentType: 'application/json; charset=utf-8',
-        //        data: JSON.stringify({ ListOfFiles: ListOfFiles }),
-        //        success: function (data) {
-        //            if (data.success === true) {
-        //                alert(data.message);
-        //            }
-        //            },
-        //        error: function () {
-        //            alert('Error');
-        //        }
-        //    })
-        //}
 
-    });
+        $("#clickEmp").click(function () {
+            if ($(this).prop('checked')) {
+                $("#EmpSelect").css({ display: 'inline' });
+            } else {
+                $("#EmpSelect").css({ display: 'none' });
+            }
+        });
+           });
 
 
 </script>

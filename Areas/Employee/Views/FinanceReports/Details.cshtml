@@ -1,0 +1,77 @@
+﻿@model KRU.Models.FinanceReport
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="card box-shadow card-simple-form">
+    <h1>Тафсилотлар</h1>
+
+    <div>
+        <h4>Текширув ҳисоботи</h4>
+        
+        <table class="table table-hover">
+            <tbody>
+                <tr>
+                    <td> Бошланиш санаси</td>
+                    <td>@Html.DisplayFor(model => model.StartDate)</td>
+                </tr>
+                <tr>
+                    <td> Тугаш санаси</td>
+                    <td>@Html.DisplayFor(model => model.EndDate)</td>
+                </tr>
+                <tr>
+                    <td> Жами суммаси</td>
+                    <td class="amount">@Html.DisplayFor(model => model.amount)</td>
+                </tr>
+                <tr>
+                    <td>Изоҳ</td>
+                    <td>@Html.DisplayFor(model => model.FinComment)</td>
+                </tr>
+                <tr>
+                    <td> Категория х</td>
+                    <td>@Html.DisplayFor(model => model.Category1.Name_C1)</td>
+                </tr>
+
+                <tr>
+                    <td>Категория х.х</td>
+                    <td>@Html.DisplayFor(model => model.Category11.Name_C11)</td>
+                </tr>
+                <tr>
+                    <td>Категория х.х.х</td>
+                    <td>@Html.DisplayFor(model => model.Category111.Name_C111)</td>
+                </tr>
+                <tr>
+                    <td>Адрес</td>
+                    <td>@Html.DisplayFor(model => model.Address.Building)</td>
+                </tr>
+                <tr>
+                    <td>Объект</td>
+                    <td>@Html.DisplayFor(model => model.Objects.ObjectName)</td>
+                </tr>
+                <tr>
+                    <td>Вазифа</td>
+                    <td>@Html.DisplayFor(model => model.Tasks.TaskName)</td>
+                </tr>
+
+                <tr>
+                    <td>Менеджер</td>
+                    <td>@Html.DisplayFor(model => model.Manager.User.FullName)</td>
+                </tr>
+                <tr>
+                    <td>Ходим</td>
+                    <td>@Html.DisplayFor(model => model.Employee.User.FullName)</td>
+                </tr>
+                <tr>
+                    <td>Ҳолат</td>
+                    <td>@Html.DisplayFor(model => model.Status)</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="form-button-container">
+            <a class="btn btn-outline-primary mr-3 no-outline" asp-action="Index">
+                <i class="fas fa-arrow-left mr-2"></i>Ортга қайтиш
+            </a>
+            @*<a title="Edit" class="btn btn-outline-success kru-table-button" asp-action="Edit" asp-route-id="@Model.FinanceRepId">Edit</a>*@
+        </div>
+    </div>
+</div>

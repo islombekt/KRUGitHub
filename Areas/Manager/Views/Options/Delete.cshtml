@@ -1,0 +1,40 @@
+﻿@model KRU.Models.Option
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Ўчириш</h1>
+
+<h3>Ҳақиқатан ҳам ўчиришни хоҳлайсизми?</h3>
+<div class="card box-shadow card-simple-form">
+   
+       
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+              Вариант
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.OptName)
+            </dd>
+            <dt class="col-sm-2">
+              Тогри жавоб
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Correct)
+            </dd>
+            <dt class="col-sm-2">
+                Савол
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Question.QName)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="OptionId" />
+            <input type="submit" value="Ўчириш" class="btn btn-danger" /> 
+            @*<a asp-action="Index">Back to List</a>*@
+        </form>
+    </div>

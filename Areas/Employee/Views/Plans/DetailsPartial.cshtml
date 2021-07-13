@@ -1,0 +1,63 @@
+﻿@model KRU.Models.Plan
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="modal fade" id="addEmployee">
+    <h1>Тафсилотлар</h1>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h4 class="modal-title" id="addEmployeeLabel">План ҳисоботи тафсилотлари</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>x</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered table-hover">
+                    <tbody>
+                        <tr>
+                            <td> Бошланиш санаси</td>
+                            <td>@Html.DisplayFor(model => model.PlanStart)</td>
+                        </tr>
+                        <tr>
+                            <td>Тугаш санаси</td>
+                            <td>@Html.DisplayFor(model => model.PlanEnd)</td>
+                        </tr>
+                        <tr>
+                            <td>Тавсиф</td>
+                            <td>@Html.DisplayFor(model => model.PlanDescription)</td>
+                        </tr>
+                        <tr>
+                            <td>Адрес</td>
+                            <td>@Html.DisplayFor(model => model.Address.Building)</td>
+                        </tr>
+                        <tr>
+                            <td>Объект</td>
+                            <td>@Html.DisplayFor(model => model.Objects.ObjectName)</td>
+                        </tr>
+                        <tr>
+                            <td>Вазифа</td>
+                            <td>@Html.DisplayFor(model => model.Tasks.TaskName)</td>
+                        </tr>
+
+                        <tr>
+                            <td>Менеджер</td>
+                            <td>@Html.DisplayFor(model => model.Manager.User.FullName)</td>
+                        </tr>
+                        <tr>
+                            <td>Ходим</td>
+                            <td>@Html.DisplayFor(model => model.Employee.User.FullName)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,96 @@
+﻿@model IEnumerable<KRU.Models.Test>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="callout callout-info">
+    <div class="flex-container align-items-center">
+        <i class="fas fa-info-circle"></i><h5>Тест:</h5>
+    </div>
+    Бу ердан сиз 'Тестлар'га киришингиз, ўчиришингиз ва таҳрирлашингиз мумкин.
+</div>
+
+
+@*<div class="buttons-container">
+    <a class="btn btn-default" asp-action="Create"><i class="fas fa-plus mr-2"></i>Яратиш</a>
+</div>*@
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-3 col-xs-6">
+            
+            <div class="small-box bg-gradient-lightblue">
+
+                @if (item.End == false)
+                {
+                    <span class="badge badge-warning rounded-right" id="noti_Container">Янги+</span>
+                }
+                else
+                {
+                    <span class="badge badge-pill rounded-right" id="noti_Container"><i class="fa fa-check-circle" aria-hidden="true"></i></span>
+                    @item.ScoreOfUser <span>Бал</span>
+                }
+                <div class="inner">
+
+                    <h3 class="box-title">
+                        @Html.DisplayFor(modelItem => item.TestName)
+                    </h3>
+                    <p style="display: inline-block;width: 200px;white-space: nowrap;overflow: hidden !important;text-overflow: ellipsis;">  @Html.DisplayFor(modelItem => item.TestDescription)</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-diagnoses"></i>
+                </div>
+                @if (item.End == false)
+                {
+                    <a asp-controller="Empl_Selected_Option" asp-action="Index2" asp-route-id="@item.TestId" class="small-box-footer">
+                        Бажариш
+                        <i class="fa fa-arrow-circle-right">
+
+                        </i>
+                    </a>
+
+                }
+                else
+                {
+                    <a asp-controller="Tests" asp-action="Details" asp-route-id="@item.TestId" class="small-box-footer">
+                        Батафсил
+                        <i class="fa fa-arrow-circle-right">
+
+                        </i>
+                    </a>
+                }
+
+            </div>
+        </div>
+    }
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "/Employee/Tests/GetTests",
+            traditional: true,
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                console.log(data);
+
+                var notifications = data;
+
+
+                //  var prevId = notifications[1].requestId;
+                // console.log(prevId);
+                document.getElementById("noti_Container").innerHTML = notifications;
+                //  $("#noti_Container").val(notifications);
+
+            },
+            error: function (xhr, status, error) {
+
+            }
+        });
+       
+    });
+</script>

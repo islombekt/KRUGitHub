@@ -1,0 +1,45 @@
+﻿@model KRU.Models.Question
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Ўчириш</h1>
+<h3>Ҳақиқатан ҳам ўчиришни хоҳлайсизми?</h3>
+<br />
+<div class="card box-shadow card-simple-form">
+
+
+
+
+    <div>
+        <h4>Савол</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                Савол
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.QName)
+            </dd>
+            <dt class="col-sm-2">
+                Қийинлик даражаси
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.QWeight)
+            </dd>
+            <dt class="col-sm-2">
+                Тест
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Test.TestName)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="QuestionId" />
+            <input type="submit" value="Ўчириш" class="btn btn-danger" /> |
+            <a asp-controller="Tests" asp-action="Details" asp-route-id="@Model.TestId">Ортга қайтиш</a>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,139 @@
+﻿@model KRU.Models.Category1
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="callout callout-info">
+    <div class="flex-container align-items-center">
+        <i class="fas fa-info-circle"></i><h5>Тафсилотлар:</h5>
+    </div>
+    Бу ерда сиз биринчи даража тоифаси ҳақида батафсил маълумотни топишингиз мумкин.
+</div>
+
+<div class="kru-form card box-shadow">
+    <div class="invoice p-3 mb-3">
+        <div class="row">
+            <div class="col-12">
+                <h4>
+                    <span class="categoryIcon">
+                        <i class="fas fa-circle activeIcon"></i>&nbsp;<i class="fas fa-long-arrow-alt-right"></i>
+                        <i class="fas fa-circle"></i>&nbsp;<i class="fas fa-long-arrow-alt-right"></i>
+                        <i class="fas fa-circle"></i>&nbsp;
+                    </span>@Html.DisplayFor(model => model.Name_C1)
+                    <a class="btn btn-outline-primary no-outline mb-2 float-right" asp-controller="Category1" asp-action="Index1">
+                        Барчаси
+                    </a>
+                </h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="mt-5 table bg-color-1 table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th colspan="2"><h5 class="m-0" align="center">Подкатегориялар:</h5></th>
+                    </tr>
+                        <tr>
+                            <th>
+                                Номи
+                            </th>
+                            <th>
+
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item1 in Model.Category11s)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item1.Name_C11)
+                                </td>
+                                <td class="table-button-container">
+                                    <a data-bs-toggle="tooltip" title="Таҳрирлаш" class="btn btn-outline-success kru-table-button" asp-controller="Category11" asp-action="Edit" asp-route-id="@item1.Category11Id"><i class="far fa-edit"></i></a>
+                                    <a data-bs-toggle="tooltip" title="Тафсилотлар" class="btn btn-outline-info kru-table-button" asp-controller="Category11" asp-action="Details" asp-route-id="@item1.Category11Id"><i class="fas fa-info"></i></a>
+                                </td>
+                            </tr>
+                        }
+                        <tr>
+                            <td colspan="2">
+                                <a class="btn-default bg-transparent" asp-controller="Category11" asp-action="Create"><i class="fas fa-plus mr-2"></i>Қуйи категория қўшиш</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div class="mt-5 col-12">
+            @if (Model.FinanceReports == null)
+            {
+
+            }
+            else
+            {
+                <table class="table table-hover table-success table-striped">
+                    <thead>
+                        <tr>
+                            <th colspan="2"><h5 class="m-0" align="center">Текширувлар ҳисоботи:</h5></th>
+                        </tr>
+                        <tr>
+                            <th>
+                                Бошланиш санаси
+                            </th>
+                            <th>
+
+                                Тугаш санаси
+                            </th>
+                            <th>
+                                Жами суммаси
+                            </th>
+                            <th>
+
+                                Ходим
+                            </th>
+                            <th>
+
+                                Менеджер
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item111 in Model.FinanceReports)
+                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item111.StartDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item111.EndDate)
+                            </td>
+                            <td class="amount">
+                                @Html.DisplayFor(modelItem => item111.amount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item111.Employee.User.FullName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item111.Manager.User.FullName)
+                            </td>
+                            <td class="table-button-container">
+                                <a data-bs-toggle="tooltip" title="Тафсилотлар" class="btn btn-outline-info kru-table-button" asp-controller="FinanceReports" asp-action="Details" asp-route-id="@item111.FinanceRepId"><i class="fas fa-info"></i></a>
+                            </td>
+                        </tr>
+
+                        }
+                    </tbody>
+                </table>
+             }
+            </div>
+        </div>
+    </div>
+    <div class="form-button-container">
+        <a class="btn btn-outline-primary mr-3 no-outline" asp-action="Index">
+            <i class="fas fa-arrow-left mr-2" ></i>Ортга қайтиш
+        </a>
+    </div>
+</div>

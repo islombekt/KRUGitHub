@@ -25,7 +25,15 @@ namespace KRU.Data
         public DbSet<Task_Type> Task_Types { get; set; }
         public DbSet<FileHistory> FileHistory { get; set; }
         public DbSet<Task_File> Task_Files { get; set; }
-
-
+        public DbSet<Category1> Category1s { get; set; }
+        public DbSet<Category11> Category11s { get; set; }
+        public DbSet<Category111> Category111s { get; set; }
+        public DbSet<FinanceReport> FinanceReports { get; set; }
+        public DbSet<Task_Empl> Task_Empls { get; set; }
+        public DbSet<Task_Report> Task_Reports { get; set; }
+        public DbSet<Test> Tests { get; set; }
+        public DbSet<Empl_Selected_Option> Empl_Selected_Options { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<Option> Options { get; set; }
     }
 }

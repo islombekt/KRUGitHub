@@ -4,14 +4,18 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Ходимлар</h1>
-<div class="buttons-container">
-    <a class="btn btn-default" asp-area="Identity" asp-page="/Account/Register">
-        <i class="fas fa-plus mr-2"></i>Ходим Қўшиш
-    </a>
+
+
+
+<div class="callout callout-info">
+    <div class="flex-container align-items-center">
+        <i class="fas fa-info-circle"></i><h5>Тест натижалари:</h5>
+    </div>
+    Бу ердан сиз тест натижалари хақида маълумот олишингиз мумкин.
 </div>
 
-<div class="card">
+
+<div class="card box-shadow">
     <div class="card-body">
         <table id="example1" class="table table-hover">
             <thead>
@@ -26,47 +30,147 @@
                         Телефон рақами
                     </th>
                     <th>
-                       Лавозим
+                        Лавозим
                     </th>
                     <th>
                         Адрес
                     </th>
-                    <th>
-                        Статуси
-                    </th>
+                    @*<th>
+                            Ҳолат
+                        </th>*@
 
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-        @foreach (var item in Model) {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.User.FName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.User.LName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.User.PhoneNumber)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.User.Position)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.User.Address.Building)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EmployeeState)
-                    </td>
-                    <td class="table-button-container">
-                        <a data-bs-toggle="tooltip" title="Edit" class="btn btn-outline-success kru-table-button" asp-action="Edit" asp-route-id="@item.EmployeeId"><i class="far fa-edit"></i></a>
-                        <a data-bs-toggle="tooltip" title="Details" class="btn btn-outline-info kru-table-button" asp-action="Details" asp-route-id="@item.EmployeeId"><i class="fas fa-info"></i></a>
-                        <a data-bs-toggle="tooltip" title="Delete" class="btn btn-outline-danger kru-table-button" asp-action="Delete" asp-route-id="@item.EmployeeId"><i class="far fa-trash-alt"></i></a>
-                    </td>
-                </tr>
-        }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.User.FName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.User.LName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.User.PhoneNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.User.Position)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.User.Address.Building)
+                        </td>
+                        @*<td>
+                                @Html.DisplayFor(modelItem => item.EmployeeState)
+                            </td>*@
+                        <td class="table-button-container">
+                            <a data-bs-toggle="tooltip" title="Таҳрирлаш" class="btn btn-outline-success kru-table-button" asp-action="Edit" asp-route-id="@item.EmployeeId"><i class="far fa-edit"></i></a>
+                            <a data-bs-toggle="tooltip" title="Тафсилотлар" class="btn btn-outline-info kru-table-button" asp-action="Details" asp-route-id="@item.EmployeeId"><i class="fas fa-info"></i></a>
+                            @*<a data-bs-toggle="tooltip" title="Delete" class="btn btn-outline-danger kru-table-button" asp-action="Delete" asp-route-id="@item.EmployeeId"><i class="far fa-trash-alt"></i></a>*@
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>
 </div>
+<button onclick="getLocation()">Try It</button>
+<div id="mapid"></div>
+<p id="demo"></p>
+<p id="demo1"></p>
+
+<script>
+    var detectOS = "Unknown OS";
+
+    if (navigator.appVersion.indexOf("Win") != -1)
+        detectOS = "Windows";
+
+    if (navigator.appVersion.indexOf("Mac") != -1)
+        detectOS = "MacOS";
+
+    if (navigator.appVersion.indexOf("IOS") != -1)
+        detectOS = "IOS";
+
+    if (navigator.appVersion.indexOf("Linux") != -1)
+        detectOS = "Linux";
+    if (navigator.appVersion.indexOf("Android") != -1)
+        detectOS = "Android";
+
+    $(document).ready(function detect() {
+        alert(`Device OS is: ${navigator.appVersion}`)
+    });
+
+    if (navigator.appVersion.indexOf("Win") == -1) {
+        var x = document.getElementById("demo");
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+        var data = [{
+            'name': "L1dssdsdsa",
+            'longitude': '45.04568755',
+            'latitude':'56.0554687'
+        },
+            {
+                'name': 'L2',
+                'longitude': '46.04568755',
+                'latitude': '56.0554687'
+            },
+            {
+                'name': 'L3',
+                'longitude': '47.04568755',
+                'latitude': '58.0554687'
+            },
+        ];
+
+        
+        function showPosition(position) {
+            x.innerHTML = "Latitude: " + position.coords.latitude +
+                "<br>Longitude: " + position.coords.longitude;
+            console.log("agessr");
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            const R = 3958.8;
+            // var s = L.map('mapId').setView([position.coords.latitude, position.coords.longitude], 7);
+            var mymap = L.map('mapid').setView([position.coords.latitude, position.coords.longitude], 8);
+            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(mymap);
+            data.forEach(item => {
+                L.marker([item.latitude, item.longitude]).addTo(mymap)
+                    .bindPopup(item.name)
+                    .openPopup();
+            });
+            
+            L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap)
+                .bindPopup('Turgands joyi')
+                .openPopup();
+            var dLat = deg2rad(lat - 41.3334781);
+            var dLon = deg2rad(lon - 69.3420491);
+            var a =
+                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(deg2rad(position.coords.latitude)) * Math.cos(deg2rad(41.3334781)) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2)
+                ;
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            var d = R * c; // Distance in km
+            console.log(d + " km");
+            var x1 = document.getElementById("demo1");
+            x1.innerHTML = d + " km";
+
+        }
+        function deg2rad(deg) {
+            return deg * (Math.PI / 180)
+        }
+    }
+</script>
+
+
+
+<style>
+    #mapid {
+        height: 250px;
+    }
+</style>

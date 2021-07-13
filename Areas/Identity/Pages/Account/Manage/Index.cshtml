@@ -1,26 +1,56 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Profile";
+    ViewData["Title"] = "Профиль";
     ViewData["ActivePage"] = ManageNavPages.Index;
 }
 
-<h4>@ViewData["Title"]</h4>
+
 <partial name="_StatusMessage" model="Model.StatusMessage" />
+
+<h4>@ViewData["Title"]</h4>
+<hr />
 <div class="row">
-    <div class="col-md-6">
-        <form id="profile-form" method="post">
+    <div class="col-12">
+        <form class="kru" id="profile-form" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Username"></label>
-                <input asp-for="Username" class="form-control" disabled />
+            <div class="kru-form-container">
+                <div class="form-group">
+                    <label asp-for="Username">E-mail манзил</label>
+                    <input asp-for="Username" class="form-control" disabled />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.FName">Исм</label>
+                    <input asp-for="Input.FName" class="form-control" />
+                    <span asp-validation-for="Input.FName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.LName">Фамилия</label>
+                    <input asp-for="Input.LName" class="form-control" />
+                    <span asp-validation-for="Input.LName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.SName">Отасининг исми</label>
+                    <input asp-for="Input.SName" class="form-control" />
+                    <span asp-validation-for="Input.SName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.PhoneNumber">Телефон рақам</label>
+                    <input asp-for="Input.PhoneNumber" class="form-control" />
+                    <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Position">Лавозим</label>
+                    <input asp-for="Input.Position" class="form-control" />
+                    <span asp-validation-for="Input.Position" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Input.PhoneNumber"></label>
-                <input asp-for="Input.PhoneNumber" class="form-control" />
-                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            <div class="form-button-container">
+                <a href="/" class="btn btn-outline-primary mr-3 no-outline">
+                    <i class="far fa-arrow-alt-circle-left"> Ортга</i>
+                </a>
+                <button id="update-profile-button" type="submit" class="btn btn-primary">Сақлаш</button>
             </div>
-            <button id="update-profile-button" type="submit" class="btn btn-primary">Save</button>
         </form>
     </div>
 </div>

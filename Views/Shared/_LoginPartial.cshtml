@@ -37,12 +37,12 @@
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right kru-user-menu">
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
-                <i class="fas fa-user-alt mr-2"></i> Profile
+                <i class="fas fa-user-alt mr-2"></i> Профиль
             </a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item">
                 <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Login", "Account", new { area = "Identity" })">
-                    <button  type="submit" class="btn btn-link text-dark"><i class="fas fa-sign-out-alt mr-2"></i> Log Out</button>
+                    <button  type="submit" class="btn btn-link text-dark"><i class="fas fa-sign-out-alt mr-2"></i> Чиқиш</button>
                 </form>
             </a>
         </div>

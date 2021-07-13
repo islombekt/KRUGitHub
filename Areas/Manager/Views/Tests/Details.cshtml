@@ -1,0 +1,244 @@
+﻿@model KRU.Models.Test
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="callout callout-info">
+    <div class="flex-container align-items-center">
+        <i class="fas fa-info-circle"></i><h5>Тафсилотлар</h5>
+    </div>
+    Бу ердан сиз Тест тафсилотларини коришингиз ва қуйдаги йоналишга тегишли болган саволларни яратишингиз, киришингиз, ўчиришингиз ва таҳрирлашингиз мумкин.
+</div>
+<br />
+<div>
+    <h4></h4>
+    <div class="row">
+        <section class="col-lg-8 connectedSortable ui-sortable">
+
+            <div class="card box-shadow card-simple-form">
+                <div id="chartdiv"></div>
+            </div>
+        </section>
+        <section class="col-lg-4 connectedSortable ui-sortable">
+
+            <div class="card box-shadow card-simple-form">
+                <input type="hidden" id="minScore" value="@Model.MinScoreOfUser" />
+                <input type="hidden" id="maxScore" value="@Model.ScoreOfUser" />
+                <input type="hidden" id="numUsers" value="@Model.NumberOfUsers" />
+                <input type="hidden" id="passUsers" value="@Model.NumberOfPassedUsers" />
+                <dl class="row">
+                    <dt class="col-sm-6">
+                        Тест
+                    </dt>
+                    <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.TestName)
+                    </dd>
+                    <dt class="col-sm-6">
+                        Тавсиф
+                    </dt>
+                    <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.TestDescription)
+                    </dd>
+                    <dt class="col-sm-6">
+                        Бошланиш вақти
+                    </dt>
+                    <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.TestStarted)
+                    </dd>
+                    <dt class="col-sm-6">
+                        Тугаш вақти
+                    </dt>
+                    <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.TestEnd)
+                    </dd>
+
+                    <dt class="col-sm-6">
+                        Менеджер
+                    </dt>
+                    <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.Manager.User.FullName)
+                    </dd>
+                    <dt class="col-sm-6">
+                        Департамент
+                    </dt>
+                    <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.Department.DepartmentName)
+                    </dd>
+
+                </dl>
+
+                <div class="row">
+
+                    @*<a title="Edit" class="btn btn-outline-success kru-table-button" asp-action="Edit" asp-route-id="@Model.TestId">Таҳрирлаш</a>
+        <a title="Delete" class="btn btn-outline-danger kru-table-button" asp-action="Delete" asp-route-id="@Model.TestId">Ўчириш</a>*@
+                    <a title="Таҳрирлаш" asp-action="Edit" asp-route-id="@Model.TestId" class="btn btn-app">
+                        <i class="fas fa-edit"></i>Таҳрирлаш
+                    </a>
+                    <a title="Ўчириш" asp-action="Delete" asp-route-id="@Model.TestId" class="btn btn-app">
+                        <i class="fas fa-trash-alt"></i>Ўчириш
+                    </a>
+                    <a  class="btn btn-app">
+                        <span class="badge badge-success">
+                            @Html.DisplayFor(model => model.RandomQuestions)
+                        </span>
+                        <i class="fas fa-question"></i>Тасодифий саволлар
+                    </a>
+                    <a title="Жавоблар" asp-controller="Empl_Selected_Option" asp-action="Index2" asp-route-id="@Model.TestId" class="btn btn-app">
+                        <i class="fas fa-sort-amount-up"></i>Жавоблар
+                    </a>
+                </div>
+            </div>
+
+
+        </section>
+    </div>
+        <div class="row">
+            <section class="col-lg-12 connectedSortable ui-sortable">
+                <div class="card box-shadow card-simple-form">
+
+
+                    <table class="table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    #
+                                </th>
+                                <th>
+                                    Савол
+                                </th>
+                                <th>
+                                    Қийинлик даражаси
+                                </th>
+                                <th>
+                                    Вариантлар сони
+                                </th>
+                                <th>
+                                    <a asp-area="Manager" asp-controller="Questions" asp-action="Create" asp-route-TestId="@Model.TestId" class="btn btn-success text-white"><i class="fa fa-question-circle" aria-hidden="true"></i> Савол қошиш</a>
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Questions != null)
+                            {
+                                int opt = 0;
+                                int d = 1;
+                                @foreach (var item in Model.Questions)
+                                {
+                                    if (item.Options != null)
+                                    {
+                                        {
+                                            foreach (var sq in item.Options)
+                                                opt++;
+                                        }
+                                    }
+                                    <tr>
+                                        <td>
+                                            @d
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.QName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.QWeight)
+                                        </td>
+                                        <td>
+                                            @if (opt > 0)
+                                            {
+                                                <span class="badge badge-primary"> @opt</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge badge-warning">@opt</span>
+                                            }
+
+
+                                        </td>
+                                        <td>
+                                            <div class="btn-group btn-group-sm">
+                                                <a class="btn btn-default" title="Таҳрирлаш" asp-area="Manager" asp-controller="Questions" asp-action="Edit" asp-route-id="@item.QuestionId"><i class="fas fa-pen"></i></a>
+                                                <a class="btn btn-info" title="Тафсилотлар" asp-area="Manager" asp-controller="Questions" asp-action="Details" asp-route-id="@item.QuestionId"><i class="fas fa-eye"></i></a>
+                                                <a class="btn btn-danger" title="Ўчириш" asp-area="Manager" asp-controller="Questions" asp-action="Delete" asp-route-id="@item.QuestionId"><i class="fas fa-trash"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    d++;
+                                    opt = 0;
+                                }}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+           
+        </div>
+        <a class="btn btn-outline-primary mr-3 no-outline" asp-action="Index">
+            <i class="fas fa-arrow-left mr-2"></i>Ортга қайтиш
+        </a>
+
+    </div>
+    <style type="text/css">
+        #chartdiv {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            am4core.useTheme(am4themes_animated);
+        });
+        var chart = am4core.create("chartdiv", am4charts.ChordDiagram);
+        const topshir = document.getElementById('passUsers').value;
+        const userla = document.getElementById('numUsers').value;
+        const no = userla - topshir;
+        const maxval = document.getElementById('maxScore').value;
+        const minval = document.getElementById('minScore').value;
+        chart.data = [
+            { from: "Ҳодимлар", to: "Топширганлар", value: topshir },
+            { from: "Ҳодимлар", to: "Топширмаганлар", value: no },
+            { from: "Топширганлар", to: "Энг Юқори балл", value: maxval },
+            { from: "Топширганлар", to: "Энг Паст балл", value: minval },
+
+        ];
+
+        chart.dataFields.fromName = "from";
+        chart.dataFields.toName = "to";
+        chart.dataFields.value = "value";
+
+        // make nodes draggable
+        var nodeTemplate = chart.nodes.template;
+        nodeTemplate.readerTitle = "Click to show/hide or drag to rearrange";
+        nodeTemplate.showSystemTooltip = true;
+
+        var nodeLink = chart.links.template;
+        var bullet = nodeLink.bullets.push(new am4charts.CircleBullet());
+        bullet.fillOpacity = 1;
+        bullet.circle.radius = 5;
+        bullet.locationX = 0.5;
+
+        // create animations
+        chart.events.on("ready", function () {
+            for (var i = 0; i < chart.links.length; i++) {
+                var link = chart.links.getIndex(i);
+                var bullet = link.bullets.getIndex(0);
+
+                animateBullet(bullet);
+            }
+        })
+
+        function animateBullet(bullet) {
+            var duration = 3000 * Math.random() + 2000;
+            var animation = bullet.animate([{ property: "locationX", from: 0, to: 1 }], duration)
+            animation.events.on("animationended", function (event) {
+                animateBullet(event.target.object);
+            })
+        }
+
+    </script>

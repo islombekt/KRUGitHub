@@ -3,58 +3,51 @@
 @{
     ViewData["Title"] = "Details";
 }
+<div class="card box-shadow card-simple-form">
 
-<h1>Details</h1>
+    <h1>Тафсилотлар</h1>
 
-<div>
-    <h4>FileHistory</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FileUrl)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FileUrl)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FileStart)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FileStart)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FileEnd)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FileEnd)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FileFinished)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FileFinished)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Task_Type)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Task_Type.TaskTypeID)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.FileId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <div>
+        <h4>Асос</h4>
+     
+        <table class="table table-hover">
+            <tbody>
+                <tr>
+                    <td>Асос номи</td>
+                    <td>@Html.DisplayFor(model => model.Name)</td>
+                </tr>
+                <tr>
+                    <td>Файл</td>
+                    <td>@Html.DisplayFor(model => model.FileUrl)</td>
+                </tr>
+                <tr>
+                    <td>Тавсиф</td>
+                    <td>@Html.DisplayFor(model => model.Description)</td>
+                </tr>
+                <tr>
+                    <td>Бошланиш санаси</td>
+                    <td>@Html.DisplayFor(model => model.FileStart)</td>
+                </tr>
+                <tr>
+                    <td>Тугаш санаси</td>
+                    <td>@Html.DisplayFor(model => model.FileEnd)</td>
+                </tr>
+
+                <tr>
+                    <td>Тур номи</td>
+                    <td>@Html.DisplayFor(model => model.Task_Type.NameType)</td>
+                </tr>
+                <tr>
+                    <td>Якунланган</td>
+                    <td>@Html.DisplayFor(model => model.FileFinished)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="form-button-container">
+        <a class="btn btn-outline-primary mr-3 no-outline" asp-action="Index">
+            <i class="fas fa-arrow-left mr-2" ></i>Ортга қайтиш
+        </a>
+        <a title="Edit" class="btn btn-outline-success kru-table-button" asp-action="Edit" asp-route-id="@Model.FileId">Таҳрирлаш</a>
+    </div>
 </div>

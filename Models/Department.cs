@@ -13,5 +13,7 @@ namespace KRU.Models
         public string DepartmentName { get; set; }
         public virtual ICollection<Users> Users { get; set; }
         public virtual ICollection<Tasks> Tasks { get; set; }
+        public virtual ICollection<Test> Tests { get; set; }
+        public virtual ICollection<Category1> Category1s { get; set; }
     }
 }

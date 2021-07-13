@@ -1,0 +1,173 @@
+﻿@model IEnumerable<KRU.Models.FinanceReport>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div id="PlaceHolderHere"></div>
+<div class="callout callout-info">
+    <div class="flex-container align-items-center">
+        <i class="fas fa-info-circle"></i><h5>Текширувлар ҳисоботи:</h5>
+    </div>
+    Бу ердан сиз 'Текширув' ҳисоботларига киришингиз, ўчиришингиз ва таҳрирлашингиз мумкин.
+</div>
+
+<div class="buttons-container">
+    <a asp-action="Create" class="btn btn-default">
+        <i class="fas fa-plus mr-2"></i>Яратиш
+    </a>
+</div>
+
+<div class="card box-shadow">
+    <div class="card-body">
+        <div class="card-body">
+            @using (Html.BeginForm("SpravkaExcel", "FinanceReports", new { area = "Manager" }, FormMethod.Post))
+            {
+                <div class="kru-date-range flex-container flex-column">
+                    <div class="col-12 date-input">
+                        <input id="start" name="start" type="date" class="form-control" />
+                        <input id="end" type="date" name="end" class="form-control" />
+                    </div>
+                    <div class="col-12 button-input">
+                        <input type="submit" name="Export" value="Юклаб олиш" id="btnExport" onclick="downloadExcel()" class="btn btn-success" />
+                    </div>
+                </div>
+            }
+
+            <table id="example1" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Адрес
+                        </th>
+                        <th>
+                            Объект
+                        </th>
+                        <th>
+                            Категория х
+                        </th>
+                        <th>
+                            Категория х.х
+                        </th>
+                        <th>
+                            Категория х.х.х
+                        </th>
+                        <th>
+                            Бошланиш санаси
+                        </th>
+                        <th>
+                            Тугаш санаси
+                        </th>
+                        <th>
+                            Жами суммаси
+                        </th>
+                        <th>
+                            Ҳолат
+                        </th>
+                        <th>
+                            Изоҳ
+                        </th>
+                        <th>
+                            Вазифа
+                        </th>
+                        <th>
+                            Ходим
+                        </th>
+                        <th>
+                            Муддат
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        var className = item.HaveSeen ? "" : "table-warning";
+                    <tr class="@className">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address.Building)
+                        </td>
+                        @if (item.Objects == null)
+                        {
+                            <td>
+                                -
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Objects.ObjectName)
+                            </td>
+                        }
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Category1.Name_C1)
+                        </td>
+                        @if (item.Category11 == null)
+                        {
+                            <td>
+                                -
+                            </td>
+
+                        }
+                        else
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Category11.Name_C11)
+                            </td>
+                        }
+                        @if (item.Category111 == null)
+                        {
+                            <td>
+                                -
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Category111.Name_C111)
+                            </td>
+                        }
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StartDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EndDate)
+                        </td>
+                        <td class="amount">
+                            @Html.DisplayFor(modelItem => item.amount)
+
+                        </td>
+                        <td>
+
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FinComment)
+                        </td>
+
+
+
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tasks.TaskName)
+                        </td>
+
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Employee.User.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CheckPeriod)
+                        </td>
+                        <td class="table-button-container">
+                            <a data-bs-toggle="tooltip" title="Таҳрирлаш" class="btn btn-outline-success kru-table-button" asp-action="Edit" asp-route-id="@item.FinanceRepId"><i class="far fa-edit"></i></a>
+                            <a data-bs-toggle="tooltip" title="Тафсилотлар" data-toggle="ajax-modal" data-target="#addEmployee" class="addEmployeeButton btn btn-outline-info kru-table-button" data-url="@Url.Action("Details", "FinanceReports", new { id = item.FinanceRepId }, null)"><i class="fas fa-info"></i></a>
+                            <a data-bs-toggle="tooltip" title="Ўчириш" class="btn btn-outline-danger kru-table-button" asp-action="Delete" asp-route-id="@item.FinanceRepId"><i class="far fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

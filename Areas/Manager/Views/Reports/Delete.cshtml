@@ -1,0 +1,78 @@
+﻿@model KRU.Models.Report
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Ўчириш</h1>
+
+<h3>Ҳақиқатан ҳам ўчиришни хоҳлайсизми?</h3>
+<div class="card box-shadow card-simple-form">
+    <h4>Кундалик ҳисобот</h4>
+
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+                <td>Адрес</td>
+                <td>@Html.DisplayFor(model => model.Address.Building)</td>
+            </tr>
+            <tr>
+                <td>Объект</td>
+                <td>@Html.DisplayFor(model => model.Objects.ObjectName)</td>
+            </tr>
+            <tr>
+                <td>Ҳолат</td>
+                <td>@Html.DisplayFor(model => model.State)</td>
+            </tr>
+            <tr>
+                <td>Сана</td>
+                <td>@Html.DisplayFor(model => model.ReportDate)</td>
+            </tr>
+            <tr>
+                <td>Тавсиф</td>
+                <td>@Html.DisplayFor(model => model.ReportDescription)</td>
+            </tr>
+            <tr>
+                <td>Вазифа</td>
+                <td>@Html.DisplayFor(model => model.Tasks.TaskName)</td>
+            </tr>
+            <tr>
+                <td>Имя Фамилия</td>
+                <td>@Html.DisplayFor(model => model.Employee.User.FullName)</td>
+            </tr>
+            <tr>
+                <td>Должность</td>
+                <td>@Html.DisplayFor(model => model.Employee.User.Position)</td>
+            </tr>
+            <tr>
+                <td>Тел рақам</td>
+                <td>@Html.DisplayFor(model => model.Employee.User.PhoneNumber)</td>
+            </tr>
+            <tr>
+                <td>Изоҳ</td>
+                <td>@Html.DisplayFor(model => model.ReportComment)</td>
+            </tr>
+            <tr>
+                <td>Балл</td>
+                <td>@Html.DisplayFor(model => model.ReportScore)</td>
+            </tr>
+            <tr>
+                <td>Текширилди</td>
+                <td>@Html.DisplayFor(model => model.HaveSeen)</td>
+            </tr>
+            <tr>
+                <td>Раҳбар</td>
+                <td>@Html.DisplayFor(model => model.Manager.User.FullName)</td>
+            </tr>
+        </tbody>
+    </table>
+    <form asp-action="Delete">
+        <div class="form-button-container">
+            <a class="btn btn-outline-primary mr-3 no-outline" asp-action="Index">
+                <i class="fas fa-arrow-left mr-2"></i>Ортга қайтиш
+            </a>
+            <input type="hidden" asp-for="ReportId" />
+            <input title="Delete" type="submit" value="Ўчириш" class="btn btn-outline-danger kru-table-button" />
+        </div>
+    </form>
+</div>

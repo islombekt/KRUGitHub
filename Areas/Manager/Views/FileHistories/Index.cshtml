@@ -3,10 +3,14 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1>Index</h1>
+<div class="callout callout-info">
+    <div class="flex-container align-items-center">
+        <i class="fas fa-info-circle"></i><h5>Асослар:</h5>
+    </div>
+    Бу ердан сиз Асосларни яратишингиз, киришингиз, ўчиришингиз ва таҳрирлашингиз мумкин.
+</div>
 <div class="buttons-container">
-    <a class="btn btn-default" asp-action="Create"><i class="fas fa-plus mr-2"></i>Create New</a>
+    <a class="btn btn-default" asp-action="Create"><i class="fas fa-plus mr-2"></i>Яратиш</a>
 </div>
 
 <div class="card">
@@ -15,40 +19,38 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.Name)
+                        Асос номи
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.FileUrl)
+                        Файл
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Description)
+                        Тавсиф
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.FileStart)
+                        Бошланиш санаси
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.FileEnd)
+                        Тугаш санаси
                     </th>
 
                     <th>
-                        @Html.DisplayNameFor(model => model.Task_Type.NameType)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.FileFinished)
+                        Тур номи
                     </th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
         @foreach (var item in Model) {
-                <tr>
+        var className = item.FileFinished ? "table-success" : "";
+                <tr class="@className">
                     <td>
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
-                    <td>
+                    <td class="file-link">
                         @if (item.FileUrl == "" || item.FileUrl == null)
                         {
-                            <a>Файл отсутсвует</a>
+                            <a>Файл бириктирилмаган</a>
                         }
                         else
                         {
@@ -71,20 +73,10 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Task_Type.NameType)
                     </td>
-                    <td>
-                        @if (item.FileFinished == true)
-                        {
-                            <a>закрыт</a>
-                        }
-                        @if (item.FileFinished == false)
-                        {
-                            <a>Не закрыт</a>
-                        }
-                    </td>
                     <td class="table-button-container">
-                        <a data-bs-toggle="tooltip" title="Edit" class="btn btn-outline-success kru-table-button" asp-action="Edit" asp-route-id="@item.FileId"><i class="far fa-edit"></i></a>
-                        <a data-bs-toggle="tooltip" title="Details" class="btn btn-outline-info kru-table-button" asp-action="Details" asp-route-id="@item.FileId"><i class="fas fa-info"></i></a>
-                        <a data-bs-toggle="tooltip" title="Delete" class="btn btn-outline-danger kru-table-button" asp-action="Delete" asp-route-id="@item.FileId"><i class="far fa-trash-alt"></i></a>
+                        <a data-bs-toggle="tooltip" title="Таҳрирлаш" class="btn btn-outline-success kru-table-button" asp-action="Edit" asp-route-id="@item.FileId"><i class="far fa-edit"></i></a>
+                        <a data-bs-toggle="tooltip" title="Тафсилотлар" class="btn btn-outline-info kru-table-button" asp-action="Details" asp-route-id="@item.FileId"><i class="fas fa-info"></i></a>
+                        <a data-bs-toggle="tooltip" title="Ўчириш" class="btn btn-outline-danger kru-table-button" asp-action="Delete" asp-route-id="@item.FileId"><i class="far fa-trash-alt"></i></a>
                     </td>
                 </tr>
         }

@@ -1,0 +1,100 @@
+﻿@model KRU.Models.Question
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Тафсилотлар</h1>
+
+
+<div>
+    <h4>Савол</h4>
+
+    <div class="row">
+        <section class="col-lg-9 connectedSortable ui-sortable">
+            <div class="card box-shadow card-simple-form">
+                <table class="table">
+
+                    <thead>
+                        <tr>
+                            <th>
+                                Вариант
+                            </th>
+                            <th>
+                                Тоғри жавоб
+                            </th>
+                            <th>
+                                <a asp-area="Manager" asp-controller="Options" asp-action="Create" asp-route-QuestionId="@Model.QuestionId" class="btn btn-success text-white"><i class="fa fa-filter" aria-hidden="true"></i> New Option</a>
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Options != null)
+                        {
+
+
+                            @foreach (var item in Model.Options)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.OptName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Correct)
+                                    </td>
+
+                                    <td>
+                                        <div class="btn-group btn-group-sm">
+                                            <a class="btn btn-default" title="Таҳрирлаш" asp-area="Manager" asp-controller="Options" asp-action="Edit" asp-route-id="@item.OptionId"><i class="fas fa-pen"></i></a>
+                                            <a class="btn btn-info" title="Тафсилотлар" asp-area="Manager" asp-controller="Options" asp-action="Details" asp-route-id="@item.OptionId"><i class="fas fa-eye"></i></a>
+                                            <a class="btn btn-danger" title="Ўчириш" asp-area="Manager" asp-controller="Options" asp-action="Delete" asp-route-id="@item.OptionId"><i class="fas fa-trash"></i></a>
+                                        </div>
+                                      
+                                    </td>
+                                </tr>
+                            }}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section class="col-lg-3 connectedSortable ui-sortable">
+            <div class="card box-shadow card-simple-form">
+                <dl class="row">
+                    <dt class="col-sm-6">
+                        Савол
+                    </dt>
+                    <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.QName)
+                    </dd>
+                    <dt class="col-sm-6">
+                        Қийинлик даражаси
+                    </dt>
+                    <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.QWeight)
+                    </dd>
+                    <dt class="col-sm-6">
+                        Тест
+                    </dt>
+                    <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.Test.TestName)
+                    </dd>
+                </dl>
+                <div class="row">
+                  <a title="Edit" class="btn btn-outline-success kru-table-button" asp-action="Edit" asp-route-id="@Model.QuestionId">Таҳрирлаш</a>
+                    <a title="Delete" class="btn btn-outline-danger kru-table-button" asp-action="Delete" asp-route-id="@Model.QuestionId">Ўчириш</a>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+</div>
+
+<div>
+    <a class="btn btn-outline-primary mr-3 no-outline" asp-controller="Tests" asp-action="Details" asp-route-id="@Model.TestId">
+        <i class="fas fa-arrow-left mr-2"></i>Ортга қайтиш
+    </a>
+    
+</div>

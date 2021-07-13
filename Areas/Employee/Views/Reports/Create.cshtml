@@ -3,71 +3,172 @@
 @{
     ViewData["Title"] = "Create";
 }
+<div class="card box-shadow card-simple-form card-small">
+    <h1>Кундалик ҳисобот яратиш</h1>
 
-<h1>Create</h1>
+    <h4>Ҳисобот</h4>
+    <hr />
+    <div class="row">
+        <div class="col-12">
+            <form id="app" class="kru" asp-action="Create">
+                <div class="kru-form-container-small status-kru">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label class="control-label">Ҳолат</label>
+                        <select id="status" asp-for="State" class="form-control">
+                            <option selected></option>
+                            <option value="8">На работе</option>
+                            <option value="7">День до праздника (7)</option>
+                            <option value="К">Командировка</option>
+                            <option value="У">На Учебе</option>
+                            <option value="Уд">Удаленка</option>
+                            <option value="О">Отпуск</option>
+                            <option value="Б">Больничный</option>
+                            <option value="Пр">Праздник</option>
+                            <option value="б/с">Отпуск без сохранения заработной платы</option>
+                        </select>
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div id="parentAddress" class="form-group">
+                        <label class="control-label">Адрес</label>
+                        <select asp-for="AddressId" id="address" onchange="javascript: $('#submit').click();" class="select2 form-control" asp-items="ViewBag.AddressId"></select>
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div id="object" class="form-group">
+                        <label class="control-label">Объект</label>
+                        <select asp-for="ObjectId" id="object1" class="select2 form-control" asp-items="ViewBag.ObjectId"></select>
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div id="parentTask" class="form-group">
+                        <label class="control-label">Вазифа</label>
+                        <select asp-for="TaskId" id="ListTasks" name="ListofTasks"  data-placeholder="Топшириқларни танланг" class="select2 multiple-select" multiple="multiple" style="width:100%;" asp-items="ViewBag.TaskId"></select>
+                        <span class="invalid-feedback"></span>
+                    </div>
 
-<h4>Report</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="State" class="control-label"></label>
-                <input asp-for="State" class="form-control" />
-                <span asp-validation-for="State" class="text-danger"></span>
-            </div>
-            @*<div class="form-group">
-                <label asp-for="ReportDate" class="control-label"></label>
-                <input asp-for="ReportDate" class="form-control" />
-                <span asp-validation-for="ReportDate" class="text-danger"></span>
-            </div>*@
-            <div class="form-group">
-                <label asp-for="ReportDescription" class="control-label"></label>
-                <input asp-for="ReportDescription" class="form-control" />
-                <span asp-validation-for="ReportDescription" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ReportComment" class="control-label"></label>
-                <input asp-for="ReportComment" class="form-control" />
-                <span asp-validation-for="ReportComment" class="text-danger"></span>
-            </div>
-            @*<div class="form-group">
-                <label asp-for="ReportScore" class="control-label"></label>
-                <input asp-for="ReportScore" class="form-control" />
-                <span asp-validation-for="ReportScore" class="text-danger"></span>
-            </div>*@
-            <div class="form-group">
-                <label asp-for="TaskId" class="control-label"></label>
-                <select asp-for="TaskId" class ="form-control" asp-items="ViewBag.TaskId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="AddressId" class="control-label"></label>
-                <select asp-for="AddressId" class ="form-control" asp-items="ViewBag.AddressId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="ObjectId" class="control-label"></label>
-                <select asp-for="ObjectId" class ="form-control" asp-items="ViewBag.ObjectId"></select>
-            </div>
-            @*<div class="form-group">
-                <label asp-for="ManagerId" class="control-label"></label>
-                <select asp-for="ManagerId" class ="form-control" asp-items="ViewBag.ManagerId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="EmployeeId" class="control-label"></label>
-                <select asp-for="EmployeeId" class ="form-control" asp-items="ViewBag.EmployeeId"></select>
-            </div>*@
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+                    @*<div class="form-group">
+                    <label asp-for="ReportDate" class="control-label"></label>
+                    <input asp-for="ReportDate" class="form-control" />
+                    <span asp-validation-for="ReportDate" class="text-danger"></span>
+                </div>*@
+                    <div id="antwblok" class="form-group">
+                        <label class="control-label">Тавсиф</label>
+                        <input asp-for="ReportDescription" class="form-control" />
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    @*<div class="form-group">
+                    <label asp-for="ReportComment" class="control-label"></label>
+                    <input asp-for="ReportComment" class="form-control" />
+                    <span asp-validation-for="ReportComment" class="text-danger"></span>
+                </div>*@
+                    @*<div class="form-group">
+                    <label asp-for="ReportScore" class="control-label"></label>
+                    <input asp-for="ReportScore" class="form-control" />
+                    <span asp-validation-for="ReportScore" class="text-danger"></span>
+                </div>*@
+
+
+                    @*<div class="form-group">
+                    <label asp-for="ManagerId" class="control-label"></label>
+                    <select asp-for="ManagerId" class ="form-control" asp-items="ViewBag.ManagerId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EmployeeId" class="control-label"></label>
+                    <select asp-for="EmployeeId" class ="form-control" asp-items="ViewBag.EmployeeId"></select>
+                </div>*@
+                </div>
+                <div class="form-button-container">
+                    <a class="btn btn-outline-primary mr-3 no-outline" asp-action="Index">
+                        <i class="fas fa-arrow-left mr-2" ></i>Ортга қайтиш
+                    </a>
+                    <button id="submit" type="submit" name="submit" value="Submit" asp-action="CreateAfterAddress" hidden></button>
+                    <input type="submit" value="Яратиш" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+<script type="text/javascript">
+    
+    $(document).ready(function () {
+        var dataV = [];
+        var dataS;
+        function appendComment() {
+            var htmlString = "";
+            var len = $("ul.select2-selection__rendered li").length;
+            //for (var i = 0; i < len-1; i++) {
+            //    htmlString += "<input type='text' class='form-control'>";
+                
+            //}
+            $("ul.select2-selection__rendered li").each(function () {
+                //htmlString += "<div class='time-label'>" + "<span class='bg-red'> Топшириқларга тавсиф</span ></div>" +
+                //    +"<div> <i class='fas fa-envelope bg-blue'></i> <div class='timeline-item'> <h3 class='timeline-header'>" + this.title + "</h3>" +
+                //    +"<div class='timeline-body'> " + "<input type='text' class='form-control' title=\"" + this.title + "\">" + " </div></div></div>" +
+                //    +"<div>  <i class='fas fa-clock bg-gray'></i> </div>";
+                const title = this.title;
+                htmlString += " <label class=\"control-label\">" + title + " га изоҳ </label><input type='text' id=\"" + title + "\" name=\"" + title + "\" class='form-control' title=\"" + title + "\">"
+                dataV.pop(title);
+                dataV.push(title);
+            }); 
+            $("#antwblok").html(htmlString);
+        }
+
+        $(".select2").select2();
+
+        appendComment();
+        $("#parentTask").change(function () {
+            appendComment();
+        });
+
+        $("form#app").submit(function(e){
+            e.preventDefault();
+
+            const staticFields = ["AddressId", "ObjectId", "State", "__RequestVerificationToken"];
+            const formArray = $(this).closest("form").length > 0 ? $($(this).closest("form")[0]).serializeArray() : [];
+
+            let repObj = {};
+            repObj["tasks"] = [];
+            formArray.forEach((input) => {
+                if(staticFields.includes(input.name))
+                    repObj[input.name] = input.value;
+                else if(input.name === "ListofTasks"){
+                    repObj["tasks"].push({
+                        taskId: input.value,
+                        comment: ""
+                    });
+                } else {
+                    const taskIdInSelect = $(`select#ListTasks > option:contains("${input.name}")`).val();
+                    const taskIdx = repObj["tasks"].findIndex((el) => (el.taskId === taskIdInSelect));
+                    if(taskIdx !== -1) {
+                        repObj["tasks"][taskIdx]["comment"] = input.value;
+                    }
+                   
+                }
+            });
+            console.log(repObj);
+
+             $.ajax({
+                type: "POST",
+                url: "",
+                dataType: 'json',
+                contentType: 'application/json',
+                data: repObj,
+                success: function(result, status, xhr) {
+                    console.log("Success");
+                },
+                error: function(xhr, status, error) {
+                    console.log("ERROR!");
+                    console.log(error);
+                }
+            });
+            
+        });
+    });
+
+</script>

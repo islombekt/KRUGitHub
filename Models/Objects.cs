@@ -15,7 +15,7 @@ namespace KRU.Models
         
         public int? AddressId { get; set; }
         public virtual ICollection<Report> Reports { get; set; }
-
+        public virtual ICollection<FinanceReport> FinanceReports { get; set; }
         [ForeignKey("AddressId")]
         public virtual Address Address { get; set; }
     }

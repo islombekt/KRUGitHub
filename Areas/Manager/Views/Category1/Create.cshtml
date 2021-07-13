@@ -1,0 +1,35 @@
+﻿@model KRU.Models.Category1
+
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="card box-shadow card-simple-form card-small">
+    <h1>Яратиш</h1>
+
+    <h4>Категория х</h4>
+    <hr />
+    <div class="row">
+        <div class="col-12">
+            <form class="kru custom-validation" asp-action="Create">
+                <div class="kru-form-container-small">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Name_C1" class="control-label">Категория номи</label>
+                        <input asp-for="Name_C1" class="form-control" />
+                        <span class="invalid-feedback"></span>
+                    </div>
+                </div>
+                <div class="form-button-container">
+                    <a class="btn btn-outline-primary mr-3 no-outline" asp-action="Index">
+                        <i class="fas fa-arrow-left mr-2" ></i>Ортга қайтиш
+                    </a>
+                    <input type="submit" value="Яратиш" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

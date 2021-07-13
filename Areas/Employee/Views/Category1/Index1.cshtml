@@ -1,0 +1,72 @@
+﻿@model IEnumerable<KRU.Models.Category1>
+
+@{
+    ViewData["Title"] = "Index";
+  
+}
+
+<h1>Категориялар</h1>
+<div class="card">
+    <div class="card-body">
+        <table id="example1" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        x
+                    </th>
+                    <th>x.x</th>
+                    <th>x.x.x</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    @if (item.Category11s != null && item.Category11s.Count != 0)
+                    {
+
+                        @foreach (var ix in item.Category11s)
+                        {
+
+                            @if (ix.Category111s != null && ix.Category111s.Count != 0)
+                            {
+                                @foreach (var i in ix.Category111s)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.Name_C1)</td>
+                                        <td>@Html.DisplayFor(modelItem => ix.Name_C11)</td>
+
+                                        <td>@Html.DisplayFor(modelItem => i.Name_C111)</td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.Name_C1)</td>
+                                    <td>@Html.DisplayFor(modelItem => ix.Name_C11)</td>
+                                    <td>-</td>
+                                </tr>
+                            }
+
+                        }
+                    }
+                    else
+                    {
+
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Name_C1)</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <div class="form-button-container">
+            <a class="btn btn-outline-primary mr-3 no-outline" asp-action="Index">
+                <i class="fas fa-arrow-left mr-2"></i>Ортга қайтиш
+            </a>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,66 @@
+﻿@model KRU.Models.Report
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="modal fade" id="addEmployee">
+    <h1>Тафсилотлар</h1>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h4 class="modal-title" id="addEmployeeLabel">Кунлик ҳисоботи тафсилотлари</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>x</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered table-hover">
+                    <tbody>
+                        <tr>
+                            <td>Адрес</td>
+                            <td>@Html.DisplayFor(model => model.Address.Building)</td>
+                        </tr>
+                        <tr>
+                            <td>Объект</td>
+                            <td>@Html.DisplayFor(model => model.Objects.ObjectName)</td>
+                        </tr>
+                        <tr>
+                            <td>Задача</td>
+                            <td>@Html.DisplayFor(model => model.Tasks.TaskName)</td>
+                        </tr>
+                        <tr>
+                            <td>Описание</td>
+                            <td>@Html.DisplayFor(model => model.ReportDescription)</td>
+                        </tr>
+                        <tr>
+                            <td>Статус</td>
+                            <td>@Html.DisplayFor(model => model.State)</td>
+                        </tr>
+                        <tr>
+                            <td>Дата</td>
+                            <td>@Html.DisplayFor(model => model.ReportDate)</td>
+                        </tr>
+                        <tr>
+                            <td>Коммент</td>
+                            <td>@Html.DisplayFor(model => model.ReportComment)</td>
+                        </tr>
+                        <tr>
+                            <td>Балл</td>
+                            <td>@Html.DisplayFor(model => model.ReportScore)</td>
+                        </tr>
+                        <tr>
+                            <td>Менеджер</td>
+                            <td> @Html.DisplayFor(model => model.Manager.User.FullName)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

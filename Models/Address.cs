@@ -20,6 +20,8 @@ namespace KRU.Models
         
         public string City { get; set; } 
         public virtual ICollection<Report> Reports { get; set; }
+        public virtual ICollection<Plan> Plans { get; set; }
+        public virtual ICollection<FinanceReport> FinanceReports { get; set; }
         public virtual ICollection<Users> Users { get; set; }
         public virtual ICollection<Objects> Objects { get; set; }
     }

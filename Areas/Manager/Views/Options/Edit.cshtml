@@ -1,0 +1,47 @@
+﻿@model KRU.Models.Option
+
+@{
+    ViewData["Title"] = "Edit";
+    int qst = ViewBag.qst;
+}
+<div class="card box-shadow card-simple-form card-small">
+    <h1>Таҳрирлаш</h1>
+    <h4>Савол</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="OptionId" />
+                <div class="form-group">
+                    <label asp-for="OptName" class="control-label">Вариант</label>
+                    <input asp-for="OptName" class="form-control" />
+                    <span asp-validation-for="OptName" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="Correct" /> Тогри жавоб
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label asp-for="QuestionId" class="control-label"></label>
+                    <select asp-for="QuestionId" class="form-control" asp-items="ViewBag.QuestionId"></select>
+                    <span asp-validation-for="QuestionId" class="text-danger"></span>
+                </div>
+                <div class="form-button-container">
+                    <a class="btn btn-outline-primary mr-3 no-outline" asp-controller="Questions" asp-action="Details" asp-route-id="@qst">
+                        <i class="fas fa-arrow-left mr-2"></i>Ортга қайтиш
+                    </a>
+
+                    <input type="submit" value="Сақлаш" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

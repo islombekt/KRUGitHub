@@ -1,0 +1,69 @@
+﻿@model KRU.Models.Test
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="card box-shadow card-simple-form card-small">
+    <h1>Яратиш</h1>
+
+    <h4>Тест</h4>
+    <hr />
+    
+        <div class="row">
+            <div class="col-12">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="TestName" class="control-label">Қисқача ном</label>
+                        <input asp-for="TestName" class="form-control" />
+                        <span asp-validation-for="TestName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TestDescription" class="control-label">Қисқача тафсилот</label>
+                        <input asp-for="TestDescription" class="form-control" />
+                        <span asp-validation-for="TestDescription" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TestStarted" class="control-label">Бошланиш санаси</label>
+                        <input asp-for="TestStarted" class="form-control" />
+                        <span asp-validation-for="TestStarted" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TestEnd" class="control-label">Тугаш санаси</label>
+                        <input asp-for="TestEnd" class="form-control" />
+                        <span asp-validation-for="TestEnd" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Time" class="control-label">Бериладган дақиқалар</label>
+                        <input asp-for="Time" class="form-control" />
+                        <span asp-validation-for="Time" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="RandomQuestions" class="control-label">Тасодифий саволлар сони</label>
+                        <input asp-for="RandomQuestions" class="form-control" />
+                        <span asp-validation-for="RandomQuestions" class="text-danger"></span>
+                    </div>
+                    @*<div class="form-group">
+                            <label asp-for="ManagerId" class="control-label"></label>
+                            <select asp-for="ManagerId" class ="form-control" asp-items="ViewBag.ManagerId"></select>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DepartmentId" class="control-label"></label>
+                            <select asp-for="DepartmentId" class ="form-control" asp-items="ViewBag.DepartmentId"></select>
+                        </div>*@
+                <div class="form-button-container">
+                    <a class="btn btn-outline-primary mr-3 no-outline" asp-action="Index">
+                        <i class="fas fa-arrow-left mr-2"></i>Ортга қайтиш
+                    </a>
+                    <input type="submit" value="Яратиш" class="btn btn-primary" />
+                </div>
+                </form>
+            </div>
+      
+    </div>
+
+    </div>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

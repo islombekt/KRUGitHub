@@ -1,0 +1,250 @@
+﻿@model IEnumerable<KRU.Models.Test>
+
+@{
+    ViewData["Title"] = "Index";
+    int a = 0;
+    int count = 1;
+}
+
+
+<div class="callout callout-info">
+    <div class="flex-container align-items-center">
+        <i class="fas fa-info-circle"></i><h5>Тест:</h5>
+    </div>
+    Вариантларни белгилаб 'Юбориш' тугмасини босинг.
+</div>
+
+
+<div>
+
+    <div class="row">
+        <section class="col-lg-9 connectedSortable ui-sortable">
+            <div style="background: #007991; background: -webkit-linear-gradient(to right, #007991, #78ffd6); background: linear-gradient(to right, #007991, #78ffd6); color:white;" class="border rounded-pill ">
+                <div style="margin-left:40%">
+                    <p class="mb-0 font-weight-bold text-uppercase">Дақиқа қолди</p>
+                    <h1 style="text-transform: uppercase; font-weight: bold;" id="countdown"></h1>
+                </div>
+            </div>
+            <br />
+            <div class="card box-shadow card-simple-form">
+
+                <form id="testForm" asp-controller="Empl_Selected_Option" asp-action="Create">
+                    @foreach (var item in Model)
+                    {
+
+                        <input type="hidden" id="timeset" value="@item.Time" />
+
+                        <div class="card card-info">
+                            @foreach (var ques in item.Questions)
+                            {
+                                <div class="card-header">
+
+                                    <h3 class="card-title"> @count. @Html.DisplayFor(modelItem => ques.QName)</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="input-group mb-3">
+
+                                        @foreach (var opt in ques.Options)
+                                        {
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="@ques.QuestionId" value="@opt.OptionId" id="@opt.OptionId">
+                                                <label class="form-check-label" for="@opt.OptionId">
+                                                    @Html.DisplayFor(modelItem => opt.OptName)
+                                                </label>
+                                            </div>
+
+                                        }
+
+
+                                    </div>
+                                </div>
+                                count++;
+                            }
+                        </div>
+
+
+
+
+                    }
+                    <input asp-controller="Empl_Selected_Option" asp-action="Create" type="submit" value="Юбориш" class="btn btn-primary" />
+
+                </form>
+
+
+            </div>
+        </section>
+
+
+
+
+        <section class="col-lg-3 connectedSortable ui-sortable">
+
+            <div class="card box-shadow card-simple-form">
+                @foreach (var item in Model)
+                {
+                    if (a == 0)
+                    {
+                        <input type="hidden" id="testId" value="@item.TestId" />
+                        <dl class="row">
+                            <dt class="col-sm-6">
+                                Тест
+                            </dt>
+                            <dd class="col-sm-6">
+                                @Html.DisplayFor(model => item.TestName)
+                            </dd>
+                            <dt class="col-sm-6">
+                                Тавсиф
+                            </dt>
+                            <dd class="col-sm-6">
+                                @Html.DisplayFor(model => item.TestDescription)
+                            </dd>
+                            <dt class="col-sm-6">
+                                Бошланиш вақти
+                            </dt>
+                            <dd class="col-sm-6">
+                                @Html.DisplayFor(model => item.TestStarted)
+                            </dd>
+                            <dt class="col-sm-6">
+                                Тугаш вақти
+                            </dt>
+                            <dd class="col-sm-6">
+                                @Html.DisplayFor(model => item.TestEnd)
+                            </dd>
+
+                            <dt class="col-sm-6">
+                                Менеджер
+                            </dt>
+                            <dd class="col-sm-6">
+                                @Html.DisplayFor(model => item.Manager.User.FullName)
+                            </dd>
+                            <dt class="col-sm-6">
+                                Департамент
+                            </dt>
+                            <dd class="col-sm-6">
+                                @Html.DisplayFor(model => item.Department.DepartmentName)
+                            </dd>
+
+                        </dl>
+                    }
+                    else
+                    {
+
+                    }
+                    a++;
+                }
+                <div class="row">
+
+
+                </div>
+            </div>
+
+
+        </section>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function myFunct() {
+        const TestId1 = document.getElementById('testId').value;
+        const formData = $("#testForm").serializeArray();
+        let listObj = [];
+        for (var i = 0; i < formData.length; i++) {
+            const name = formData[i]["name"];
+            const value = formData[i]["value"];
+
+            if (name === "__RequestVerificationToken") continue;
+
+            listObj.push({
+
+                "questionId": name,
+                "optionId": value,
+                "testId": TestId1,
+            });
+
+        }
+
+        console.log(listObj);
+        //$.ajax({
+        //    type: 'POST',
+        //    url: '/Employee/Tests/PostTests',
+        //    data: { Empl_Selected_Option: listObj },
+        //    contentType: 'application/json',
+        //    headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val(), "contentType": 'application/json',},
+        //    dataType: 'json',
+        //    async: true,
+        //    success: function (msg) {
+        //        console.log(msg);
+        //    }
+        //});
+        const TestId = document.getElementById('testId').value;
+
+        fetch("/Employee/Tests/PostTests",
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val(),
+                },
+                method: "POST",
+                body: JSON.stringify(listObj)
+            })
+            .then(function (res) { window.location.href = "https://localhost:44335/Employee/Tests/Details/" + TestId; })
+            .catch(function (res) { console.log('res err ', res) })
+    }
+
+    $(document).ready(function () {
+        console.log("Loaded!");
+        $("#testForm").submit(function (e) {
+            e.preventDefault();
+            myFunct();
+        });
+    });
+    var startingMinutes = document.getElementById("timeset").value | 0;
+    let time;
+    if (sessionStorage.getItem("timeStart") === null || sessionStorage.getItem("timeStart") === 0 || sessionStorage.getItem("timeStart") === "") {
+        sessionStorage.setItem("timeStart", startingMinutes);
+        time = startingMinutes * 60;
+        console.log("12354");
+        console.log(time);
+        console.log("555s");
+    }
+    else if (sessionStorage.getItem("timeStart") != null) {
+        time = Math.floor(sessionStorage.getItem("timeStart"));
+    }
+
+    console.log(sessionStorage.getItem("timeStart"));
+
+
+    const countdownEl = document.getElementById('countdown');
+    setInterval(updateCountdown, 1000)
+    console.log(countdownEl);
+    console.log("sds1");
+    function updateCountdown() {
+        const minutes = Math.floor(time / 60);
+        let seconds = time % 60;
+        console.log("sd2 s");
+        if (seconds < 10) {
+            countdownEl.innerHTML = `${minutes} : 0${seconds}`;
+        }
+        else {
+            countdownEl.innerHTML = `${minutes} : ${seconds}`;
+        }
+
+        console.log("sd2 ssss");
+        time--;
+        console.log("sds");
+        if (time < 0) {
+            time = 2;
+            console.log("sd22s");
+            sessionStorage.setItem("timeStart", null);
+            myFunct();
+
+        }
+        sessionStorage.setItem("timeStart", time);
+        console.log(sessionStorage.getItem("timeStart", time));
+    }
+
+    console.log(sessionStorage.getItem("timeStart"));
+
+</script>

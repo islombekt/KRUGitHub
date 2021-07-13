@@ -1,0 +1,89 @@
+﻿@model IEnumerable<KRU.Models.Employee>
+
+@{
+    ViewData["Title"] = "Index2";
+    int? tst = ViewBag.tst;
+}
+
+<div class="callout callout-info">
+    <div class="flex-container align-items-center">
+        <i class="fas fa-info-circle"></i><h5>Ходимлар:</h5>
+    </div>
+    Бу ердан сиз ходимлар рўйхатига киришингиз, қўшишингиз, ўчиришингиз ва таҳрирлашингиз мумкин.
+</div>
+
+<div class="form-button-container">
+    <a class="btn btn-outline-primary mr-3 no-outline" asp-controller="Tests" asp-action="Details" asp-route-id="@tst">
+        <i class="fas fa-arrow-left mr-2"></i>Ортга қайтиш
+    </a>
+
+</div>
+<div class="card box-shadow">
+    <div class="card-body">
+        <table id="example1" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Исми
+                    </th>
+                    <th>
+                        Фамилияси
+                    </th>
+                    <th>
+                        Телефон рақами
+                    </th>
+                    <th>
+                        Лавозим
+                    </th>
+                    <th>
+                        Йеғилган балл
+                    </th>
+                    @*<th>
+                            Ҳолат
+                        </th>*@
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                   
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.FName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.LName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Position)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RepCount)
+                </td>
+                @*<td>
+            @Html.DisplayFor(modelItem => item.EmployeeState)
+        </td>*@
+                <td class="table-button-container">
+
+                    <a data-bs-toggle="tooltip" title="Тафсилотлар" class="btn btn-outline-info kru-table-button" asp-controller="Empl_Selected_Option" asp-action="Index" asp-route-Empl="@item.EmployeeId" asp-route-test="@item.FinCount"><i class="fas fa-info"></i></a>
+                    @*<a data-bs-toggle="tooltip" title="Delete" class="btn btn-outline-danger kru-table-button" asp-action="Delete" asp-route-id="@item.EmployeeId"><i class="far fa-trash-alt"></i></a>*@
+                </td>
+
+            </tr>
+        }
+            </tbody>
+        </table>
+    </div>
+    </div>
+
+<div class="form-button-container">
+    <a class="btn btn-outline-primary mr-3 no-outline" asp-controller="Tests" asp-action="Details" asp-route-id="@tst">
+        <i class="fas fa-arrow-left mr-2"></i>Ортга қайтиш
+    </a>
+
+</div>

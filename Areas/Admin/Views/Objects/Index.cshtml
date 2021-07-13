@@ -3,39 +3,44 @@
 @{
     ViewData["Title"] = "Index";
 }
-
 <h1>Index</h1>
+<div class="buttons-container">
+    <a class="btn btn-default" asp-action="Create">
+        <i class="fas fa-plus mr-2"></i>Create New
+    </a>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ObjectName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ObjectName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address.Building)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ObjectId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ObjectId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ObjectId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="card">
+    <div class="card-body">
+        <table id="example1" class="table table-hover">
+            <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ObjectName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ObjectName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address.Building)
+                </td>
+                <td class="table-button-container">
+                    <a data-bs-toggle="tooltip" title="Edit" class="btn btn-outline-success kru-table-button" asp-action="Edit" asp-route-id="@item.ObjectId"><i class="far fa-edit"></i></a>
+                    <a data-bs-toggle="tooltip" title="Details" class="btn btn-outline-info kru-table-button" asp-action="Details" asp-route-id="@item.ObjectId"><i class="fas fa-info"></i></a>
+                    <a data-bs-toggle="tooltip" title="Delete" class="btn btn-outline-danger kru-table-button" asp-action="Delete" asp-route-id="@item.ObjectId"><i class="far fa-trash-alt"></i></a>
+                </td>
+            </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+﻿@model KRU.Models.Empl_Selected_Option
+
+@{
+    ViewData["Title"] = "Delete";
+    int sel = ViewBag.Sel;
+    int emp = ViewBag.Empl;
+    int tst = ViewBag.Tst;
+}
+
+<h1>Ўчириш</h1>
+<h3>Ҳақиқатан ҳам ўчиришни хоҳлайсизми?</h3>
+<br />
+<div class="card box-shadow card-simple-form">
+
+
+
+    <h4>Танланган вариант</h4>
+   
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+                <td>   Ҳодим</td>
+                <td> @Html.DisplayFor(model => model.Employee.User.FullName)</td>
+            </tr>
+            <tr>
+                <td>  Тест</td>
+                <td>  @Html.DisplayFor(model => model.Test.TestName)</td>
+            </tr>
+            <tr>
+                <td>  Савол</td>
+                <td>  @Html.DisplayFor(model => model.Question.QName)</td>
+            </tr>
+            <tr>
+                <td> Вариант</td>
+                <td>  @Html.DisplayFor(model => model.Option.OptName)</td>
+            </tr>
+           
+        </tbody>
+    </table>
+    <form asp-action="Delete" asp-route-id="@sel">
+        <input type="hidden" />
+        <input type="submit" value="Ўчириш" class="btn btn-danger" /> |
+        <a asp-action="Index" asp-controller="Empl_Selected_Option" asp-route-Empl="@emp" asp-route-test="@tst">Ортга қайтиш</a>
+    </form>
+</div>

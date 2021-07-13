@@ -1,0 +1,86 @@
+﻿@model IEnumerable<KRU.Models.FileHistory>
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="callout callout-info">
+    <div class="flex-container align-items-center">
+        <i class="fas fa-info-circle"></i><h5>Асослар:</h5>
+    </div>
+    Бу ердан сиз Асосларни яратишингиз, киришингиз, ўчиришингиз ва таҳрирлашингиз мумкин.
+</div>
+@*<div class="buttons-container">
+    <a class="btn btn-default" asp-action="Create"><i class="fas fa-plus mr-2"></i>Яратиш</a>
+</div>*@
+
+<div class="card">
+    <div class="card-body">
+        <table id="example2" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Асос номи
+                    </th>
+                    <th>
+                        Файл
+                    </th>
+                    <th>
+                        Тавсиф
+                    </th>
+                    <th>
+                        Бошланиш санаси
+                    </th>
+                    <th>
+                        Тугаш санаси
+                    </th>
+
+                    <th>
+                        Тур номи
+                    </th>
+                    @*<th></th>*@
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    var className = item.FileFinished ? "table-success" : "";
+                    <tr class="@className">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td  class="file-link">
+                            @if (item.FileUrl == "" || item.FileUrl == null)
+                            {
+                                <a>Файл бириктирилмаган</a>
+                            }
+                            else
+                            {
+
+                                <a asp-area="Employee" asp-controller="FileHistories" asp-action="Download_Config" asp-route-FileId="@item.FileId"> @Html.DisplayFor(modelItem => item.FileUrl)</a>
+
+                                @*@Html.DisplayFor(modelItem => item.FileUrl)*@
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FileStart)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FileEnd)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Task_Type.NameType)
+                        </td>
+                        @*<td class="table-button-container">
+                            <a data-bs-toggle="tooltip" title="Таҳрирлаш" class="btn btn-outline-success kru-table-button" asp-action="Edit" asp-route-id="@item.FileId"><i class="far fa-edit"></i></a>
+                            <a data-bs-toggle="tooltip" title="Тафсилотлар" class="btn btn-outline-info kru-table-button" asp-action="Details" asp-route-id="@item.FileId"><i class="fas fa-info"></i></a>
+                            <a data-bs-toggle="tooltip" title="Ўчириш" class="btn btn-outline-danger kru-table-button" asp-action="Delete" asp-route-id="@item.FileId"><i class="far fa-trash-alt"></i></a>
+                        </td>*@
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

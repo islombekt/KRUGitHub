@@ -1,0 +1,79 @@
+﻿@page
+@model LoginWith2faModel
+@{
+    Layout = null;
+    ViewData["Title"] = "Икки факторли аутентификация";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewData["Title"] - KRU</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/theme/plugins/fontawesome-free/css/all.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="/theme/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/theme/dist/css/adminlte.min.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="hold-transition login-page brand-background">
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="card box-shadow">
+        <h1>@ViewData["Title"]</h1>
+        <hr />
+        <p>Киришингиз аутентификатор дастури билан ҳимояланган. Аутентификатор кодингизни пастга киритинг.</p>
+        <div class="card-body login-card-body">
+            <div class="col-md-4">
+                <form method="post" asp-route-returnUrl="@Model.ReturnUrl">
+                    <input asp-for="RememberMe" type="hidden" />
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Input.TwoFactorCode">Аутентификатор коди</label>
+                        <input asp-for="Input.TwoFactorCode" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="Input.TwoFactorCode" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label asp-for="Input.RememberMachine">
+
+                                <input asp-for="Input.RememberMachine" />
+                                Ушбу машинани эслаб қолиш
+                            </label>
+                        </div>
+                    </div>
+                  
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Кириш</button>
+
+                        </div>
+
+                </form>
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Login", "Account", new { area = "Identity" })">
+                    <button type="submit" class="btn btn-link text-dark"><i class="fas fa-sign-out-alt mr-2"></i> Ортга</button>
+                </form>
+            </div>
+        </div>
+        @*<p>
+            Аутентификатор қурилмангизга кириш ҳуқуқингиз ёъқми? Сиз
+            <a id="recovery-code-login" asp-page="./LoginWithRecoveryCode" asp-route-returnUrl="@Model.ReturnUrl">тиклаш коди </a>билан киришингиз мумкин.
+        </p>*@
+    </div>
+    <script src="/theme/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="/theme/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/theme/dist/js/adminlte.min.js"></script>
+</body>
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }

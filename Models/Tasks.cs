@@ -15,14 +15,26 @@ namespace KRU.Models
         public string TaskName { get; set; }
         public string SumLost { get; set; }
         public string SumGain { get; set; }
+        public bool AllEmpl { get; set; }
+      
         public string Comment { get; set; }
         [NotMapped]
+        public int RepCount { get; set; }
+        [NotMapped]
+        public int FinCount { get; set; }
+
+        [NotMapped]
         public List<int> selectedFiles { get; set; }
+        [NotMapped]
+        public List<int> selectedEmployees { get; set; }
         public string File { get; set; }
+                    
         public bool Finished { get; set; } // finish the task
         public DateTime TaskStarted { get; set; } //manager
         public DateTime TaskEnd { get; set; } // manager
-     
+        public int? MasulEmplId { get; set; } //Mas'ul hodim
+        [ForeignKey("MasulEmplId")]
+        public Employee Employee { get; set; }
         public int? DepartmentId { get; set; }
         [ForeignKey("DepartmentId")]
         public virtual Department Department { get; set; }
@@ -30,7 +42,10 @@ namespace KRU.Models
         [ForeignKey("TaskTypeId")]
         public virtual Task_Type Task_Type { get; set; }
         public virtual ICollection<Report> Reports { get; set; }
+        public virtual ICollection<FinanceReport> FinanceReports { get; set; }
         public virtual ICollection<Task_File> Task_Files { get; set; }
+        public virtual ICollection<Task_Empl> Task_Emples { get; set; }
+        public virtual ICollection<Task_Report> Task_Reports { get; set; }
 
     }
 }

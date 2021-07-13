@@ -1,0 +1,124 @@
+﻿@model KRU.Models.Report
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="card box-shadow card-simple-form">
+    <h1>Таҳрирлаш</h1>
+
+    <h4>Кундалик ҳисобот</h4>
+    <hr />
+    <div class="row">
+        <div class="col-12">
+            <form class="kru custom-validation" asp-action="Edit">
+                <div class="kru-form-container status-kru">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="ReportId" />
+                    <input type="hidden" asp-for="ManagerId" />
+                    <div class="form-group">
+                        <label class="control-label">
+                            Ҳолат
+                        </label>
+                        <select id="status" asp-for="State" class="form-control">
+                            <option selected disabled>Ҳолатни танланг</option>
+                            <option value="8">На работе</option>
+                            <option value="7">День до праздника (7)</option>
+                            <option value="К">Командировка</option>
+                            <option value="У">Учебы</option>
+                            <option value="Уд">Удаленка</option>
+                            <option value="О">Отпуск</option>
+                            <option value="Б">Больничный</option>
+                            <option value="Пр">Праздник</option>
+                            <option value="б/с">Отпуск без сохранения заработной платы</option>
+                        </select>
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Сана</label>
+                        <input asp-for="ReportDate" class="form-control" />
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Тавсиф</label>
+                        <input asp-for="ReportDescription" class="form-control" />
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Изоҳ</label>
+                        <input asp-for="ReportComment" class="form-control" />
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Балл</label>
+                        <input asp-for="ReportScore" class="form-control" />
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div id="parentTask" class="form-group">
+                        <label class="control-label">Вазифа</label>
+                        <select asp-for="TaskId" class="select2 form-control" asp-items="ViewBag.TaskId"></select>
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div id="parentAddress" class="form-group">
+                        <label class="control-label">Адрес</label>
+                        <select asp-for="AddressId" id="address" onchange="javascript: $('#submit').click();" class="select2 form-control" asp-items="ViewBag.AddressId"></select>
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div id="object" class="form-group">
+                        <label class="control-label">Объект</label>
+                        <select asp-for="ObjectId" id="object1" class="select2 form-control" asp-items="ViewBag.ObjectId"></select>
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Ходим</label>
+                        <select asp-for="EmployeeId" class="select2 form-control" asp-items="ViewBag.EmployeeId"></select>
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div class="form-group align-self-end flex-container align-items-end">
+                        <label class="form-check-label">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                            <div class="icheck-primary d-inline">
+                                <input type="checkbox" id="checkboxPrimary1" asp-for="HaveSeen" />
+                                <label for="checkboxPrimary1">
+                                </label>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-button-container">
+                    <a class="btn btn-outline-primary mr-3 no-outline" asp-action="Index">
+                        <i class="fas fa-arrow-left mr-2"></i>Ортга қайтиш
+                    </a>
+                    <button id="submit" type="submit" name="submit" value="Submit" asp-action="EditAfterAddress" asp-route-id="@Model.ReportId" hidden></button>
+                    <input type="submit" value="Сақлаш" class="btn btn-primary" />
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script src="~/theme/plugins/jquery/jquery.min.js"></script>
+<script>
+    jQuery(document).ready(function ($) {
+        console.log("here")
+        // hide all optional elements
+        $('#object').filter(':hidden');
+        $("#address").each(function () {
+            console.log($('#object1').val())
+            if ($('#object1').val() === "" || $('#object1').val() === null) {
+                console.log($('#object').val())
+
+                $('#object').filter(':hidden');
+            }
+
+            else
+                $('#object').slideDown();
+        });
+
+    });
+</script>

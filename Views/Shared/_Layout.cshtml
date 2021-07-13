@@ -1,23 +1,40 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>@ViewData["Title"] - KRU</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Комплаенс назорат дастури</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin="" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
     <!-- Font Awesome Est -->
     <link rel="stylesheet" href="~/theme/plugins/fontawesome-free/css/all.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="~/theme/dist/css/adminlte.min.css">
-    <link href="~/theme/plugins/datatables-autofill/css/autoFill.bootstrap4.min.css" rel="stylesheet"/>
+
+    <link href="~/theme/plugins/datatables-autofill/css/autoFill.bootstrap4.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/theme/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 
+    <link href="~/theme/plugins/icheck-bootstrap/icheck-bootstrap.min.css" rel="stylesheet">
+
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="~/theme/plugins/daterangepicker/daterangepicker.css">
+    <link href="~/theme/plugins/dropzone/min/dropzone.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="~/theme/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+
+    <!-- Select2 -->
     <link rel="stylesheet" href="~/theme/plugins/select2/css/select2.min.css">
     <link rel="stylesheet" href="~/theme/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 
-    <link href="~/theme/plugins/icheck-bootstrap/icheck-bootstrap.min.css" rel="stylesheet">
-    <link href="~/theme/plugins/dropzone/min/dropzone.min.css">
-    <link rel="stylesheet" href="~/css/style.css"/>
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/theme/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="~/css/style.css" />
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <header class="wrapper">
@@ -38,7 +55,7 @@
         <!-- Brand Logo -->
         <!-- Sidebar -->
         <div class="sidebar">
-            <a class="brand-link">
+            <a href="/" class="brand-link kru-brand-link">
                 <img id="ung-logo" src="~/images/Logotype-UzbekNefteGaz-.png" class="ung-logo"/>
             </a>
 
@@ -48,136 +65,282 @@
                     data-accordion="false">
                     @if (User.IsInRole("Admin"))
                     {
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-user-friends"></i>
-                            <p>
-                                Ходим<i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li id="workers_admin" class="nav-item">
-                                <a class="nav-link" asp-area="Admin" asp-controller="Users" asp-action="Index">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>
-                                        Ходим
-                                    </p>
-                                </a>
-                            </li>
-                            <li id="fired" class="nav-item">
-                                <a class="nav-link" asp-area="Admin" asp-controller="Users" asp-action="Index">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Уволены</p>
-                                </a>
-                            </li>
+                        <li id="employees" class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-user-friends"></i>
+                                <p>
+                                    Ходим<i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li id="workers_admin" class="nav-item">
+                                    <a class="nav-link" asp-area="Admin" asp-controller="Users" asp-action="Index">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>
+                                            Ходим
+                                        </p>
+                                    </a>
+                                </li>
+                                <li id="fired" class="nav-item">
+                                    <a class="nav-link" asp-area="Admin" asp-controller="Users" asp-action="Index">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Ишдан бўшатилганлар</p>
+                                    </a>
+                                </li>
 
-                        </ul>
-                    </li>
-                    <li id="department" class="nav-item has-treeview">
-                        <a asp-area="Admin" asp-controller="Departments" asp-action="Index" class="nav-link">
-                            @*<img class="nav-icon" src="~/image/4.png"/>*@
-                            <i class="nav-icon fas fa-sitemap"></i>
-                            <p>
-                                Департамент
-                            </p>
-                        </a>
+                            </ul>
+                        </li>
+                        <li id="department" class="nav-item has-treeview">
+                            <a asp-area="Admin" asp-controller="Departments" asp-action="Index" class="nav-link">
+                                @*<img class="nav-icon" src="~/image/4.png"/>*@
+                                <i class="nav-icon fas fa-sitemap"></i>
+                                <p>
+                                    Департамент
+                                </p>
+                            </a>
 
-                    </li>
-                    <li id="address" class="nav-item has-treeview">
-                        <a asp-area="Admin" asp-controller="Addresses" asp-action="Index" class="nav-link">
-                            @*<img class="nav-icon" src="~/image/4.png"/>*@
-                            <i class="nav-icon fas fa-building"></i>
-                            <p>
-                                Адрес
-                            </p>
-                        </a>
+                        </li>
+                        <li id="address" class="nav-item has-treeview">
+                            <a asp-area="Admin" asp-controller="Addresses" asp-action="Index" class="nav-link">
+                                @*<img class="nav-icon" src="~/image/4.png"/>*@
+                                <i class="nav-icon fas fa-building"></i>
+                                <p>
+                                    Адрес
+                                </p>
+                            </a>
 
-                    </li>
+                        </li>
+                        <li id="categories" class="nav-item has-treeview">
+                            <a asp-area="Admin" asp-controller="Category1" asp-action="Index" class="nav-link">
+                                @*<img class="nav-icon" src="~/image/4.png"/>*@
+                                <i class="nav-icon fas fa-project-diagram"></i>
+                                <p>
+                                    Категориялар
+                                </p>
+                            </a>
+
+                        </li>
                     }
                     @if (User.IsInRole("Manager"))
                     {
-                    <li id="report" class="nav-item has-treeview">
-                        <a asp-area="Manager" asp-controller="Reports" asp-action="Index" class="nav-link">
-                            @*<img class="nav-icon" src="~/image/4.png"/>*@
-                            <i class="nav-icon fas fa-clipboard-list"></i>
-                            <p>
-                                Кунлик отчёт
-                            </p>
-                        </a>
+                        <li id="employees" class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-user-friends"></i>
+                                <p>
+                                    Ходим<i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li id="workers_admin" class="nav-item">
+                                    <a class="nav-link" asp-area="Manager" asp-controller="Employees" asp-action="Index">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>
+                                            Ходим
+                                        </p>
+                                    </a>
+                                </li>
+                                <li id="fired" class="nav-item">
+                                    <a class="nav-link" asp-area="Manager" asp-controller="Employees" asp-action="Index2">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Ишдан бўшатилганлар</p>
+                                    </a>
+                                </li>
 
-                    </li>
-                    <li id="plan" class="nav-item has-treeview">
-                        <a asp-area="Manager" asp-controller="Plans" asp-action="Index" class="nav-link">
-                            @*<img class="nav-icon" src="~/image/4.png"/>*@
-                            <i class="nav-icon fas fa-calendar-alt"></i>
-                            <p>
-                                План
-                            </p>
-                        </a>
+                            </ul>
+                        </li>
 
-                    </li>
-                    <li id="tasks" class="nav-item has-treeview">
-                        <a asp-area="Manager" asp-controller="Tasks" asp-action="Index" class="nav-link">
-                            @*<img class="nav-icon" src="~/image/4.png"/>*@
-                            <i class="nav-icon fas fa-tasks"></i>
-                            <p>
-                                Топшириқлар
-                            </p>
-                        </a>
+                        <li id="report" class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-clipboard-list"></i>
+                                <p>
+                                    Кунлик ҳисобот<i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li id="workers_admin" class="nav-item">
+                                    <a asp-area="Manager" asp-controller="Reports" asp-action="Index" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>
+                                            Барчаси
+                                        </p>
+                                    </a>
+                                </li>
+                                <li id="fired" class="nav-item">
+                                    <a asp-area="Manager" asp-controller="Reports" asp-action="Index2" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Бугун</p>
+                                    </a>
+                                </li>
 
-                    </li>
-                    <li id="workers_manager" class="nav-item has-treeview">
-                        <a asp-area="Manager" asp-controller="Employees" asp-action="Index" class="nav-link">
-                            @*<img class="nav-icon" src="~/image/4.png"/>*@
-                            <i class="nav-icon fas fa-user-friends"></i>
-                            <p>
-                                Ходимлар
-                            </p>
-                        </a>
-                    </li>
-                    <li id="documents" class="nav-item has-treeview">
-                        <a asp-area="Manager" asp-controller="FileHistories" asp-action="Index" class="nav-link">
-                            @*<img class="nav-icon" src="~/image/4.png"/>*@
-                            <i class="nav-icon fas fa-file-alt"></i>
-                            <p>
-                                Документлар
-                            </p>
-                        </a>
+                            </ul>
 
-                    </li>
-                    <li id="types" class="nav-item has-treeview">
-                        <a asp-area="Manager" asp-controller="Task_Type" asp-action="Index" class="nav-link">
-                            @*<img class="nav-icon" src="~/image/4.png"/>*@
-                            <i class="nav-icon fas fa-print"></i>
-                            <p>
-                                Типы
-                            </p>
-                        </a>
+                        </li>
+                        <li id="plan" class="nav-item has-treeview">
+                            <a asp-area="Manager" asp-controller="Plans" asp-action="Index" class="nav-link">
+                                @*<img class="nav-icon" src="~/image/4.png"/>*@
+                                <i class="nav-icon fas fa-calendar-alt"></i>
+                                <p>
+                                    План
+                                </p>
+                            </a>
 
-                    </li>
+                        </li>
+                        <li id="fin_employee" class="nav-item has-treeview">
+                            <a asp-area="Manager" asp-controller="FinanceReports" asp-action="Index" class="nav-link">
+                                @*<img class="nav-icon" src="~/image/4.png"/>*@
+                                <i class="nav-icon fas fa-balance-scale-right"></i>
+                                <p>
+                                    Текширувлар ҳисоботи
+                                </p>
+                            </a>
+
+                        </li>
+                        <li id="tasks" class="nav-item has-treeview">
+                            <a asp-area="Manager" asp-controller="Tasks" asp-action="Index" class="nav-link">
+                                @*<img class="nav-icon" src="~/image/4.png"/>*@
+                                <i class="nav-icon fas fa-tasks"></i>
+                                <p>
+                                    Топшириқлар
+                                </p>
+                            </a>
+
+                        </li>
+
+                        <li id="categories" class="nav-item has-treeview">
+                            <a asp-area="Manager" asp-controller="Category1" asp-action="Index" class="nav-link">
+                                @*<img class="nav-icon" src="~/image/4.png"/>*@
+                                <i class="nav-icon fas fa-project-diagram"></i>
+                                <p>
+                                    Категориялар
+                                </p>
+                            </a>
+
+                        </li>
+                        <li id="documents" class="nav-item has-treeview">
+                            <a asp-area="Manager" asp-controller="FileHistories" asp-action="Index" class="nav-link">
+                                @*<img class="nav-icon" src="~/image/4.png"/>*@
+                                <i class="nav-icon fas fa-file-alt"></i>
+                                <p>
+                                    Асослар
+                                </p>
+                            </a>
+
+                        </li>
+                        <li id="types" class="nav-item has-treeview">
+                            <a asp-area="Manager" asp-controller="Task_Type" asp-action="Index" class="nav-link">
+                                @*<img class="nav-icon" src="~/image/4.png"/>*@
+                                <i class="nav-icon fas fa-print"></i>
+                                <p>
+                                    Турлар
+                                </p>
+                            </a>
+
+                        </li>
+                        <li id="tests" class="nav-item has-treeview">
+                            <a asp-area="Manager" asp-controller="Tests" asp-action="Index" class="nav-link">
+                                @*<img class="nav-icon" src="~/image/4.png"/>*@
+                                <i class="nav-icon fas fa-brain"></i>
+                                <p>
+                                    Тест
+                                </p>
+                            </a>
+
+                        </li>
                     }
                     @if (User.IsInRole("Employee"))
                     {
-                    <li id="daily_report" class="nav-item has-treeview">
-                        <a asp-area="Employee" asp-controller="Reports" asp-action="Index" class="nav-link">
-                            @*<img class="nav-icon" src="~/image/4.png"/>*@
-                            <i class="nav-icon fas fa-clipboard-list"></i>
-                            <p>
-                                Кунлик отчёт
-                            </p>
-                        </a>
+                        <li id="report" class="nav-item has-treeview">
+                            <a asp-area="Employee" asp-controller="Reports" asp-action="Index" class="nav-link">
+                                @*<img class="nav-icon" src="~/image/4.png"/>*@
+                                <i class="nav-icon fas fa-clipboard-list"></i>
+                                <p>
+                                    Кунлик ҳисобот
+                                </p>
+                            </a>
 
-                    </li>
-                    <li id="plan_employee" class="nav-item has-treeview">
-                        <a asp-area="Employee" asp-controller="Plans" asp-action="Index" class="nav-link">
-                            @*<img class="nav-icon" src="~/image/4.png"/>*@
-                            <i class="nav-icon fas fa-calendar-alt"></i>
-                            <p>
-                                План
-                            </p>
-                        </a>
+                        </li>
+                        <li id="plan" class="nav-item has-treeview">
+                            <a asp-area="Employee" asp-controller="Plans" asp-action="Index" class="nav-link">
+                                @*<img class="nav-icon" src="~/image/4.png"/>*@
+                                <i class="nav-icon fas fa-calendar-alt"></i>
+                                <p>
+                                    План
+                                </p>
+                            </a>
 
-                    </li>
+                        </li>
+                        <li id="fin_employee" class="nav-item has-treeview">
+                            <a asp-area="Employee" asp-controller="FinanceReports" asp-action="Index" class="nav-link">
+                                @*<img class="nav-icon" src="~/image/4.png"/>*@
+                                <i class="nav-icon fas fa-balance-scale-right"></i>
+                                <p>
+                                    Текширувлар ҳисоботи
+                                </p>
+                            </a>
+
+                        </li>
+
+                        <li id="tasks" class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-tasks"></i>
+                               
+                                <span class="badge badge-info right" id="noti_Container"></span>
+                                <p>
+                                    Топшириқлар<i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li id="workers_admin" class="nav-item">
+                                    <a asp-area="Employee" asp-controller="Tasks" asp-action="Index" class="nav-link">
+                                        <i class="fas fa-angle-right nav-icon"></i>
+                                        <p>
+                                            Барчаси
+                                        </p>
+                                    </a>
+                                </li>
+                                <li id="fired" class="nav-item">
+                                    <a asp-area="Employee" asp-controller="Tasks" asp-action="Index2" class="nav-link">
+                                        <i class="fas fa-angle-right nav-icon"></i>
+                                       
+                                        <p>Операцион вазифа</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                        </li>
+
+                        <li id="categories" class="nav-item has-treeview">
+                            <a asp-area="Employee" asp-controller="Category1" asp-action="Index" class="nav-link">
+                                <i class="nav-icon fas fa-project-diagram"></i>
+                                <p>
+                                    Категориялар
+                                </p>
+                            </a>
+
+                        </li>
+                        <li id="documents" class="nav-item has-treeview">
+                            <a asp-area="Employee" asp-controller="FileHistories" asp-action="Index" class="nav-link">
+                                @*<img class="nav-icon" src="~/image/4.png"/>*@
+                                <i class="nav-icon fas fa-file-alt"></i>
+                                <p>
+                                    Асослар
+                                </p>
+                            </a>
+
+                        </li>
+                        <li id="tests" class="nav-item has-treeview">
+                            <a asp-area="Employee" asp-controller="Tests" asp-action="Index" class="nav-link">
+                                @*<img class="nav-icon" src="~/image/4.png"/>*@
+                                <i class="nav-icon fas fa-brain"></i>
+                                <span class="badge badge-info right" id="test_Container"></span>
+                                <p>
+                                    Тест
+                                </p>
+                            </a>
+
+                        </li>
+
                     }
                 </ul>
 
@@ -187,7 +350,7 @@
         <!-- /.sidebar -->
     </aside>
 </header>
-<div class="content-wrapper">
+<div class="content-wrapper brand-background">
     <section class="content">
         <div class="container-fluid kru-container">
             @RenderBody()
@@ -199,30 +362,20 @@
     <div class="float-lg-right d-none d-sm-block">
         <b>Version</b> 1.0.0
     </div>
-    <strong>Copyright &copy; 2020 <a href="http://www.ung.uz/">Узбекнефтегаз</a>.</strong> All rights
+    <strong>Copyright &copy; 2021 <a href="http://www.ung.uz/">Узбекнефтегаз</a>.</strong> All rights
     reserved.
 </footer>
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-
-<!-- jQuery -->
-@*
-<script src="~/theme/plugins/jquery/jquery.min.js"></script>
-*@
 <script src="~/theme/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 <!-- Select2 -->
 <script src="~/theme/plugins/select2/js/select2.full.min.js"></script>
+<!-- InputMask -->
+<script src="~/theme/plugins/moment/moment.min.js"></script>
+<script src="~/theme/plugins/inputmask/jquery.inputmask.min.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="~/theme/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 
-<!-- AdminLTE App -->
-<script src="~/theme/dist/js/adminlte.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="~/theme/dist/js/demo.js"></script>
-@*
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-*@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
 <script src="~/theme/plugins/datatables/jquery.dataTables.min.js"></script>
@@ -231,11 +384,70 @@
 <script src="~/theme/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="~/theme//plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
 <script src="~/theme//plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<script src="~/theme/plugins/inputmask/jquery.inputmask.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.24/dataRender/datetime.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.11/sorting/date-eu.js"></script>
 
+
+<!-- AdminLTE App -->
+<script src="~/theme/dist/js/adminlte.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="~/theme/dist/js/demo.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/ramda/0.25.0/ramda.min.js"></script>
+
+<script src="~/js/validate.js"></script>
 <script src="~/js/user.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
 
 @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "/Employee/Tasks/GetTasks",
+            traditional: true,
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                console.log(data);
+
+                var notifications = data;
+
+
+                //  var prevId = notifications[1].requestId;
+                // console.log(prevId);
+                document.getElementById("noti_Container").innerHTML = notifications;
+                //  $("#noti_Container").val(notifications);
+
+            },
+            error: function (xhr, status, error) {
+
+            }
+        });
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "/Employee/Tests/GetTasks",
+            traditional: true,
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                console.log(data);
+
+                var notifications = data;
+
+
+                //  var prevId = notifications[1].requestId;
+                // console.log(prevId);
+                document.getElementById("test_Container").innerHTML = notifications;
+                //  $("#noti_Container").val(notifications);
+
+            },
+            error: function (xhr, status, error) {
+
+            }
+        });
+    });
+    </script>

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<KRU.Models.Category1>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="callout callout-info">
+    <div class="flex-container align-items-center">
+        <i class="fas fa-info-circle"></i><h5>Категориялар:</h5>
+    </div>
+    Бу ердан сиз биринчи даражали тоифаларга киришингиз мумкин.
+</div>
+
+<div class="buttons-container">
+    <a asp-action="Create" type="button" class="btn btn-default"><i class="fas fa-plus mr-2"></i>Яратиш</a>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="flex-container justify-content-end">
+            <a class="btn btn-outline-primary no-outline mb-2 float-left" asp-controller="Category1" asp-action="Index1">Барчаси</a>
+        </div>
+        <table id="example1" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Категория х
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="file-link">
+                        @Html.DisplayFor(modelItem => item.Name_C1)
+                    </td>
+                    <td class="table-button-container">
+                        <a data-bs-toggle="tooltip" title="Таҳрирлаш" class="btn btn-outline-success kru-table-button" asp-action="Edit" asp-route-id="@item.Category1Id"><i class="far fa-edit"></i></a>
+                        <a data-bs-toggle="tooltip" title="Тафсилотлар" class="btn btn-outline-info kru-table-button" asp-action="Details" asp-route-id="@item.Category1Id"><i class="fas fa-info"></i></a>
+                        <a data-bs-toggle="tooltip" title="Ўчириш" class="btn btn-outline-danger kru-table-button" asp-action="Delete" asp-route-id="@item.Category1Id"><i class="far fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

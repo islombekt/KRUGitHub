@@ -3,75 +3,111 @@
 @{
     ViewData["Title"] = "Index";
 }
+<div id="PlaceHolderHere"></div>
+<div class="callout callout-info">
+    <div class="flex-container align-items-center">
+        <i class="fas fa-info-circle"></i><h5>План:</h5>
+    </div>
+    Бу ердан сиз 'Режа' ҳисоботларига киришингиз, ўчиришингиз ва таҳрирлашингиз мумкин.
+</div>
+<div class="buttons-container">
+    <a class="btn btn-default" asp-action="Create"><i class="fas fa-plus mr-2"></i>Ҳисобот яратиш</a>
+</div>
+<div class="card">
+    <div class="card-body">
+        <table id="example2" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Адрес
+                    </th>
+                    <th>
+                        Объект
+                    </th>
+                    <th>
+                        Вазифа
+                    </th>
+                    <th>
+                        Тавсиф
+                    </th>
+                    <th>
+                        Бошланиш санаси
+                    </th>
+                    <th>
+                        Тугаш санаси
+                    </th>
 
-<h1>Index</h1>
+                    @*<th>
+                        @Html.DisplayNameFor(model => model.Manager)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Employee)
+                    </th>*@
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    var className = item.HaveSeen ? "" : "table-warning";
+                    <tr class="@className">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address.Building)
+                        </td>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.PlanStart)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PlanEnd)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PlanDescription)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Objects)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tasks)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Manager)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Employee)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PlanStart)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PlanEnd)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PlanDescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Objects.ObjectId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tasks.TaskId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address.Building)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Manager.ManagerId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Employee.EmployeeId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.PlanId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PlanId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PlanId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                        @if (item.Objects == null)
+                        {
+                            <td>-</td>
+                        }
+                        else
+                        {
+                            <td> @Html.DisplayFor(modelItem => item.Objects.ObjectName)</td>
+
+                        }
+
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tasks.TaskName)
+                        </td>
+
+                        @if (item.PlanDescription == null)
+                        {
+                            <td>-</td>
+                        }
+                        else
+                        {
+                            <td> @Html.DisplayFor(modelItem => item.PlanDescription)</td>
+                        }
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PlanStart)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PlanEnd)
+                        </td>
+
+                        @*<td>
+                    @Html.DisplayFor(modelItem => item.Manager.ManagerId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee.EmployeeId)
+                </td>*@
+                    <td class="table-button-container">
+                        @if (item.HaveSeen == false)
+                        {
+                            <a data-bs-toggle="tooltip" title="Таҳрирлаш" class="btn btn-outline-success kru-table-button" asp-action="Edit" asp-route-id="@item.PlanId"><i class="far fa-edit"></i></a>
+                            <a data-bs-toggle="tooltip" title="Ўчириш" class="btn btn-outline-danger kru-table-button" asp-action="Delete" asp-route-id="@item.PlanId"><i class="far fa-trash-alt"></i></a>
+                        }
+                        else
+                        {
+                            <a data-bs-toggle="tooltip" title="Таҳрирлаш" class="btn btn-outline-success kru-table-button disabled" asp-action="Edit" asp-route-id="@item.PlanId"><i class="far fa-edit"></i></a>
+                            <a data-bs-toggle="tooltip" title="Ўчириш" class="btn btn-outline-danger kru-table-button disabled" asp-action="Delete" asp-route-id="@item.PlanId"><i class="far fa-trash-alt"></i></a>
+                        }
+                        <a data-bs-toggle="tooltip" title="Тафсилотлар"  data-toggle="ajax-modal" data-target="#addEmployee" class="addEmployeeButton btn btn-outline-info kru-table-button"  data-url="@Url.Action("Details", "Plans", new { id = item.PlanId }, null)"><i class="fas fa-info"></i></a>
+                       
+                    </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

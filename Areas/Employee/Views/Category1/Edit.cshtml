@@ -1,0 +1,37 @@
+﻿@model KRU.Models.Category1
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<div class="card box-shadow card-simple-form card-small">
+    <h1>Таҳрирлаш</h1>
+
+    <h4>Категория х</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <form class="kru custom-validation" asp-action="Edit">
+                <div class="kru-form-container-small">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Category1Id" />
+                    <input type="hidden" asp-for="DepartmentId" />
+                    <div class="form-group">
+                        <label asp-for="Name_C1" class="control-label">Категория номи</label>
+                        <input asp-for="Name_C1" class="form-control" />
+                        <span asp-validation-for="Name_C1" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-button-container">
+                    <a class="btn btn-outline-primary mr-3 no-outline" asp-action="Index">
+                        <i class="fas fa-arrow-left mr-2"></i>Ортга қайтиш
+                    </a>
+                    <input type="submit" value="Сақлаш" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

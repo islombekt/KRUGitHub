@@ -3,37 +3,167 @@
 @{
     ViewData["Title"] = "Delete";
 }
+<div class="card box-shadow card-simple-form">
 
-<h1>Delete</h1>
+    <h1>Delete</h1>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Employee</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EmployeeState)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EmployeeState)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Manager)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Manager.ManagerId)
-        </dd class>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.User)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.User.Id)
-        </dd class>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="EmployeeId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Employee</h4>
+        <hr />
+        <dl class="row">
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <td>Name</td>
+                        <td>@Html.DisplayFor(model => model.FullName)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.EmployeeState)</td>
+                        <td>@Html.DisplayFor(model => model.EmployeeState)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <dd class="col-sm-12">
+                <table class="mt-5 table bg-color-1 table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th colspan="2"><h5 class="m-0" align="center">Ежедневные отчеты:</h5></th>
+                        </tr>
+                        <tr>
+                            <th>
+                                ReporTitle
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item1 in Model.Reports)
+                        {
+                            <tr>
+                                @if (Model.Reports == null)
+                                {
+                                    <td>
+                                        -
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item1.ReportDescription)
+                                    </td>
+                                    <td class="table-button-container">
+                                        <a data-bs-toggle="tooltip" title="Edit" class="btn btn-outline-success kru-table-button" asp-controller="Reports" asp-action="Edit" asp-route-id="@item1.ReportId"><i class="far fa-edit"></i></a>
+                                        <a data-bs-toggle="tooltip" title="Details" class="btn btn-outline-info kru-table-button" asp-controller="Reports" asp-action="Details" asp-route-id="@item1.ReportId"><i class="fas fa-info"></i></a>
+                                        <a data-bs-toggle="tooltip" title="Delete" class="btn btn-outline-danger kru-table-button" asp-controller="Reports" asp-action="Delete" asp-route-id="@item1.ReportId"><i class="far fa-trash-alt"></i></a>
+                                    </td>
+                                }
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </dd>
+
+            <dd class="col-sm-12">
+                <table class="mt-5 table table-success table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th colspan="2"><h5 class="m-0" align="center">План:</h5></th>
+                        </tr>
+                        <tr>
+                            <th>
+                                Title
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item1 in Model.Plans)
+                        {
+                            <tr>
+                                @if (Model.Plans == null)
+                                {
+                                    <td>
+                                        -
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item1.PlanDescription)
+                                    </td>
+                                    <td class="table-button-container">
+                                        <a data-bs-toggle="tooltip" title="Edit" class="btn btn-outline-success kru-table-button" asp-controller="Plans" asp-action="Edit" asp-route-id="@item1.PlanId"><i class="far fa-edit"></i></a>
+                                        <a data-bs-toggle="tooltip" title="Details" class="btn btn-outline-info kru-table-button" asp-controller="Plans" asp-action="Details" asp-route-id="@item1.PlanId"><i class="fas fa-info"></i></a>
+                                        <a data-bs-toggle="tooltip" title="Delete" class="btn btn-outline-danger kru-table-button" asp-controller="Plans" asp-action="Delete" asp-route-id="@item1.PlanId"><i class="far fa-trash-alt"></i></a>
+                                    </td>
+                                }
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </dd>
+
+            <dd class="col-sm-12">
+                <table class="mt-5 table bg-color-2 table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th colspan="3"><h5 class="m-0" align="center">Отчеты:</h5></th>
+                        </tr>
+                        <tr>
+                            <th>
+                                Category 1
+                            </th>
+                            <th>
+                                Amount
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item1 in Model.FinanceReports)
+                        {
+                            <tr>
+                                @if (Model.FinanceReports == null)
+                                {
+                                    <td>
+                                        -
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item1.Category1)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item1.amount)
+                                    </td>
+                                    <td class="table-button-container">
+<!--                                        <a data-bs-toggle="tooltip" title="Edit" class="btn btn-outline-success kru-table-button" asp-controller="FinanceReports" asp-action="Edit" asp-route-id="@item1.FinanceRepId"><i class="far fa-edit"></i></a>-->
+                                        <a data-bs-toggle="tooltip" title="Details" class="btn btn-outline-info kru-table-button" asp-controller="FinanceReports" asp-action="Details" asp-route-id="@item1.FinanceRepId"><i class="fas fa-info"></i></a>
+                                        <a data-bs-toggle="tooltip" title="Delete" class="btn btn-outline-danger kru-table-button" asp-controller="FinanceReports" asp-action="Delete" asp-route-id="@item1.FinanceRepId"><i class="far fa-trash-alt"></i></a>
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <div class="form-button-container">
+                <a class="btn btn-outline-primary mr-3 no-outline" asp-action="Index">
+                    <i class="fas fa-arrow-left mr-2" ></i>Back to List
+                </a>
+                <input type="hidden" asp-for="EmployeeId" />
+                @if (Model.PlanCount == 0 && Model.FinCount == 0 && Model.RepCount == 0)
+                {<input title="Delete" class="btn btn-outline-danger kru-table-button" type="submit" value="Delete" /> }
+            </div>
+        </form>
+    </div>
 </div>

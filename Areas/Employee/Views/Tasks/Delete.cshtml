@@ -1,0 +1,67 @@
+﻿@model KRU.Models.Tasks
+
+@{
+    ViewData["Title"] = "Delete";
+}
+<div class="card box-shadow card-simple-form">
+    <h1>Delete</h1>
+
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Tasks</h4>
+        <hr />
+        <table class="table table-hover">
+            <tbody>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.TaskName)</td>
+                <td>@Html.DisplayFor(model => model.TaskName)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.SumLost)</td>
+                <td>@Html.DisplayFor(model => model.SumLost)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.SumGain)</td>
+                <td>@Html.DisplayFor(model => model.SumGain)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Comment)</td>
+                <td>@Html.DisplayFor(model => model.Comment)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.File)</td>
+                <td>@Html.DisplayFor(model => model.File)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Finished)</td>
+                <td>@Html.DisplayFor(model => model.Finished)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.TaskStarted)</td>
+                <td>@Html.DisplayFor(model => model.TaskStarted)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.TaskEnd)</td>
+                <td>@Html.DisplayFor(model => model.TaskEnd)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Department)</td>
+                <td>@Html.DisplayFor(model => model.Department.DepartmentId)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Task_Type)</td>
+                <td>@Html.DisplayFor(model => model.Task_Type.TaskTypeID)</td>
+            </tr>
+            </tbody>
+        </table>
+        <form asp-action="Delete">
+            <div class="form-button-container">
+                <a class="btn btn-outline-primary mr-3 no-outline" asp-action="Index">
+                    <i class="fas fa-arrow-left mr-2" ></i>Back to List
+                </a>
+                <input type="hidden" asp-for="TaskId" />
+                <input type="submit" value="Delete" class="btn btn-danger" />
+            </div>
+        </form>
+    </div>
+</div>

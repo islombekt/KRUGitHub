@@ -1,0 +1,109 @@
+﻿@model KRU.Models.Category111
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="callout callout-info">
+    <div class="flex-container align-items-center">
+        <i class="fas fa-info-circle"></i><h5>Тафсилотлар:</h5>
+    </div>
+    Бу ердан сиз учинчи даражали тоифаларга киришингиз мумкин.
+</div>
+
+<div class="kru-form card box-shadow">
+    <div class="p-3 mb-3">
+        <h4>
+            <span class="categoryIcon">
+                <i class="fas fa-circle"></i>&nbsp;<i class="fas fa-long-arrow-alt-right"></i>
+                <i class="fas fa-circle"></i>&nbsp;<i class="fas fa-long-arrow-alt-right"></i>
+                <i class="fas fa-circle activeIcon"></i>&nbsp;
+            </span>@Html.DisplayFor(model => model.Name_C111)
+        </h4>
+        <hr />
+        <dl class="row">
+            <dd class="col-12">
+                <table class="table table-hover table-success table-striped">
+                    <thead class="table-active">
+                    <tr>
+                        <th colspan="6"><h5 class="m-0" align="center">Текширувлар ҳисоботи:</h5></th>
+                    </tr>
+                    <tr>
+                        <th>
+                            Бошланиш санаси
+                        </th>
+                        <th>
+                            Тугаш санаси
+                        </th>
+                        <th>
+                            Жами суммаси
+                        </th>
+                        <th>
+                            Ходим
+                        </th>
+                        <th>
+                            Менеджер
+                        </th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @if (Model.FinanceReports == null)
+                    {
+                    <tr>
+                        <td>
+                           -
+                        </td>
+                        <td>
+                            -
+                        </td>
+                        <td>
+                            -
+                        </td>
+                        <td>
+                            -
+                        </td>
+                        <td>
+                            -
+                        </td>
+                    </tr>
+                    }
+                    else
+                    {
+                    @foreach (var item111 in Model.FinanceReports)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item111.StartDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item111.EndDate)
+                        </td>
+                        <td class="amount">
+                            @Html.DisplayFor(modelItem => item111.amount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item111.Employee.User.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item111.Manager.User.FullName)
+                        </td>
+                        <td class="table-button-container">
+                            @*<a data-bs-toggle="tooltip" title="Изменить" class="btn btn-outline-success kru-table-button" asp-controller="Category111" asp-action="Edit" asp-route-id="@item111.Category111Id"><i class="far fa-edit"></i></a>*@
+                            <a data-bs-toggle="tooltip" title="Тафсилотлар" class="btn btn-outline-info kru-table-button" asp-controller="Category111" asp-action="Details" asp-route-id="@item111.Category111Id"><i class="fas fa-info"></i></a>
+                            @*<a data-bs-toggle="tooltip" title="Удалить" class="btn btn-outline-danger kru-table-button" asp-controller="Category111" asp-action="Delete" asp-route-id="@item111.Category111Id"><i class="far fa-trash-alt"></i></a>
+                        </td>*@
+                    </tr>
+                    }}
+                    </tbody>
+                </table>
+            </dd>
+        </dl>
+    </div>
+    <div class="form-button-container">
+        <a class="btn btn-outline-primary mr-3 no-outline" asp-controller="Category11" asp-action="Details" asp-route-id="@Model.Category11.Category11Id">
+            <i class="fas fa-arrow-left mr-2"></i>Ортга қайтиш
+        </a>
+        <a class="btn btn-outline-success kru-table-button" asp-action="Edit" asp-route-id="@Model.Category111Id">Таҳрирлаш</a>
+    </div>
+</div>

@@ -4,9 +4,9 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Турлар</h1>
 <div class="buttons-container">
-    <a class="btn btn-default" asp-action="Create"><i class="fas fa-plus mr-2"></i>Create New</a>
+    <a class="btn btn-default" asp-action="Create"><i class="fas fa-plus mr-2"></i>Яратиш</a>
 </div>
 
 <div class="card">
@@ -15,7 +15,7 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.NameType)
+                        Тур номи
                     </th>
                     <th></th>
                 </tr>
@@ -27,9 +27,9 @@
                         @Html.DisplayFor(modelItem => item.NameType)
                     </td>
                     <td class="table-button-container">
-                        <a data-bs-toggle="tooltip" title="Edit" class="btn btn-outline-success kru-table-button" asp-action="Edit" asp-route-id="@item.TaskTypeID"><i class="far fa-edit"></i></a>
-                        <a data-bs-toggle="tooltip" title="Details" class="btn btn-outline-info kru-table-button" asp-action="Details" asp-route-id="@item.TaskTypeID"><i class="fas fa-info"></i></a>
-                        <a data-bs-toggle="tooltip" title="Delete" class="btn btn-outline-danger kru-table-button" asp-action="Delete" asp-route-id="@item.TaskTypeID"><i class="far fa-trash-alt"></i></a>
+                        <a data-bs-toggle="tooltip" title="Таҳрирлаш" class="btn btn-outline-success kru-table-button" asp-action="Edit" asp-route-id="@item.TaskTypeID"><i class="far fa-edit"></i></a>
+                        <a data-bs-toggle="tooltip" title="Тафсилотлар" class="btn btn-outline-info kru-table-button" asp-action="Details" asp-route-id="@item.TaskTypeID"><i class="fas fa-info"></i></a>
+                        <a data-bs-toggle="tooltip" title="Ўчириш" class="btn btn-outline-danger kru-table-button" asp-action="Delete" asp-route-id="@item.TaskTypeID"><i class="far fa-trash-alt"></i></a>
                     </td>
                 </tr>
         }

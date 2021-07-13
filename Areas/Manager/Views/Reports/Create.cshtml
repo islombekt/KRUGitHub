@@ -1,0 +1,96 @@
+﻿@model KRU.Models.Report
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Report</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form id="app" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="State" class="control-label"></label>
+                <input asp-for="State" class="form-control" />
+                <span asp-validation-for="State" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReportDate" class="control-label"></label>
+                <input asp-for="ReportDate" class="form-control" />
+                <span asp-validation-for="ReportDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReportDescription" class="control-label"></label>
+                <input asp-for="ReportDescription" class="form-control" />
+                <span asp-validation-for="ReportDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReportComment" class="control-label"></label>
+                <input asp-for="ReportComment" class="form-control" />
+                <span asp-validation-for="ReportComment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReportScore" class="control-label"></label>
+                <input asp-for="ReportScore" class="form-control" />
+                <span asp-validation-for="ReportScore" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="HaveSeen" /> @Html.DisplayNameFor(model => model.HaveSeen)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaskId" class="control-label"></label>
+                <select asp-for="TaskId" class="select2 form-control" asp-items="ViewBag.TaskId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="AddressId" class="control-label"></label>
+                <select asp-for="AddressId"  id="address" onchange="javascript: $('#submit').click();" class="select2 form-control" asp-items="ViewBag.AddressId"></select>
+            </div>
+            <div id="object" class="form-group">
+                <label asp-for="ObjectId" class="control-label"></label>
+                <select asp-for="ObjectId" id="object1" class="select2 form-control" asp-items="ViewBag.ObjectId"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="EmployeeId" class="control-label"></label>
+                <select asp-for="EmployeeId" class="form-control" asp-items="ViewBag.EmployeeId"></select>
+            </div>
+            <div class="form-group">
+                <button id="submit" type="submit" name="submit" value="Submit" asp-action="CreateAfterAddress" hidden></button>
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script src="~/theme/plugins/jquery/jquery.min.js"></script>
+<script>
+    jQuery(document).ready(function ($) {
+            console.log("here")
+            // hide all optional elements
+            $('#object').hide();
+            $("#address").each(function () {
+                console.log($('#object1').val())
+                if ($('#object1').val() === "" || $('#object1').val() === null) {
+                    console.log($('#object').val() )
+
+                    $('#object').filter(':hidden');
+                }
+
+                else
+                    $('#object').slideDown();
+         });
+
+    });
+</script>

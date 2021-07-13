@@ -10,15 +10,15 @@
   font-weight: lighter;
 }
 
-.kru-logo img{
+.kru-logo img {
   margin-bottom: 20px;
 }
 
-.login-box{
-  width: 450px;
+.login-box {
+  min-width: 450px;
 }
 
-.login-page .card{
+.login-page .card {
   background-image: url(/images/UNGBrand.png);
   padding-left: 35px;
   background-position: left;
@@ -26,66 +26,66 @@
   background-size: 36px;
 }
 
-.ung-logo{
-   height: 30px;
-   display: block;
-   margin: 0 auto;
+.ung-logo {
+  height: 30px;
+  display: block;
+  margin: 0 auto;
 }
 
-.sidebar{
+.sidebar {
   padding-left: 0;
   padding-right: 0;
 }
 
-.kru-user-menu{
+.kru-user-menu {
   min-width: 180px;
 }
 
-.kru-user-menu button{
+.kru-user-menu button {
   padding: 0;
 }
 
-.kru-user-menu .dropdown-item{
-  padding: 10px 20px; 
+.kru-user-menu .dropdown-item {
+  padding: 10px 20px;
 }
 
 .kru-container {
   padding: 30px 20px;
 }
 
-.buttons-container{
+.buttons-container {
   margin: 20px 0;
   display: flex;
 }
 
-.buttons-container a{
+.buttons-container a {
   margin-right: 20px;
 }
 
-.table{
+.table {
   text-align: center;
 }
 
-.table-button-container{
+.table-button-container {
   display: flex;
   justify-content: flex-end;
 }
 
-.table-button-container a{
+.table-button-container a {
   margin-left: 20px;
 }
 
-.kru-table-button{
+.kru-table-button {
   border: 0;
-  width: 35px;
-  height: 35px;
+  min-width: 35px;
+  min-height: 35px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.btn-outline-success:hover{
-  background-color: rgba(0,128,0, 0.6);
+.btn-outline-success:hover {
+  background-color: rgba(0, 128, 0, 0.6);
 }
 
 .title-container {
@@ -96,7 +96,8 @@
   margin-bottom: 10px;
 }
 
-@-webkit-keyframes rotating /* Safari and Chrome */ {
+@-webkit-keyframes rotating
+/* Safari and Chrome */ {
   from {
     -webkit-transform: rotate(0deg);
     -o-transform: rotate(0deg);
@@ -108,6 +109,7 @@
     transform: rotate(360deg);
   }
 }
+
 @keyframes rotating {
   from {
     -ms-transform: rotate(0deg);
@@ -124,6 +126,7 @@
     transform: rotate(360deg);
   }
 }
+
 .rotating {
   -webkit-animation: rotating 2s linear infinite;
   -moz-animation: rotating 2s linear infinite;
@@ -132,36 +135,62 @@
   animation: rotating 2s linear infinite;
 }
 
-.kru-form{
-  padding-left: 50px;
-  padding-right: 50px;
+.kru-form {
+  padding: 30px 70px;
 }
 
-.kru-form-container{
+.kru-form h1 {
+  font-size: 2rem;
+}
+
+.kru-form-container-small {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+}
+
+.kru-form-container {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
 }
 
-.kru-form-container > div{
-  width: 43%;
-  margin-bottom: 20px;
+.kru-form-container .self-center {
+  align-self: center;
+  margin: 0;
 }
 
-.kru-form-container > button{
+.kru-form-container-small > div {
+  width: 75%;
+  margin-bottom: 10px;
+}
+
+.kru-form-container > div {
+  width: 43%;
+  margin-bottom: 10px;
+}
+
+.kru-form-container > button,
+.kru-form-container-small > button {
   justify-self: flex-end;
   margin-left: auto;
   align-self: flex-end;
 }
 
-form.kru button{
+.kru-form-container label,
+.kru-form-container-small label {
+  margin-bottom: 4px;
+}
+
+form.kru button {
   display: block;
   margin-left: auto;
 }
 
-form.kru .kru-form-subtitle{
-  margin-top: 50px;
+form.kru .kru-form-subtitle {
+  margin-top: 20px;
   font-size: 22px;
   font-weight: 600;
 }
@@ -180,7 +209,7 @@ form.kru .kru-form-subtitle{
   border-radius: 50%;
 }
 
-form.kru hr{
+form.kru hr {
   margin-top: 0;
 }
 
@@ -205,8 +234,8 @@ form.kru hr{
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
@@ -217,8 +246,8 @@ form.kru hr{
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {
@@ -226,7 +255,7 @@ input:checked + .slider {
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #2196f3;
 }
 
 input:checked + .slider:before {
@@ -236,6 +265,7 @@ input:checked + .slider:before {
 }
 
 /* Rounded sliders */
+
 .slider.round {
   border-radius: 34px;
 }
@@ -244,68 +274,73 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-.select2-container--default.select2-container--focus .select2-selection--multiple {
+.select2-container--default.select2-container--focus
+  .select2-selection--multiple {
   border: solid #80bdff 1px;
   outline: 0;
 }
 
-.select2-container--default .select2-selection--multiple .select2-selection__choice {
+.select2-container--default
+  .select2-selection--multiple
+  .select2-selection__choice {
   background-color: #007bff;
   border-color: #006fe6;
   color: #fff;
   padding: 0 10px;
-  margin-top: .31rem;
+  margin-top: 0.31rem;
 }
 
-.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
-  color: rgba(255,255,255,.7);
+.select2-container--default
+  .select2-selection--multiple
+  .select2-selection__choice__remove {
+  color: rgba(255, 255, 255, 0.7);
   float: right;
   margin-left: 5px;
   margin-right: -2px;
 }
 
-.select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover {
-  color: rgba(255,255,255,1);
+.select2-container--default
+  .select2-selection--multiple
+  .select2-selection__choice__remove:hover {
+  color: rgba(255, 255, 255, 1);
 }
 
-.flex-container{
+.flex-container {
   display: flex;
 }
 
-.flex-container .switch{
+.flex-container .switch {
   margin-right: 20px;
 }
 
-.flex-container .kru-form-group{
+.flex-container .kru-form-group {
   min-width: 300px;
 }
 
-.form-button-container{
+.form-button-container {
+  margin-top: 15px;
   display: flex;
   justify-content: flex-end;
 }
 
-.form-button-container .btn{
-  margin-right: 20px;
-}
-
-.form-button-container .btn-outline-primary:hover{
-  background-color: rgba(0, 0, 0, .05);
+.form-button-container .btn-outline-primary:hover {
+  background-color: rgba(0, 0, 0, 0.05);
   color: #007bff;
 }
 
-.display-none{
+.display-none {
   display: none;
 }
-.flex-container .switch_container{
-  width: 10%;
+
+.flex-container .switch_container {
+  width: 22%;
 }
 
-.form-control{
+.form-control {
   background-clip: padding-box;
   border: 1px solid #ced4da;
-  border-radius: .25rem;
-  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 .form-control:focus {
@@ -319,5 +354,394 @@ input:checked + .slider:before {
 }
 
 .my-mb {
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
+}
+
+.form-control.is-invalid:focus {
+  box-shadow: 0 0 0 0.2rem rgb(220 53 69 / 25%);
+}
+
+.kru-registration {
+  width: 60%;
+  min-width: 650px;
+  display: block;
+  margin: 30px auto;
+}
+
+.card-brand {
+  background-color: white;
+  background-image: url(/images/UNGBrand.png);
+  background-position: left;
+  background-repeat: repeat-y;
+  background-size: 50px;
+}
+
+.box-shadow {
+  box-shadow: 10px 10px 14px rgba(0, 0, 0, 0.15);
+}
+
+.brand-background {
+  background-image: url(/images/background.png);
+  background-color: transparent;
+}
+
+#example1_wrapper input[type="search"],
+#example2_wrapper input[type="search"] {
+  min-width: 250px;
+}
+
+.table {
+  width: 100%;
+}
+
+table.dataTable {
+  width: 100% !important;
+}
+
+.callout-info .fas {
+  color: #117a8b;
+  font-size: 30px;
+  margin-right: 10px;
+}
+
+.callout-info h5 {
+  margin-bottom: 0;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.justify-content-space-between {
+  justify-content: space-between;
+}
+
+.justify-content-space-evenly {
+  justify-content: space-evenly;
+}
+
+.kru-date-range {
+  margin-bottom: 25px;
+}
+
+.kru-date-range input {
+  max-width: 320px;
+}
+
+.card-simple-form {
+  padding: 30px 40px;
+}
+
+.card-simple-form .table td:first-child {
+  font-weight: bold;
+}
+
+.card-simple-form .table td {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.card-small {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.no-outline {
+  border: 0;
+}
+
+.bg-color-1 {
+  background-color: rgba(226, 229, 239, 0.3);
+  border: 2px solid #dee2e6;
+}
+
+.bg-color-2 {
+  background-color: rgba(189, 243, 247, 0.3);
+}
+
+.bg-color-3 {
+  background-color: rgba(130, 251, 121, 0.3);
+}
+
+.table-success.table-striped {
+  border: 2px solid #8fd19e;
+}
+
+.kru .form-group {
+  min-height: 40px;
+}
+
+.categoryIcon {
+  font-size: 16px;
+  color: rgba(192, 198, 195, 0.8);
+}
+
+.activeIcon {
+  color: rgb(50, 153, 50);
+}
+
+.kru-profile-form {
+  padding: 30px 0;
+}
+
+.kru-profile-form .kru {
+  padding-right: 20px;
+}
+
+.kru-nav {
+  margin-bottom: 20px;
+}
+
+.kru-nav .nav-item {
+  margin-bottom: 12px !important;
+}
+
+.nav-item i {
+  font-size: 20px;
+}
+
+.kru-nav .nav-link.active {
+  background-color: transparent;
+  border-radius: 0;
+  border-bottom: 2px solid #007bff;
+  color: #007bff;
+}
+
+.kru-form-container a.kru-tooltip span {
+  display: inline-block;
+}
+
+table#example1 tr,
+table#example2 tr {
+  height: 90px;
+}
+
+.callout-danger i {
+  font-size: 30px;
+  color: #bd2130;
+}
+
+.callout-danger p {
+  margin-top: 10px;
+}
+
+.kru-brand-link {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.kru-brand-link img {
+  height: 50px;
+}
+
+.input-group-prepend {
+  height: 100%;
+}
+
+#example1_length,
+#example2_length {
+  display: flex;
+}
+
+#example1_filter,
+#example2_filter {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.kru-date-range .date-input {
+  display: flex;
+  justify-content: space-between;
+}
+
+.kru-date-range .button-input {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.kru-toggle-files {
+  display: flex;
+}
+
+.kru-toggle-files .switch_container {
+  margin-right: 10px;
+}
+
+.upload-files {
+  height: 38px;
+}
+
+@media only screen and (min-width: 1400px) {
+  .login-box {
+    min-width: 550px;
+  }
+}
+
+@media only screen and (max-width: 754px) {
+  .card-simple-form {
+    padding: 20px 30px;
+  }
+  .card-small {
+    width: 80%;
+  }
+  .kru-registration {
+    min-width: 250px;
+    width: 80%;
+  }
+  .kru-registration .kru-form-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .kru-registration .kru-form-container > div,
+  .kru-registration .kru-form-container-small > div {
+    width: 90%;
+  }
+  .kru-date-range input {
+    max-width: 220px;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+  h2 {
+    font-size: 1.6rem;
+  }
+  h3 {
+    font-size: 1.4rem;
+  }
+  h4 {
+    font-size: 1.2rem;
+  }
+  .kru-form-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .kru-form-container > div {
+    width: 90%;
+  }
+  .card-simple-form {
+    padding: 20px;
+  }
+  .card-small {
+    width: 90%;
+  }
+  .kru-form {
+    padding: 30px;
+  }
+  .card-brand {
+    background-image: none;
+  }
+  .kru-date-range .date-input {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .kru-date-range .date-input input:first-child {
+    margin-bottom: 10px;
+  }
+  .upload-files {
+    display: none;
+  }
+  .login-box {
+    min-width: 0;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  #example1_wrapper input[type="search"],
+  #example2_wrapper input[type="search"] {
+    min-width: 170px;
+  }
+  .card-simple-form {
+    padding: 10px;
+  }
+  .card-small {
+    width: 100%;
+  }
+  .form-button-container {
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    justify-content: flex-start;
+  }
+  .form-button-container input {
+    margin-bottom: 15px;
+  }
+  .form-button-container a {
+    margin: 0 !important;
+  }
+  .kru-form {
+    padding: 15px 10px;
+  }
+  .table.mt-5 {
+    margin-top: 1rem !important;
+  }
+  .login-page .card {
+    background-image: none;
+    padding-left: 0;
+  }
+  .kru-registration {
+    width: 90%;
+  }
+  .kru-toggle-files {
+    flex-direction: column;
+  }
+  .kru-toggle-files .switch_container {
+    margin-bottom: 10px;
+  }
+}
+
+.invoice {
+  border: 0;
+}
+
+td.bigger-cell {
+  min-width: 90px;
+}
+
+.big-container {
+  border-top: 2px solid #d7d7d7;
+  margin-bottom: 0 !important;
+}
+
+.big-container .new-container {
+  padding: 15px 0 25px 0;
+}
+
+.big-container .link-container {
+  position: relative;
+  padding: 10px 0;
+  border-bottom: 1px solid #d7d7d7;
+}
+
+.link-container .title {
+  color: black;
+  font-size: 20px;
+  width: 80%;
+  display: inline-block;
+}
+
+.link-container .close-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 3px;
+  cursor: pointer;
+  color: grey;
+}
+
+.close-btn i {
+  font-size: 26px;
+}
+
+span.select2-container {
+  width: auto !important;
 }

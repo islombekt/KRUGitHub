@@ -17,5 +17,9 @@ namespace KRU.Models
 
         public virtual Users User { get; set; }
         public virtual ICollection<Employee> Employees { get; set; }
+        public virtual ICollection<Test> Tests { get; set; }
+        public virtual ICollection<Report> Reports { get; set; }
+        public virtual ICollection<FinanceReport> FinanceReports { get; set; }
+        public virtual ICollection<Plan> Plans { get; set; }
     }
 }

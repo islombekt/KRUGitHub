@@ -1,0 +1,62 @@
+﻿@model KRU.Models.Tasks
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="card box-shadow card-simple-form">
+    <h1>Тафсилотлар</h1>
+
+    <h4>Топшириқ</h4>
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+                <td>Масъул ходим</td>
+                <td>
+                    @foreach (var i in Model.Task_Emples)
+                    {
+                        @Html.DisplayFor(modelItem => i.Employee.User.FullName)
+                        <br />
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>Ёъқотилган маблағ</td>
+                <td>@Html.DisplayFor(model => model.SumLost)</td>
+            </tr>
+            <tr>
+                <td>Ортирилган маблағ</td>
+                <td>@Html.DisplayFor(model => model.SumGain)</td>
+            </tr>
+            <tr>
+                <td>Изоҳ</td>
+                <td>@Html.DisplayFor(model => model.Comment)</td>
+            </tr>
+            <tr>
+                <td>Якунланган</td>
+                <td>@Html.DisplayFor(model => model.Finished)</td>
+            </tr>
+            <tr>
+                <td>Бошланиш санаси</td>
+                <td>@Html.DisplayFor(model => model.TaskStarted)</td>
+            </tr>
+            <tr>
+                <td>Тугаш санаси</td>
+                <td>@Html.DisplayFor(model => model.TaskEnd)</td>
+            </tr>
+            <tr>
+                <td>Департамент</td>
+                <td>@Html.DisplayFor(model => model.Department.DepartmentName)</td>
+            </tr>
+            <tr>
+                <td>Вазифа тури</td>
+                <td>@Html.DisplayFor(model => model.Task_Type.NameType)</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="form-button-container">
+        <a class="btn btn-outline-primary mr-3 no-outline" asp-action="Index">
+            <i class="fas fa-arrow-left mr-2"></i>Ортга қайтиш
+        </a>
+        @*<a title="Edit" class="btn btn-outline-success kru-table-button" asp-action="Edit" asp-route-id="@Model.TaskId">Edit</a>*@
+    </div>
+</div>

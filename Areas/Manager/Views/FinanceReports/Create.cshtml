@@ -1,0 +1,123 @@
+﻿@model KRU.Models.FinanceReport
+
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="card box-shadow card-simple-form card-small">
+    <h1>Яратиш</h1>
+
+    <h4>Текширув ҳисоботи</h4>
+    <hr />
+    <div class="row">
+        <div id="app" class="col-md-12">
+            <form class="custom-validation" asp-action="Create" novalidate>
+                <div class="kru-form-container-small">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="StartDate" class="control-label">Бошланиш санаси</label>
+                        <input asp-for="StartDate" class="form-control" />
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EndDate" class="control-label">Тугаш санаси</label>
+                        <input asp-for="EndDate" class="form-control" />
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Жами суммаси</label>
+                        <input asp-for="amount" class="form-control" />
+                        <span class="invalid-feedback"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Category1Id" class="control-label">Категория х</label>
+                        <select asp-for="Category1Id" id="Cate" onchange="javascript: $('#submitcat').click();" class="select2 form-control" asp-items="ViewBag.Category1Id"></select>
+                    </div>
+                    <div id="category" class="form-group" style="display:none;">
+                        <label asp-for="Category11Id" class="control-label">Категория х.х</label>
+                        <select asp-for="Category11Id" id="CCategory1" onchange="javascript: $('#submitcat1').click();" class="select2 form-control" asp-items="ViewBag.Category11Id"></select>
+                    </div>
+                    <div id="category1" class="form-group" style="display: none;">
+                        <label asp-for="Category111Id" class="control-label">Категория х.х.х</label>
+                        <select asp-for="Category111Id" id="CCategory11" class="select2 form-control" asp-items="ViewBag.Category111Id"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="AddressId" class="control-label">Адрес</label>
+                        <select asp-for="AddressId" id="address" onchange="javascript: $('#submit').click();" class="select2 form-control" asp-items="ViewBag.AddressId"></select>
+                    </div>
+                    <div id="object" class="form-group" style="display: none;">
+                        <label asp-for="ObjectId" class="control-label">Объект</label>
+                        <select asp-for="ObjectId" id="object1" class="select2 form-control" asp-items="ViewBag.ObjectId"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FinComment" class="control-label">Изоҳ</label>
+                        <input asp-for="FinComment" class="form-control" />
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TaskId" class="control-label">Вазифа</label>
+                        <select asp-for="TaskId" class="select2 form-control" asp-items="ViewBag.TaskId"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EmployeeId" class="control-label"></label>
+                        <select asp-for="EmployeeId" class="select2 form-control" asp-items="ViewBag.EmployeeId">Ходим</select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CheckPeriod" class="control-label">Муддат</label>
+                        <input type="text" data-politespace asp-for="CheckPeriod" class="form-control" />
+                        <span class="invalid-feedback"></span>
+                    </div>
+                </div>
+                <div class="form-button-container">
+                    <a class="btn btn-outline-primary mr-3 no-outline" asp-action="Index">
+                        <i class="fas fa-arrow-left mr-2" ></i>Ортга қайтиш
+                    </a>
+                    <button id="submitcat" type="submit" name="submitcat" value="Submit" asp-action="CreateAfterCat" hidden></button>
+                    <button id="submitcat1" type="submit" name="submitcat1" value="Submit" asp-action="CreateAfterCat1" hidden></button>
+                    <button id="submit" type="submit" name="submit" value="Submit" asp-action="CreateAfterAddress" hidden></button>
+                    <input type="submit" value="Яратиш" class="btn btn-primary"  />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script src="~/theme/plugins/jquery/jquery.min.js"></script>
+<script>
+    jQuery(document).ready(function ($) {
+        // hide all optional elements
+        $('#object').hide();
+        $("#address").each(function () {
+            if ($('#object1').val() === "" || $('#object1').val() === null) {
+                $('#object').filter(':hidden');
+                $('#category1').filter(':hidden');
+            }
+
+            else
+                $('#object').slideDown();
+        });
+        $('#category').hide();
+
+        $('#category1').hide();
+        $("#Cate").each(function () {
+            if ($('#CCategory1').val() === "" || $('#CCategory1').val() === null) {
+                $('#category').filter(':hidden');
+            }
+
+            else
+                $('#category').slideDown();
+        });
+        $("#CCategory1").each(function () {
+            if ($('#CCategory11').val() === "" || $('#CCategory11').val() === null) {
+                $('#category1').filter(':hidden');
+            }
+
+            else
+                $('#category1').slideDown();
+        });
+    });
+</script>

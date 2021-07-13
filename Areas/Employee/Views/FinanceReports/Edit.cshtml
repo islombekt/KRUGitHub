@@ -1,0 +1,149 @@
+﻿@model KRU.Models.FinanceReport
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="card box-shadow card-simple-form card-small">
+    <h1>Тахрирлаш</h1>
+
+    <h4>Текширув ҳисоботи</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <form class="kru custom-validation" id="app" asp-action="Edit">
+                <div class="kru-form-container-small">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="FinanceRepId" />
+                    <input type="hidden" asp-for="ManagerId" />
+                    <input type="hidden" asp-for="EmployeeId" />
+                    <input type="hidden" asp-for="HaveSeen" />
+                    <div class="form-group">
+                        <label asp-for="StartDate" class="control-label">Бошланиш санаси</label>
+                        <input asp-for="StartDate" class="form-control" />
+                        @*<span asp-validation-for="StartDate" class="text-danger"></span>*@
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EndDate" class="control-label">Тугаш санаси</label>
+                        <input asp-for="EndDate" class="form-control" />
+                        @*<span asp-validation-for="EndDate" class="text-danger"></span>*@
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Ҳолат</label>
+                        <select asp-for="Status" class="form-control">
+                            <option selected disabled></option>
+                            <option value="8">На работе</option>
+                            <option value="7">День до праздника (7)</option>
+                            <option value="К">Командировка</option>
+                            <option value="Уд">Удаленка</option>
+                        </select>
+                        @*<span asp-validation-for="Status" class="text-danger"></span>*@
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="AddressId" class="control-label">Адрес</label>
+                        <select asp-for="AddressId" id="address" onchange="javascript: $('#submit').click();" class="select2 form-control" asp-items="ViewBag.AddressId"></select>
+                        @*<span asp-validation-for="AddressId" class="text-danger"></span>*@
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div id="object" class="form-group" style="display: none;">
+                        <label asp-for="ObjectId" class="control-label">Объект</label>
+                        <select asp-for="ObjectId" id="object1" class="select2 form-control" asp-items="ViewBag.ObjectId"></select>
+                        @*<span asp-validation-for="ObjectId" class="text-danger"></span>*@
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="amount" class="control-label">Жами суммаси</label>
+                        <input asp-for="amount" class="form-control" />
+                        @*<span asp-validation-for="amount" class="text-danger"></span>*@
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Category1Id" class="control-label">Категория х</label>
+                        <select asp-for="Category1Id" id="Cate" onchange="javascript: $('#submitcat').click();" class="select2 form-control" asp-items="ViewBag.Category1Id"></select>
+                        @*<span asp-validation-for="Category1Id" class="text-danger"></span>*@
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div id="category" class="form-group" style="display: none;">
+                        <label asp-for="Category11Id" class="control-label">Категория х.х</label>
+                        <select asp-for="Category11Id" id="CCategory1" onchange="javascript: $('#submitcat1').click();" class="select2 form-control" asp-items="ViewBag.Category11Id"></select>
+                        @*<span asp-validation-for="Category11Id" class="text-danger"></span>*@
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div id="category1" class="form-group" style="display: none;">
+                        <label asp-for="Category111Id" class="control-label">Категория х.х.х</label>
+                        <select asp-for="Category111Id" id="CCategory11" class="select2 form-control" asp-items="ViewBag.Category111Id"></select>
+                        @*<span asp-validation-for="Category111Id" class="text-danger"></span>*@
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TaskId" class="control-label">Вазифа</label>
+                        <select asp-for="TaskId" class="select2 form-control" asp-items="ViewBag.TaskId"></select>
+                        @*<span asp-validation-for="TaskId" class="text-danger"></span>*@
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FinComment" class="control-label">Изоҳ</label>
+                        <input asp-for="FinComment" class="form-control" />
+                        @*<span asp-validation-for="FinComment" class="text-danger"></span>*@
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CheckPeriod" class="control-label">Муддат</label>
+                        <input asp-for="CheckPeriod" class="form-control" />
+                        @*<span asp-validation-for="FinComment" class="text-danger"></span>*@
+                        <span class="invalid-feedback"></span>
+                    </div>
+                </div>
+                <div class="form-button-container">
+                    <a class="btn btn-outline-primary mr-3 no-outline" asp-action="Index">
+                        <i class="fas fa-arrow-left mr-2" ></i>Ортга қайтиш
+                    </a>
+                    <button id="submitcat" type="submit" name="submitcat" value="Submit" asp-action="EditAfterCat" asp-route-id="@Model.FinanceRepId" hidden></button>
+                    <button id="submitcat1" type="submit" name="submitcat1" value="Submit" asp-action="EditAfterCat1" asp-route-id="@Model.FinanceRepId" hidden></button>
+                    <button id="submit" type="submit" name="submit" value="Submit" asp-action="EditAfterAddress" asp-route-id="@Model.FinanceRepId" hidden></button>
+                    <input type="submit" value="Сақлаш" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script>
+    jQuery(document).ready(function ($) {
+        // hide all optional elements
+        $('#object').hide();
+        $("#address").each(function () {
+            if ($('#object1').val() === "" || $('#object1').val() === null) {
+                $('#object').filter(':hidden');
+                $('#category1').filter(':hidden');
+            }
+
+            else
+                $('#object').slideDown();
+        });
+        $('#category').hide();
+
+        $('#category1').hide();
+        $("#Cate").each(function () {
+            if ($('#CCategory1').val() === "" || $('#CCategory1').val() === null) {
+                $('#category').filter(':hidden');
+            }
+
+            else
+                $('#category').slideDown();
+        });
+        $("#CCategory1").each(function () {
+            if ($('#CCategory11').val() === "" || $('#CCategory11').val() === null) {
+                $('#category1').filter(':hidden');
+            }
+
+            else
+                $('#category1').slideDown();
+        });
+    });
+</script>

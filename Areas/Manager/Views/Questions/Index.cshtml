@@ -1,0 +1,47 @@
+﻿@model IEnumerable<KRU.Models.Question>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.QName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QWeight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Test)
+            </th>
+            <th><a asp-action="Create" class="btn btn-success text-white"><i class="fa fa-question-circle" aria-hidden="true"></i>New Question</a></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.QName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QWeight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Test.TestId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.QuestionId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.QuestionId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.QuestionId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

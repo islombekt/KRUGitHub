@@ -1,0 +1,25 @@
+﻿@page
+@model Disable2faModel
+@{
+    ViewData["Title"] = "Икки факторли аутентификатсияни ўчириб қўйинг (2FA)";
+    ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
+}
+
+<partial name="_StatusMessage" for="StatusMessage" />
+<h2>@ViewData["Title"]</h2>
+
+<div class="alert alert-warning" role="alert">
+    <p>
+        <strong>Ушбу амал фақат 2FA-ни ўчиради.</strong>
+    </p>
+    <p>
+        2FA-ни ўчириб қўйиш аутентификатор дастурларида ишлатиладиган калитларни ўзгартирмайди. Агар сиз калитни ўзгартирмоқчи бўлсангиз
+        аутентификатор дастурида ишлатишингиз керак <a asp-page="./ResetAuthenticator">аутентификатор калитларини қайта тикланг.</a>
+    </p>
+</div>
+
+<div>
+    <form method="post" class="form-group">
+        <button class="btn btn-danger" type="submit">2FA-ни ўчириб қўйинг</button>
+    </form>
+</div>

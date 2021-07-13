@@ -1,0 +1,77 @@
+﻿@model KRU.Models.Category111
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="callout callout-danger">
+    <h5><i class="fas fa-info-circle"></i> Ўчириш:</h5>
+    Ҳақиқатан ҳам ўчиришни хоҳлайсизми?
+</div>
+<div class="invoice p-3 mb-3">
+    <h4>Категория х.х.х</h4>
+    <hr />
+    <dl class="row">
+        <div class="col-12">
+            <h4>
+                <span class="categoryIcon">
+                    <i class="fas fa-circle"></i>&nbsp;<i class="fas fa-long-arrow-alt-right"></i>
+                    <i class="fas fa-circle"></i>&nbsp;<i class="fas fa-long-arrow-alt-right"></i>
+                    <i class="fas fa-circle activeIcon"></i>&nbsp;
+                </span>@Html.DisplayFor(model => model.Name_C111)
+            </h4>
+            <hr />
+        </div>
+        <div class="mt-5 col-12">
+            <table class="table table-hover table-success table-striped">
+                <thead class="table-active">
+                    <tr>
+                        <th colspan="2">Текширув ҳисоботи::</th>
+                    </tr>
+                    <tr>
+                        <th>
+                           Сумма
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.FinanceReports == null)
+                    {
+                    <td>
+                        ничего не найдено
+                    </td>
+                }
+                else
+                {
+                    @foreach (var item111 in Model.FinanceReports)
+                    {
+                        <tr>
+
+                            <td class="amount">
+                                @Html.DisplayFor(modelItem => item111.amount)
+                            </td>
+                            <td class="table-button-container">
+                                <a data-bs-toggle="tooltip" title="Таҳрирлаш" class="btn btn-outline-success kru-table-button" asp-controller="Category111" asp-action="Edit" asp-route-id="@item111.Category111Id"><i class="far fa-edit"></i></a>
+                                <a data-bs-toggle="tooltip" title="Тафсилотлар" class="btn btn-outline-info kru-table-button" asp-controller="Category111" asp-action="Details" asp-route-id="@item111.Category111Id"><i class="fas fa-info"></i></a>
+                                <a data-bs-toggle="tooltip" title="Ўчириш" class="btn btn-outline-danger kru-table-button" asp-controller="Category111" asp-action="Delete" asp-route-id="@item111.Category111Id"><i class="far fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                    }}
+                    </tbody>
+                </table>
+
+            </div>
+        </dl>
+    <form asp-action="Delete">
+        <div class="form-button-container">
+            <a class="btn btn-outline-primary mr-3 no-outline" asp-controller="Category11" asp-action="Delete" asp-route-id="@Model.Category11.Category11Id">
+                <i class="fas fa-arrow-left mr-2"></i>Ортга қайтиш
+            </a>
+            <input type="hidden" asp-for="Category111Id" />
+            @if (Model.FinCount == 0)
+            {
+            <input type="submit" value="Delete" class="btn btn-danger" />}
+        </div>
+    </form>
+    </div>

@@ -17,6 +17,12 @@ namespace KRU.Models
         public string LName { get; set; }
         [Required]
         public string SName { get; set; }
+        [NotMapped]
+        public string FullName
+        {
+            get { return FName + " " + LName; }
+             
+        }
         public DateTime EnteredToWork { get; set; }
         public DateTime FiredFromWork { get; set; }
 

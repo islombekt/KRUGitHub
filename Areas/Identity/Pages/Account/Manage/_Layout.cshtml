@@ -8,18 +8,22 @@
         Layout = "/Areas/Identity/Pages/_Layout.cshtml";
     }
 }
-
-<h2>Manage your account</h2>
+<div class="callout callout-info">
+    <div class="flex-container align-items-center">
+        <i class="fas fa-info-circle"></i><h5>Аккаунтингизни бошқаринг:</h5>
+    </div>
+    Аккаунтингиз созламаларини ўзгартиринг
+</div>
 
 <div>
-    <h4>Change your account settings</h4>
-    <hr />
-    <div class="row">
-        <div class="col-md-3">
-            <partial name="_ManageNav" />
-        </div>
-        <div class="col-md-9">
-            @RenderBody()
+    <div class="kru-profile-form card box-shadow">
+        <div class="row">
+            <div class="col-md-3">
+                <partial name="_ManageNav" />
+            </div>
+            <div class="col-md-9 px-3">
+                @RenderBody()
+            </div>
         </div>
     </div>
 </div>

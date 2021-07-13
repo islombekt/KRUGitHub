@@ -1,0 +1,101 @@
+﻿@model IEnumerable<KRU.Models.Test>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="callout callout-info">
+    <div class="flex-container align-items-center">
+        <i class="fas fa-info-circle"></i><h5>Тест:</h5>
+    </div>
+    Бу ердан сиз 'Тестлар'га киришингиз, ўчиришингиз ва таҳрирлашингиз мумкин.
+</div>
+
+
+<div class="buttons-container">
+    <a class="btn btn-default" asp-action="Create"><i class="fas fa-plus mr-2"></i>Яратиш</a>
+</div>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-3 col-xs-6">
+            <div class="small-box bg-gradient-lightblue">
+                <div class="inner">
+
+                    <h3 class="box-title">
+                       @Html.DisplayFor(modelItem => item.NumberOfUsers) 
+                    </h3>
+                    <p style="display: inline-block;width: 200px;white-space: nowrap;overflow: hidden !important;text-overflow: ellipsis;">  @Html.DisplayFor(modelItem => item.TestName)</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-diagnoses"></i>
+                </div>
+                <a asp-action="Details" asp-route-id="@item.TestId" class="small-box-footer">
+                    Батафсил
+                    <i class="fa fa-arrow-circle-right">
+
+                    </i>
+                </a>
+            </div>
+        </div>
+    }
+</div>
+
+@*<div class="card">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.TestName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TestDescription)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TestStarted)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TestEnd)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Manager)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Department)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TestName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TestDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TestStarted)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TestEnd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Manager.ManagerId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Department.DepartmentId)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.TestId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.TestId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.TestId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>*@
